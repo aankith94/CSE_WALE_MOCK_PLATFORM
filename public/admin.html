@@ -1,0 +1,151 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>CSE WALE · Admin</title>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.45.4/dist/umd/supabase.min.js"></script>
+<style>
+:root{--bg:#f2f5f8;--panel:#fff;--ink:#14202e;--mut:#5d6b7a;--line:#d8dfe7;--gold:#f5b400;--ok:#1e8e4e;--bad:#c0392b;--bar:#3b82f6}
+@media (prefers-color-scheme:dark){:root{--bg:#0e1319;--panel:#171e27;--ink:#e8edf2;--mut:#9aa7b4;--line:#2a3541;--bar:#60a5fa}}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.5 system-ui,-apple-system,"Segoe UI",Roboto,sans-serif}
+header{background:#0b0c0f;color:#fff;padding:.8rem clamp(1rem,3vw,2rem);display:flex;justify-content:space-between;align-items:center;gap:1rem;flex-wrap:wrap}
+header b{font-size:1.15rem}header b i{color:var(--gold)}header a{color:#d7dee6}
+nav{background:var(--panel);border-bottom:1px solid var(--line);padding:0 clamp(1rem,3vw,2rem);display:flex;gap:.2rem;overflow:auto}
+nav button{background:none;border:0;border-bottom:3px solid transparent;border-radius:0;padding:.8rem 1rem;color:var(--mut);font-weight:600;white-space:nowrap}nav button.on{color:var(--ink);border-color:var(--gold)}
+@keyframes up{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:none}}
+#main>*{animation:up .35s cubic-bezier(.2,.7,.2,1) both}nav button{transition:color .2s,border-color .2s,background-color .2s}nav button:hover{color:var(--ink)}button{transition:transform .15s,opacity .2s,box-shadow .2s}button:hover:not(:disabled){transform:translateY(-1px)}button:active:not(:disabled){transform:scale(.97)}
+@media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+main{max-width:1250px;margin:0 auto;padding:1.1rem clamp(1rem,3vw,2rem) 3rem}
+.card{background:var(--panel);border:1px solid var(--line);border-radius:.7rem;padding:1.1rem 1.2rem;margin:1rem 0}
+h2{margin:.1rem 0 .7rem;font-size:1.15rem}h3{margin:1rem 0 .4rem;font-size:1rem}
+.kpis{display:grid;grid-template-columns:repeat(auto-fit,minmax(9.5rem,1fr));gap:.8rem;margin:.2rem 0}.kpis div{background:var(--panel);border:1px solid var(--line);border-radius:.6rem;padding:.7rem .9rem}.kpis b{display:block;font-size:1.55rem}.kpis span{color:var(--mut);font-size:.82rem}
+table{width:100%;border-collapse:collapse;font-size:.9rem}th,td{padding:.45rem .4rem;border-bottom:1px solid var(--line);text-align:left;vertical-align:middle}th{color:var(--mut);font-weight:600;font-size:.78rem;white-space:nowrap}
+input,select,textarea,button{font:inherit;color:inherit}
+input[type=text],input[type=number],input[type=datetime-local],input[type=search],select,textarea{width:100%;padding:.45rem .55rem;border:1.5px solid var(--line);border-radius:.4rem;background:var(--bg)}
+textarea{min-height:8rem;font:13px/1.4 ui-monospace,Menlo,Consolas,monospace}
+button{cursor:pointer;border:0;border-radius:.4rem;padding:.5rem .9rem;background:var(--gold);color:#111;font-weight:700}button.g{background:transparent;border:1.5px solid var(--line);color:var(--ink)}button:disabled{opacity:.5;cursor:default}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(12rem,1fr));gap:.8rem}.grid label,.lbl{font-size:.8rem;color:var(--mut);display:block}
+.msg{white-space:pre-wrap;margin-top:.7rem;font-size:.92rem}.msg.ok,.ok{color:var(--ok)}.msg.bad,.bad{color:var(--bad)}
+.pill{display:inline-block;border-radius:1rem;padding:.05rem .6rem;font-size:.74rem;font-weight:700;background:var(--line);white-space:nowrap}.pill.live{background:var(--ok);color:#fff}.pill.paid{background:var(--ok);color:#fff}.pill.chip{background:var(--bg);border:1px solid var(--line);font-weight:500;margin:.1rem}
+.mut{color:var(--mut)}code{background:var(--bg);padding:.1rem .3rem;border-radius:.25rem}.tw{overflow:auto}
+.bars{display:flex;align-items:flex-end;gap:4px;height:110px;margin:.4rem 0 .2rem}.bars div{flex:1;background:var(--bar);border-radius:3px 3px 0 0;min-height:2px;position:relative}.bars div:hover::after{content:attr(data-t);position:absolute;bottom:100%;left:50%;transform:translateX(-50%);background:#000;color:#fff;font-size:.72rem;padding:.1rem .4rem;border-radius:.25rem;white-space:nowrap}
+.xl{display:flex;gap:4px;font-size:.68rem;color:var(--mut)}.xl span{flex:1;text-align:center;overflow:hidden}
+.two{display:grid;grid-template-columns:1fr 1fr;gap:1rem}@media(max-width:800px){.two{grid-template-columns:1fr}}
+.hbar{display:grid;grid-template-columns:minmax(8rem,14rem) 1fr 3.5rem;gap:.6rem;align-items:center;font-size:.88rem;margin:.25rem 0}.hbar i{display:block;height:.7rem;border-radius:.35rem;background:var(--bar)}.hbar .t{background:var(--line);border-radius:.35rem}
+.bar{display:flex;gap:.6rem;align-items:center;flex-wrap:wrap;margin:.2rem 0 .6rem}.bar input[type=search]{max-width:22rem}.bar select{max-width:11rem}
+.drop{border:2px dashed var(--line);border-radius:.6rem;padding:1.2rem;text-align:center;color:var(--mut)}
+</style></head><body>
+<header><b>CSE <i>WALE</i> · Admin</b><span><span id="who" class="mut"></span> &nbsp; <a href="/">← Student site</a></span></header>
+<nav id="nav" hidden><button data-t="over" class="on">Overview</button><button data-t="stu">Students</button><button data-t="tests">Tests</button><button data-t="pay">Payments</button><button data-t="add">Add tests</button></nav>
+<main id="main"><div class="card" id="gate">Checking login…</div></main>
+<script>
+const $=id=>document.getElementById(id);let TOK='',SB=null,tab='over',timer=null;
+const esc=s=>String(s==null?'':s).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+const inr=n=>'₹'+(+n||0).toLocaleString('en-IN');
+const fd=s=>s?new Date(s).toLocaleString('en-IN',{day:'numeric',month:'short',year:'2-digit',hour:'numeric',minute:'2-digit'}):'–';
+const mmss=s=>s==null?'–':Math.floor(s/60)+'m '+String(s%60).padStart(2,'0')+'s';
+async function api(p,body){const r=await fetch('/api/'+p,{method:body?'POST':'GET',headers:Object.assign({'Content-Type':'application/json'},TOK?{Authorization:'Bearer '+TOK}:{}),body:body?JSON.stringify(body):undefined});
+ const t=await r.text();let j;try{j=JSON.parse(t)}catch(e){j=t}if(!r.ok)throw new Error((j&&j.error)||'Request failed');return j}
+const toLocal=s=>{if(!s)return'';const d=new Date(s),p=n=>String(n).padStart(2,'0');return d.getFullYear()+'-'+p(d.getMonth()+1)+'-'+p(d.getDate())+'T'+p(d.getHours())+':'+p(d.getMinutes())};
+const toISO=v=>v?new Date(v).toISOString():null;
+async function download(path,name){try{const r=await fetch('/api/'+path,{headers:{Authorization:'Bearer '+TOK}});if(!r.ok)throw new Error((await r.json()).error);const b=await r.blob(),a=document.createElement('a');a.href=URL.createObjectURL(b);a.download=name;a.click()}catch(e){alert(e.message)}}
+const bars=(arr,key,fmt)=>{const mx=Math.max(1,...arr.map(x=>x[key]));return '<div class="bars">'+arr.map(x=>'<div style="height:'+Math.round(100*x[key]/mx)+'%" data-t="'+esc(x.day.slice(5))+': '+fmt(x[key])+'"></div>').join('')+'</div><div class="xl">'+arr.map(x=>'<span>'+x.day.slice(8)+'</span>').join('')+'</div>'};
+const hbar=(label,pct,txt)=>'<div class="hbar"><span>'+esc(label)+'</span><span class="t"><i style="width:'+Math.max(0,Math.min(100,pct||0))+'%"></i></span><b>'+txt+'</b></div>';
+async function init(){
+ try{const c=await (await fetch('/api/config')).json();
+  if(c.missing&&c.missing.length){$('gate').innerHTML='<b>Setup is incomplete.</b> Missing settings in Vercel: <code>'+c.missing.join('</code> <code>')+'</code>';return}
+  SB=supabase.createClient(c.supabaseUrl,c.supabaseAnonKey)}catch(e){$('gate').textContent='Could not load. Check your internet and refresh.';return}
+ const {data}=await SB.auth.getSession();
+ if(!data.session){$('gate').innerHTML='Please <a href="/">log in on the student site</a> with your admin email, then come back to this page.';return}
+ TOK=data.session.access_token;$('who').textContent=data.session.user.email;
+ SB.auth.onAuthStateChange((e,s)=>{if(s)TOK=s.access_token});
+ try{await api('admin?action=overview')}catch(e){$('gate').innerHTML='<b>Not allowed.</b> '+esc(e.message)+' This email is not in the ADMIN_EMAILS setting.';return}
+ $('nav').hidden=false;$('nav').onclick=e=>{const b=e.target.closest('[data-t]');if(b)go(b.dataset.t)};go('over')}
+function go(t){tab=t;clearInterval(timer);document.querySelectorAll('#nav button').forEach(b=>b.classList.toggle('on',b.dataset.t===t));$('main').innerHTML='<div class="card mut">Loading…</div>';
+ ({over:vOver,stu:vStu,tests:vTests,pay:vPay,add:vAdd})[t]().catch(e=>{$('main').innerHTML='<div class="card bad">'+esc(e.message)+'</div>'});
+ if(t==='over')timer=setInterval(()=>{if(tab==='over')vOver(true).catch(()=>{})},30000)}
+
+/* ---------- Overview ---------- */
+async function vOver(quiet){
+ const o=await api('admin?action=overview');if(tab!=='over')return;
+ $('main').innerHTML=`<div class="kpis"><div><b>${o.users}</b><span>Registered students</span></div><div><b>${o.buyers}</b><span>Paid students</span></div><div><b>${inr(o.revenue)}</b><span>Revenue (before Razorpay fees)</span></div><div><b>${o.conversion}%</b><span>Registered → paid</span></div><div><b>${o.inProgress}</b><span>Tests in progress now</span></div><div><b>${o.abandoned}</b><span>Checkouts not completed</span></div></div>
+ <div class="two"><div class="card"><h2>New students, last 14 days</h2>${bars(o.series,'signups',v=>v+' students')}</div><div class="card"><h2>Revenue, last 14 days</h2>${bars(o.series,'revenue',inr)}</div></div>
+ <div class="card"><h2>Tests</h2><div class="tw"><table><tr><th>Test</th><th>Status</th><th>Questions</th><th>Opens</th><th>Closes</th><th>Started</th><th>Submitted</th><th>Average score</th></tr>
+ ${o.tests.map(t=>`<tr><td><b>${esc(t.title)}</b> <span class="mut">${esc(t.id)}</span></td><td><span class="pill ${t.status==='live'&&t.published?'live':''}">${t.published?t.status:'hidden'}</span></td><td>${t.questions}</td><td>${fd(t.opens_at)}</td><td>${fd(t.closes_at)}</td><td>${t.started}</td><td>${t.submitted}</td><td>${t.avg==null?'–':t.avg+' / '+t.total_marks}</td></tr>`).join('')||'<tr><td colspan="8" class="mut">No tests yet. Go to "Add tests".</td></tr>'}</table></div></div>
+ <p class="mut">This page refreshes by itself every 30 seconds. Last updated ${new Date().toLocaleTimeString('en-IN')}.</p>`}
+
+/* ---------- Students ---------- */
+let STU=[],spage=0;
+async function vStu(){
+ STU=(await api('admin?action=students')).students;spage=0;if(tab!=='stu')return;
+ $('main').innerHTML=`<div class="card"><h2>Students (<span id="sCount"></span>)</h2><div class="bar"><input type="search" id="sQ" placeholder="Search name, email or mobile"><select id="sF"><option value="all">All students</option><option value="paid">Paid</option><option value="unpaid">Not paid</option><option value="done">Finished a test</option></select><button class="g" id="sCsv">Download all (CSV)</button></div><div class="tw"><table id="sT"></table></div><div class="bar"><button class="g" id="sPrev">← Previous</button><span id="sPg" class="mut"></span><button class="g" id="sNext">Next →</button></div></div>`;
+ const draw=()=>{const q=$('sQ').value.trim().toLowerCase(),f=$('sF').value;
+  const rows=STU.filter(x=>(!q||[x.name,x.email,x.mobile].join(' ').toLowerCase().includes(q))&&(f==='all'||(f==='paid'&&x.paid)||(f==='unpaid'&&!x.paid)||(f==='done'&&x.attempts.some(a=>a.status==='submitted'))));
+  const pages=Math.max(1,Math.ceil(rows.length/50));spage=Math.min(spage,pages-1);
+  $('sCount').textContent=rows.length+' of '+STU.length;$('sPg').textContent='Page '+(spage+1)+' of '+pages;$('sPrev').disabled=spage===0;$('sNext').disabled=spage>=pages-1;
+  $('sT').innerHTML='<tr><th>Name</th><th>Email</th><th>Mobile</th><th>Joined</th><th>Payment</th><th>Tests</th></tr>'+rows.slice(spage*50,spage*50+50).map(x=>`<tr><td><b>${esc(x.name)}</b></td><td>${esc(x.email)}</td><td>${esc(x.mobile)||'<span class="mut">–</span>'}</td><td>${fd(x.joined)}</td><td>${x.paid?'<span class="pill paid">Paid '+inr(x.amount)+'</span> <span class="mut">'+fd(x.paid_at)+'</span>':'<span class="mut">Not paid</span>'}</td><td>${x.attempts.map(a=>'<span class="pill chip">'+esc(a.test)+': '+(a.status==='submitted'?a.score:'in progress')+'</span>').join('')||'<span class="mut">–</span>'}</td></tr>`).join('')||'<tr><td colspan="6" class="mut">No students match.</td></tr>'};
+ $('sQ').oninput=()=>{spage=0;draw()};$('sF').onchange=()=>{spage=0;draw()};$('sPrev').onclick=()=>{spage--;draw()};$('sNext').onclick=()=>{spage++;draw()};$('sCsv').onclick=()=>download('admin?action=students_csv','students.csv');draw()}
+
+/* ---------- Tests ---------- */
+async function vTests(){
+ const o=await api('admin?action=overview');if(tab!=='tests')return;
+ $('main').innerHTML=`<div class="card"><h2>Tests</h2><div class="tw"><table><tr><th>Test</th><th>Status</th><th>Published</th><th>Opens</th><th>Closes</th><th>Started</th><th>Submitted</th><th></th></tr>
+ ${o.tests.map(t=>`<tr data-id="${esc(t.id)}"><td style="min-width:15rem"><input type="text" class="ti" value="${esc(t.title)}"><input type="text" class="su" value="${esc(t.subtitle)}" placeholder="Subtitle shown on the card" style="margin-top:.3rem"><span class="mut">${esc(t.id)} · ${t.questions} q · ${t.duration_min} min</span></td><td><span class="pill ${t.status==='live'?'live':''}">${t.status}</span></td><td><input type="checkbox" class="pub" ${t.published?'checked':''}></td><td><input type="datetime-local" class="op" value="${toLocal(t.opens_at)}"></td><td><input type="datetime-local" class="cl" value="${toLocal(t.closes_at)}"></td><td>${t.started}</td><td>${t.submitted}</td><td style="white-space:nowrap"><button class="sv">Save</button> <button class="g dt">Details</button></td></tr>`).join('')||'<tr><td colspan="8" class="mut">No tests yet. Go to "Add tests".</td></tr>'}</table></div>
+ <p class="mut">Leave "Closes" empty for no deadline. Times are your local time. Students who already started can still finish after the closing time. Tests that are not published are hidden from students.</p><div class="msg" id="m1"></div></div><div id="detail"></div>`;
+ document.querySelectorAll('tr[data-id]').forEach(tr=>{
+  tr.querySelector('.sv').onclick=async()=>{try{await api('admin?action=settings',{id:tr.dataset.id,patch:{title:tr.querySelector('.ti').value.trim()||undefined,subtitle:tr.querySelector('.su').value.trim(),published:tr.querySelector('.pub').checked,opens_at:toISO(tr.querySelector('.op').value),closes_at:toISO(tr.querySelector('.cl').value)}});$('m1').className='msg ok';$('m1').textContent='Saved '+tr.dataset.id+'.';setTimeout(()=>tab==='tests'&&vTests(),700)}catch(e){$('m1').className='msg bad';$('m1').textContent=e.message}};
+  tr.querySelector('.dt').onclick=()=>detail(tr.dataset.id)})}
+async function detail(id){
+ const box=$('detail');box.innerHTML='<div class="card mut">Loading results…</div>';
+ try{const d=await api('admin?action=test_detail&test='+encodeURIComponent(id));
+  const mx=Math.max(1,...d.bins.map(b=>b.count));
+  box.innerHTML=`<div class="card"><h2>${esc(d.test.title)}: results</h2>
+  <div class="kpis"><div><b>${d.submitted}</b><span>Submitted</span></div><div><b>${d.started}</b><span>Started</span></div><div><b>${d.avg==null?'–':d.avg}</b><span>Average score (of ${d.max})</span></div><div><b>${d.median==null?'–':d.median}</b><span>Median</span></div><div><b>${d.best==null?'–':d.best}</b><span>Highest</span></div><div><b>${d.lowest==null?'–':d.lowest}</b><span>Lowest</span></div><div><b>${mmss(d.avgTime)}</b><span>Average time</span></div><div><b>${d.late}</b><span>Submitted late</span></div></div>
+  ${d.submitted?`<div class="two"><div><h3>Score distribution</h3><div class="bars">${d.bins.map(b=>'<div style="height:'+Math.round(100*b.count/mx)+'%" data-t="'+b.from+'–'+b.to+': '+b.count+' students"></div>').join('')}</div><div class="xl">${d.bins.map(b=>'<span>'+b.from+'</span>').join('')}</div></div>
+  <div><h3>Subject accuracy (all students)</h3>${d.subjects.map(s=>hbar(s.subject,s.accuracy,s.accuracy==null?'–':s.accuracy+'%')).join('')}</div></div>
+  <h3>10 hardest questions (lowest % correct among those who attempted)</h3><div class="tw"><table><tr><th>Q</th><th>Subject</th><th>Question</th><th>Correct</th><th>Wrong</th><th>Skipped</th><th>% correct</th></tr>${d.hardest.map(q=>`<tr><td>${q.n}</td><td>${esc(q.subject)}</td><td>${esc(q.q)}…</td><td>${q.correct}</td><td>${q.wrong}</td><td>${q.skip}</td><td><b>${q.pct}%</b></td></tr>`).join('')}</table></div>
+  <h3>Top 20</h3><div class="tw"><table><tr><th>Rank</th><th>Name</th><th>Email</th><th>Score</th><th>Correct</th><th>Wrong</th><th>Time</th></tr>${d.top.map(t=>`<tr><td>${t.rank}</td><td>${esc(t.name)}</td><td>${esc(t.email)}</td><td><b>${t.score}</b></td><td>${t.correct}</td><td>${t.wrong}</td><td>${mmss(t.time)}</td></tr>`).join('')}</table></div>
+  <p><button class="g" id="lbCsv">Download full leaderboard (CSV)</button></p>`:'<p class="mut">Nobody has submitted this test yet.</p>'}</div>`;
+  const b=$('lbCsv');if(b)b.onclick=()=>download('admin?action=leaderboard&test='+encodeURIComponent(id),id+'-leaderboard.csv');box.scrollIntoView({behavior:'smooth'})
+ }catch(e){box.innerHTML='<div class="card bad">'+esc(e.message)+'</div>'}}
+
+/* ---------- Payments ---------- */
+async function vPay(){
+ const d=await api('admin?action=payments');if(tab!=='pay')return;
+ const tot=d.paid.reduce((s,x)=>s+x.amount,0);
+ $('main').innerHTML=`<div class="kpis"><div><b>${d.paid.length}</b><span>Successful payments</span></div><div><b>${inr(tot)}</b><span>Total received</span></div><div><b>${d.abandoned.length}</b><span>Started but not paid</span></div></div>
+ <div class="card"><h2>Successful payments</h2><p><button class="g" id="pCsv">Download (CSV)</button></p><div class="tw"><table><tr><th>Name</th><th>Email</th><th>Mobile</th><th>Amount</th><th>Paid at</th><th>Razorpay payment id</th></tr>${d.paid.map(x=>`<tr><td><b>${esc(x.name)}</b></td><td>${esc(x.email)}</td><td>${esc(x.mobile)||'–'}</td><td>${inr(x.amount)}</td><td>${fd(x.paid_at)}</td><td><code>${esc(x.payment)}</code></td></tr>`).join('')||'<tr><td colspan="6" class="mut">No payments yet.</td></tr>'}</table></div></div>
+ <details class="card"><summary><b>Started but not paid (${d.abandoned.length})</b>: students who opened the payment window and left</summary><div class="tw"><table><tr><th>Name</th><th>Email</th><th>Mobile</th><th>Started</th></tr>${d.abandoned.map(x=>`<tr><td>${esc(x.name)}</td><td>${esc(x.email)}</td><td>${esc(x.mobile)||'–'}</td><td>${fd(x.created_at)}</td></tr>`).join('')}</table></div></details>`;
+ $('pCsv').onclick=()=>download('admin?action=buyers','payments.csv')}
+
+/* ---------- Add tests ---------- */
+function check(list){const seen=new Set(),pr=[];if(!Array.isArray(list)||!list.length)return['The file must be a list of questions.'];
+ list.forEach((x,i)=>{const at='Q'+(i+1)+': ';if(!Number.isInteger(x.n)||x.n<1)pr.push(at+'n must be a whole number');else if(seen.has(x.n))pr.push(at+'n '+x.n+' repeated');else seen.add(x.n);
+  if(!x.s||!x.q)pr.push(at+'subject (s) and question (q) required');if(!Array.isArray(x.o)||x.o.length!==4||x.o.some(o=>!String(o).trim()))pr.push(at+'needs exactly 4 options (o)');if(!Number.isInteger(x.a)||x.a<0||x.a>3)pr.push(at+'a must be 0, 1, 2 or 3')});return pr}
+let FILES=[],EXIST=[];
+async function vAdd(){
+ const o=await api('admin?action=overview');if(tab!=='add')return;EXIST=o.tests.map(t=>t.id);FILES=[];
+ const nums=EXIST.map(i=>+(/^mock-(\d+)$/.exec(i)||[])[1]).filter(Boolean),next=(nums.length?Math.max(...nums):0)+1;
+ const soon=new Date(Date.now()+864e5);soon.setHours(9,0,0,0);
+ $('main').innerHTML=`<div class="card"><h2>Add several mock tests with a release schedule</h2>
+ <p class="mut">Choose one questions file (<code>.json</code>) per test. Each test gets its own opening time, spaced by the interval you choose. Students see "Opens on …" until then, and it unlocks by itself. No need to be online.</p>
+ <div class="drop"><input type="file" id="fFiles" accept=".json,application/json" multiple></div>
+ <div class="grid" style="margin-top:.8rem"><div><label>First test number</label><input type="number" id="fNum" value="${next}" min="1"></div><div><label>Title pattern ({n} = number)</label><input type="text" id="fTitle" value="Mock Test {n}"></div><div><label>Subtitle on the test card</label><input type="text" id="fSub" value="SSC JE · IMD Scientific Assistant · Computer Science &amp; Engineering"></div><div><label>Duration (minutes)</label><input type="number" id="fDur" value="120"></div><div><label>First test opens</label><input type="datetime-local" id="fOpen" value="${toLocal(soon)}"></div><div><label>Release a new test every (days)</label><input type="number" id="fGap" value="7" min="0"></div><div><label>Each test closes after (days, empty = never)</label><input type="number" id="fKeep" placeholder="e.g. 14"></div></div>
+ <p><label><input type="checkbox" id="fPub" checked> Publish (visible to students; opens at the time above)</label></p>
+ <div class="tw"><table id="fT"></table></div><p><button id="fGo" disabled>Schedule all</button></p><div class="msg" id="m3"></div></div>
+ <details class="card"><summary><b>Add one test by pasting</b></summary><div class="grid" style="margin-top:.8rem"><div><label>Test id (e.g. mock-9)</label><input type="text" id="i_id"></div><div><label>Title</label><input type="text" id="i_title"></div><div><label>Subtitle</label><input type="text" id="i_sub" value="SSC JE · IMD Scientific Assistant · Computer Science &amp; Engineering"></div><div><label>Duration</label><input type="number" id="i_dur" value="120"></div><div><label>Opens (optional)</label><input type="datetime-local" id="i_op"></div><div><label>Closes (optional)</label><input type="datetime-local" id="i_cl"></div></div>
+ <p><label><input type="checkbox" id="i_pub" checked> Publish now</label> &nbsp; <label><input type="checkbox" id="i_force"> Replace anyway even if students already started</label></p><textarea id="i_json" placeholder='[{"n":1,"s":"Subject","q":"Question","c":"","o":["A","B","C","D"],"a":2,"d":"Medium","sol":"Solution","key":"Key takeaway"}]'></textarea><p><button id="i_go">Check and import</button></p><div class="msg" id="m2"></div></details>`;
+ const plan=()=>{const n0=+$('fNum').value||1,gap=Math.max(0,+$('fGap').value||0),keep=+$('fKeep').value,first=$('fOpen').value?new Date($('fOpen').value):null;
+  FILES.forEach((f,i)=>{f.id='mock-'+(n0+i);f.title=$('fTitle').value.replace('{n}',n0+i);f.opens=first?new Date(first.getTime()+i*gap*864e5):null;f.closes=f.opens&&keep>0?new Date(f.opens.getTime()+keep*864e5):null});
+  $('fT').innerHTML=FILES.length?'<tr><th>File</th><th>Becomes</th><th>Questions</th><th>Opens</th><th>Closes</th><th>Check</th></tr>'+FILES.map(f=>`<tr><td>${esc(f.name)}</td><td><b>${esc(f.title)}</b> <span class="mut">${f.id}</span>${EXIST.includes(f.id)?' <span class="bad">(replaces existing)</span>':''}</td><td>${f.qs?f.qs.length:'–'}</td><td>${f.opens?fd(f.opens):'now'}</td><td>${f.closes?fd(f.closes):'never'}</td><td>${f.err.length?'<span class="bad">'+esc(f.err.slice(0,3).join('; '))+'</span>':'<span class="ok">OK</span>'}${f.res?'<br>'+f.res:''}</td></tr>`).join(''):'';
+  $('fGo').disabled=!FILES.length||FILES.some(f=>f.err.length)};
+ $('fFiles').onchange=async e=>{FILES=[];for(const file of [...e.target.files].sort((a,b)=>a.name.localeCompare(b.name,undefined,{numeric:true}))){let qs=null,err=[];try{qs=JSON.parse(await file.text());err=check(qs)}catch(x){err=['Not valid JSON: '+x.message]}FILES.push({name:file.name,qs,err})}plan()};
+ ['fNum','fTitle','fOpen','fGap','fKeep'].forEach(i=>$(i).oninput=plan);
+ $('fGo').onclick=async()=>{const m=$('m3');$('fGo').disabled=true;m.className='msg';m.textContent='Scheduling…';let okc=0;
+  for(const f of FILES){try{await api('admin?action=import',{force:false,test:{id:f.id,title:f.title,subtitle:$('fSub').value.trim(),duration_min:+$('fDur').value||120,opens_at:f.opens?f.opens.toISOString():null,closes_at:f.closes?f.closes.toISOString():null,published:$('fPub').checked,sort:+f.id.replace(/\D/g,'')||0},questions:f.qs});f.res='<span class="ok">Added</span>';okc++}catch(x){f.res='<span class="bad">'+esc(x.message)+'</span>'}plan()}
+  m.className='msg '+(okc===FILES.length?'ok':'bad');m.textContent=okc+' of '+FILES.length+' tests added.'+(okc?' See them in the Tests tab.':'');$('fGo').disabled=false};
+ $('i_go').onclick=async()=>{const m=$('m2');m.className='msg';m.textContent='Importing…';
+  try{let qs;try{qs=JSON.parse($('i_json').value)}catch(e){throw new Error('That is not valid JSON. '+e.message)}
+   const r=await api('admin?action=import',{force:$('i_force').checked,test:{id:$('i_id').value.trim(),title:$('i_title').value.trim(),subtitle:$('i_sub').value.trim(),duration_min:+$('i_dur').value,opens_at:toISO($('i_op').value),closes_at:toISO($('i_cl').value),published:$('i_pub').checked},questions:qs});
+   m.className='msg ok';m.textContent='Done. '+r.questions+' questions imported.'}catch(e){m.className='msg bad';m.textContent=e.message}};
+}
+init();
+</script></body></html>

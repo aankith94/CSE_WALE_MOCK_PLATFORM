@@ -1,0 +1,12 @@
+{
+  "name": "cse-wale",
+  "version": "1.0.0",
+  "private": true,
+  "description": "CSE WALE paid mock test platform",
+  "scripts": {
+    "dev": "node dev/server.js",
+    "live": "node dev/live.js",
+    "check": "node dev/check-setup.js",
+    "test": "node dev/api.test.js"
+  }
+}

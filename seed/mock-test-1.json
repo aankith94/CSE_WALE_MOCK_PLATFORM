@@ -1,0 +1,1602 @@
+[
+ {
+  "n": 1,
+  "s": "Engineering Mathematics",
+  "q": "A family has two children. You learn that at least one of them is a boy born on a Tuesday. Assuming sexes and weekdays are equally likely and independent, the probability that both children are boys is",
+  "c": "",
+  "o": [
+   "1/3",
+   "1/2",
+   "13/27",
+   "7/13"
+  ],
+  "a": 2,
+  "d": "Hard",
+  "sol": "Each child has 14 equally likely (sex, day) outcomes, so there are 196 pairs. Pairs containing a Tuesday-boy: 14 + 14 − 1 = 27. Of these, both are boys in 7 + 7 − 1 = 13 cases. So 13/27.",
+  "key": "Extra information about WHICH child (a Tuesday-born boy) shrinks the overlap and pushes the answer from 1/3 toward 1/2. Always count the exact conditioning event."
+ },
+ {
+  "n": 2,
+  "s": "Engineering Mathematics",
+  "q": "A real 3×3 matrix A satisfies A² = A and trace(A) = 2. Which statement must be true?",
+  "c": "",
+  "o": [
+   "rank(A) = 2 and det(A) = 0",
+   "A = I",
+   "A is invertible",
+   "A has eigenvalue 2"
+  ],
+  "a": 0,
+  "d": "Medium",
+  "sol": "A² = A means every eigenvalue is 0 or 1 and A is diagonalisable. For a diagonalisable matrix, trace = (number of eigenvalues equal to 1) = rank = 2. One eigenvalue is 0, so det = 0.",
+  "key": "For an idempotent (projection) matrix: trace = rank. Invertible would force A = I."
+ },
+ {
+  "n": 3,
+  "s": "Engineering Mathematics",
+  "q": "The function f(x) = |x| + |x − 1| + |x − 2| fails to be differentiable at exactly how many points?",
+  "c": "",
+  "o": [
+   "1",
+   "2",
+   "0",
+   "3"
+  ],
+  "a": 3,
+  "d": "Easy–Medium",
+  "sol": "Each term |x − a| has a corner at a. The slope of f jumps by 2 at each of x = 0, 1, 2 (−3 → −1 → 1 → 3), so no corner cancels another.",
+  "key": "Corners of a sum can cancel only if slope jumps cancel (e.g. |x| − |x|). Here all jumps are +2."
+ },
+ {
+  "n": 4,
+  "s": "Engineering Mathematics",
+  "q": "lim_{x→0} (sin x / x)^{1/x²} equals",
+  "c": "",
+  "o": [
+   "e^{1/6}",
+   "1",
+   "e^{−1/6}",
+   "0"
+  ],
+  "a": 2,
+  "d": "Medium–Hard",
+  "sol": "ln of the expression = (1/x²)·ln(sin x / x) ≈ (1/x²)(−x²/6) = −1/6. So the limit is e^{−1/6} ≈ 0.846.",
+  "key": "1^{∞} forms: take logs, then use the series sin x / x = 1 − x²/6 + …"
+ },
+ {
+  "n": 5,
+  "s": "Engineering Mathematics",
+  "q": "The number of equivalence relations on {1,2,3,4} in which 1 and 2 are NOT related is",
+  "c": "",
+  "o": [
+   "15",
+   "5",
+   "10",
+   "8"
+  ],
+  "a": 2,
+  "d": "Medium–Hard",
+  "sol": "Total equivalence relations = Bell(4) = 15. Those with 1 ~ 2: merge 1 and 2 into one element → Bell(3) = 5. So 15 − 5 = 10.",
+  "key": "Counting 'at least/not' cases: subtract the merged-element case from the Bell number."
+ },
+ {
+  "n": 6,
+  "s": "Engineering Mathematics",
+  "q": "A permutation of {1, 2, …, 10} is chosen uniformly at random. The expected number of fixed points (positions i with π(i) = i) is",
+  "c": "",
+  "o": [
+   "0.1",
+   "10",
+   "1/e",
+   "1"
+  ],
+  "a": 3,
+  "d": "Easy–Medium",
+  "sol": "Let X_{i} be the indicator that i is fixed: P = 1/10. By linearity of expectation E = 10 × (1/10) = 1, for every n.",
+  "key": "Linearity of expectation needs no independence. The answer 1 does not depend on n; 1/e is the probability of ZERO fixed points (n large)."
+ },
+ {
+  "n": 7,
+  "s": "Engineering Mathematics",
+  "q": "A simple planar bipartite graph has 7 vertices. The maximum possible number of edges is",
+  "c": "",
+  "o": [
+   "12",
+   "10",
+   "15",
+   "9"
+  ],
+  "a": 1,
+  "d": "Hard",
+  "sol": "Bipartite graphs have no triangles, so every face has length ≥ 4: 2E ≥ 4F. With Euler’s V − E + F = 2 this gives E ≤ 2V − 4 = 10. K_{2,5} is planar with exactly 10 edges, so the bound is achieved.",
+  "key": "General planar bound is 3V − 6 = 15, but the triangle-free (bipartite) bound is 2V − 4."
+ },
+ {
+  "n": 8,
+  "s": "Engineering Mathematics",
+  "q": "A is a 4×6 real matrix of rank 3. The dimension of the null space of Aᵀ is",
+  "c": "",
+  "o": [
+   "3",
+   "2",
+   "4",
+   "1"
+  ],
+  "a": 3,
+  "d": "Medium",
+  "sol": "Aᵀ is 6×4, so its null space sits inside R^{4} and has dimension 4 − rank(Aᵀ) = 4 − 3 = 1. (The null space of A itself has dimension 6 − 3 = 3.)",
+  "key": "Rank–nullity uses the number of COLUMNS of the matrix whose null space you want."
+ },
+ {
+  "n": 9,
+  "s": "Engineering Mathematics",
+  "q": "Which of the following propositional formulas is NOT a tautology?",
+  "c": "",
+  "o": [
+   "(p → q) ∨ (q → p)",
+   "(p → q) → (q → p)",
+   "((p → q) → p) → p",
+   "(p → q) → (¬q → ¬p)"
+  ],
+  "a": 1,
+  "d": "Easy–Medium",
+  "sol": "(p → q) ∨ (q → p) is always true (if p is false the first disjunct holds, otherwise q → p or p → q holds). Peirce’s law and contraposition are tautologies. The converse form (p → q) → (q → p) is false when p = F, q = T.",
+  "key": "An implication is not equivalent to its converse. Peirce’s law ((p→q)→p)→p holds classically."
+ },
+ {
+  "n": 10,
+  "s": "Engineering Mathematics",
+  "q": "What is the smallest k such that EVERY k-element subset of {1, 2, …, 20} must contain two distinct numbers, one dividing the other?",
+  "c": "",
+  "o": [
+   "10",
+   "11",
+   "12",
+   "15"
+  ],
+  "a": 1,
+  "d": "Medium–Hard",
+  "sol": "Write each number as 2^{a}·m with m odd. There are 10 odd values of m (1, 3, …, 19) → 10 chains under divisibility. 10 numbers can avoid divisibility (e.g. 11–20), but 11 numbers force two in one chain, and in a chain one divides the other.",
+  "key": "Pigeonhole with chains: partition into groups where any two elements are comparable."
+ },
+ {
+  "n": 11,
+  "s": "Digital Logic",
+  "q": "The circuit F = AB + A′C (two-level AND-OR) shows a momentary glitch when B = C = 1 and A changes. Adding which product term removes this static-1 hazard?",
+  "c": "",
+  "o": [
+   "B′C′",
+   "AC′",
+   "BC",
+   "A′B"
+  ],
+  "a": 2,
+  "d": "Medium",
+  "sol": "When B = C = 1, A switching 1 → 0 hands the output from term AB to term A′C. If A′ switches slower than A, both terms are briefly 0. The consensus term BC stays 1 throughout the transition.",
+  "key": "Hazard removal = add the consensus (redundant) term. A logically minimal circuit is not always glitch-free."
+ },
+ {
+  "n": 12,
+  "s": "Digital Logic",
+  "q": "In 8-bit two’s-complement arithmetic, the result of negating −128 (that is, 10000000) is",
+  "c": "",
+  "o": [
+   "128",
+   "−128",
+   "0",
+   "+127"
+  ],
+  "a": 1,
+  "d": "Easy–Medium",
+  "sol": "Negation = invert and add 1: 01111111 + 1 = 10000000, which is again −128. +128 does not fit in 8 bits (range −128…+127), so the operation overflows.",
+  "key": "The two’s-complement range is asymmetric. −(min) = min, and abs(−128) cannot be represented."
+ },
+ {
+  "n": 13,
+  "s": "Digital Logic",
+  "q": "A 4-bit asynchronous (ripple) counter uses flip-flops with propagation delay 20 ns each. If all four outputs must be valid at the same time (for example to decode a state), the maximum reliable clock frequency is",
+  "c": "",
+  "o": [
+   "12.5 MHz",
+   "50 MHz",
+   "25 MHz",
+   "3.125 MHz"
+  ],
+  "a": 0,
+  "d": "Medium",
+  "sol": "The worst-case settling time after a clock edge is n × t_{pd} = 4 × 20 = 80 ns, so f_{max} = 1/80 ns = 12.5 MHz. A synchronous counter would not have this n-fold penalty.",
+  "key": "Ripple counters accumulate delay stage by stage; that is why decoding glitches appear in them."
+ },
+ {
+  "n": 14,
+  "s": "Digital Logic",
+  "q": "In which of the following bases does the fraction 1/6 have a terminating representation?",
+  "c": "",
+  "o": [
+   "Base 10",
+   "Base 8",
+   "Base 5",
+   "Base 12"
+  ],
+  "a": 3,
+  "d": "Medium–Hard",
+  "sol": "A fraction 1/n terminates in base b iff every prime factor of n divides b. 6 = 2·3, and only 12 is divisible by both 2 and 3 (1/6 = 0.2 in base 12). Base 10 lacks the factor 3.",
+  "key": "That is why 0.1 (decimal) cannot be stored exactly in binary: 1/10 needs the factor 5, which 2 does not supply."
+ },
+ {
+  "n": 15,
+  "s": "Digital Logic",
+  "q": "The number of distinct self-dual Boolean functions of 3 variables is",
+  "c": "",
+  "o": [
+   "16",
+   "8",
+   "64",
+   "256"
+  ],
+  "a": 0,
+  "d": "Hard",
+  "sol": "Self-dual: f(x′) = (f(x))′. The truth table is determined by its values on one minterm out of each of the 2³/2 = 4 complementary pairs; the other four values are forced. So 2⁴ = 16.",
+  "key": "Counting trick: a symmetry constraint halves the free entries of the truth table."
+ },
+ {
+  "n": 16,
+  "s": "Digital Logic",
+  "q": "F(A,B,C,D) = Σm(1,3,7,11,15) with don’t-cares d(0,2,5). How many DIFFERENT minimal sum-of-products expressions does F have?",
+  "c": "",
+  "o": [
+   "1",
+   "3",
+   "2",
+   "4"
+  ],
+  "a": 2,
+  "d": "Medium–Hard",
+  "sol": "CD covers 3, 7, 11, 15. The remaining minterm 1 can be covered by A′D (1,3,5,7 using d5) or by A′B′ (0,1,2,3 using d0, d2). Both give 2 terms and 4 literals, so there are two equally minimal answers: CD + A′D and CD + A′B′.",
+  "key": "Don’t-cares can make the minimal form non-unique; different choices can still be equally valid."
+ },
+ {
+  "n": 17,
+  "s": "Digital Logic",
+  "q": "Which of the following sets of gates is NOT functionally complete (assume no constant 0/1 inputs are available)?",
+  "c": "",
+  "o": [
+   "{NAND}",
+   "{NOR}",
+   "{AND, NOT}",
+   "{AND, XOR}"
+  ],
+  "a": 3,
+  "d": "Medium–Hard",
+  "sol": "Every function built only from AND and XOR (with no constants) outputs 0 when all inputs are 0, so it can never realise NOT or NAND. NAND alone, NOR alone and {AND, NOT} are all complete. ({AND, XOR} becomes complete only if constant 1 is allowed, since x ⊕ 1 = x′.)",
+  "key": "To prove incompleteness, find a property preserved by all gates (here: 0-preserving)."
+ },
+ {
+  "n": 18,
+  "s": "Digital Logic",
+  "q": "The minimum number of states in a Moore machine that outputs 1 exactly when the last three input bits are 101 (overlapping allowed) is",
+  "c": "",
+  "o": [
+   "3",
+   "4",
+   "5",
+   "6"
+  ],
+  "a": 1,
+  "d": "Medium–Hard",
+  "sol": "States: S0 (no useful suffix), S1 (suffix 1), S2 (suffix 10), S3 (suffix 101, output 1). A Moore machine needs S3 as a separate state because the output depends on the state alone. A Mealy machine needs only 3 states.",
+  "key": "Moore vs Mealy: Moore outputs attach to states, so Moore machines usually need more states."
+ },
+ {
+  "n": 19,
+  "s": "Computer Organization & Architecture",
+  "q": "A direct-mapped 4 KB data cache has 16-byte blocks. Two int arrays A and B (4 bytes per int) start exactly 4096 bytes apart. The loop for (i = 0; i < 1000; i++) sum += A[i] + B[i]; gives a cache hit rate of about",
+  "c": "",
+  "o": [
+   "50%",
+   "75%",
+   "0%",
+   "87.5%"
+  ],
+  "a": 2,
+  "d": "Hard",
+  "sol": "A[i] and B[i] differ by exactly the cache size, so they map to the same set. The access sequence A[0], B[0], A[1], B[1] … evicts the needed block every time; each block is evicted before its neighbours (A[1], etc.) can hit. Every access misses: hit rate ≈ 0%.",
+  "key": "Conflict (thrashing) misses. Fixes: pad one array, or use a 2-way cache. Without the conflict you would see 75% (3 hits per 4-int block)."
+ },
+ {
+  "n": 20,
+  "s": "Computer Organization & Architecture",
+  "q": "A 5-stage pipeline has branch resolution in stage 3, so a taken branch costs 2 stall cycles; branches predicted not-taken that are actually not taken cost nothing. 25% of instructions are branches and 60% of them are taken. The average CPI is",
+  "c": "",
+  "o": [
+   "1.50",
+   "1.20",
+   "1.30",
+   "1.40"
+  ],
+  "a": 2,
+  "d": "Easy–Medium",
+  "sol": "CPI = 1 + (fraction of branches) × (fraction taken) × (penalty) = 1 + 0.25 × 0.6 × 2 = 1.30.",
+  "key": "Only the mispredicted (taken) branches pay the penalty under a predict-not-taken policy."
+ },
+ {
+  "n": 21,
+  "s": "Computer Organization & Architecture",
+  "q": "What is the smallest positive integer that CANNOT be represented exactly in IEEE-754 single precision?",
+  "c": "",
+  "o": [
+   "2^{23} + 1",
+   "2^{24} + 1 = 16,777,217",
+   "2^{24}",
+   "2^{32}"
+  ],
+  "a": 1,
+  "d": "Medium–Hard",
+  "sol": "A float has a 24-bit significand (23 stored + hidden bit), so all integers up to 2^{24} are exact. Above 2^{24} the spacing between floats is 2, so odd integers like 2^{24} + 1 are not representable.",
+  "key": "Floating-point 'counters' (float i; i++) stop working at 16,777,216: i + 1 rounds back to i."
+ },
+ {
+  "n": 22,
+  "s": "Computer Organization & Architecture",
+  "q": "The 32-bit word 0x12345678 is stored starting at byte address 100 on a little-endian machine. The byte stored at address 101 is",
+  "c": "",
+  "o": [
+   "0x12",
+   "0x56",
+   "0x34",
+   "0x78"
+  ],
+  "a": 1,
+  "d": "Easy–Medium",
+  "sol": "Little-endian puts the least-significant byte at the lowest address: 100 → 78, 101 → 56, 102 → 34, 103 → 12.",
+  "key": "Endianness matters when you cast a pointer to a different width, or send a struct over a network."
+ },
+ {
+  "n": 23,
+  "s": "Computer Organization & Architecture",
+  "q": "In the classic in-order 5-stage pipeline where registers are written only in the last (WB) stage, which data hazards can occur through registers?",
+  "c": "",
+  "o": [
+   "RAW, WAR and WAW",
+   "WAR only",
+   "WAW only",
+   "RAW only"
+  ],
+  "a": 3,
+  "d": "Medium",
+  "sol": "Instructions read registers in ID (early) and write in WB (late) and stay in program order. So an earlier instruction can never be overwritten by a later write (no WAR) and writes happen in order (no WAW). Only RAW (true dependences) occurs. WAR/WAW appear with out-of-order issue or multi-cycle units.",
+  "key": "Match each hazard to the pipeline feature that creates it: reordering → WAR/WAW; dependence → RAW."
+ },
+ {
+  "n": 24,
+  "s": "Computer Organization & Architecture",
+  "q": "A 4-way set-associative L1 data cache with 32-byte lines is virtually indexed and physically tagged (VIPT). The page size is 4 KB. The largest cache size that avoids synonym (aliasing) problems without OS help is",
+  "c": "",
+  "o": [
+   "16 KB",
+   "4 KB",
+   "32 KB",
+   "64 KB"
+  ],
+  "a": 0,
+  "d": "Medium–Hard",
+  "sol": "Index + offset bits must fit inside the page offset (12 bits) so the index is not changed by translation. That limits the size of one way to the page size: 4 KB per way × 4 ways = 16 KB.",
+  "key": "This is why L1 caches are usually 8-way/32 KB with 4 KB pages: capacity grows via associativity, not index bits."
+ },
+ {
+  "n": 25,
+  "s": "Computer Organization & Architecture",
+  "q": "A code has minimum Hamming distance 6. If it must be able to DETECT up to 3 errors, what is the largest number of errors it can simultaneously CORRECT?",
+  "c": "",
+  "o": [
+   "2",
+   "1",
+   "3",
+   "0"
+  ],
+  "a": 0,
+  "d": "Hard",
+  "sol": "To correct t errors and detect s ≥ t errors you need d_{min} ≥ t + s + 1. With d = 6 and s = 3: t ≤ 6 − 3 − 1 = 2.",
+  "key": "Correction and detection compete for the same distance budget. Pure correction of t needs 2t + 1; pure detection of s needs s + 1."
+ },
+ {
+  "n": 26,
+  "s": "Computer Organization & Architecture",
+  "q": "A 16-bit instruction format uses 6-bit address fields and an expanding opcode. 12 two-address instructions and 250 one-address instructions are required. The maximum number of zero-address instructions possible is",
+  "c": "",
+  "o": [
+   "64",
+   "256",
+   "384",
+   "320"
+  ],
+  "a": 2,
+  "d": "Medium–Hard",
+  "sol": "Two-address: 4-bit opcode, 12 of 16 codes used → 4 codes left. One-address: those 4 prefixes × 2⁶ extension codes = 256; 250 used → 6 left. Zero-address: 6 × 2⁶ = 384.",
+  "key": "Expanding opcodes: each spare code in a level multiplies by 2^{(bits freed)} at the next level."
+ },
+ {
+  "n": 27,
+  "s": "Computer Organization & Architecture",
+  "q": "A 2-way set-associative cache has 2 sets and uses LRU; block b maps to set (b mod 2). For the block-address stream 0, 1, 2, 0, 1, 3, 2, 0 the number of hits is",
+  "c": "",
+  "o": [
+   "3",
+   "5",
+   "4",
+   "2"
+  ],
+  "a": 2,
+  "d": "Medium–Hard",
+  "sol": "Set 0 receives 0, 2, 0, 2, 0 and set 1 receives 1, 1, 3. Sequence: 0 M, 1 M, 2 M, 0 H, 1 H, 3 M, 2 H, 0 H → 4 hits.",
+  "key": "Trace each set separately; LRU only matters when a set overflows (here only set 1 might, but it holds {1,3})."
+ },
+ {
+  "n": 28,
+  "s": "Programming & Data Structures",
+  "q": "In C (not C++), on a typical platform where int is 4 bytes, what does printf(\"%zu\", sizeof('A')); print?",
+  "c": "",
+  "o": [
+   "1",
+   "2",
+   "8",
+   "4"
+  ],
+  "a": 3,
+  "d": "Easy–Medium",
+  "sol": "In C a character constant like 'A' has type int, not char, so sizeof('A') equals sizeof(int) = 4. (In C++ it would be 1.)",
+  "key": "C and C++ differ here. sizeof(char) is always 1, but sizeof('A') in C is sizeof(int)."
+ },
+ {
+  "n": 29,
+  "s": "Programming & Data Structures",
+  "q": "What does the following code print?",
+  "c": "unsigned int a = 1;\nint b = -2;\nif (a + b > 0) printf(\"P\"); else printf(\"N\");",
+  "o": [
+   "N",
+   "Compile error",
+   "P",
+   "Undefined behaviour"
+  ],
+  "a": 2,
+  "d": "Easy–Medium",
+  "sol": "In a + b the signed operand b = −2 is converted to unsigned int (usual arithmetic conversions): 1 + 4294967294 = 4294967295 (mod 2³²), which is greater than 0. So P is printed.",
+  "key": "Mixing signed and unsigned of the same rank converts to unsigned. Classic source of loop bugs: for (unsigned i = n-1; i >= 0; i--)."
+ },
+ {
+  "n": 30,
+  "s": "Programming & Data Structures",
+  "q": "The output of the following program fragment is",
+  "c": "int i = 0, j = 0;\nif (i++ && j++) { }\nprintf(\"%d %d\", i, j);",
+  "o": [
+   "1 1",
+   "0 0",
+   "1 0",
+   "0 1"
+  ],
+  "a": 2,
+  "d": "Easy–Medium",
+  "sol": "i++ yields the old value 0 (false), and i becomes 1. && short-circuits, so j++ is never evaluated and j stays 0.",
+  "key": "&& and || evaluate left to right and may skip the right operand, so side effects there are conditional."
+ },
+ {
+  "n": 31,
+  "s": "Programming & Data Structures",
+  "q": "On a 64-bit platform with 4-byte int, what is printed?",
+  "c": "void f(int a[10]) { printf(\"%zu\", sizeof(a)); }\nint main() { int arr[10]; f(arr); }",
+  "o": [
+   "40",
+   "4",
+   "10",
+   "8"
+  ],
+  "a": 3,
+  "d": "Medium–Hard",
+  "sol": "An array parameter int a[10] is adjusted to int *a, so sizeof(a) is the size of a pointer: 8 bytes on a 64-bit platform.",
+  "key": "Arrays decay to pointers when passed to functions. sizeof(a) only gives the array size where a is declared as an array."
+ },
+ {
+  "n": 32,
+  "s": "Programming & Data Structures",
+  "q": "With the macro below, what is printed by printf(\"%d\", SQ(2+3)); ?",
+  "c": "#define SQ(x) x*x",
+  "o": [
+   "25",
+   "11",
+   "13",
+   "10"
+  ],
+  "a": 1,
+  "d": "Easy–Medium",
+  "sol": "Macros substitute text: SQ(2+3) becomes 2+3*2+3 = 2 + 6 + 3 = 11.",
+  "key": "Always parenthesise macro arguments and the whole body: #define SQ(x) ((x)*(x)). Even then SQ(i++) is dangerous."
+ },
+ {
+  "n": 33,
+  "s": "Programming & Data Structures",
+  "q": "In C99 and later, what does printf(\"%d %d\", -7 / 2, -7 % 2); print?",
+  "c": "",
+  "o": [
+   "-4 1",
+   "-3 -1",
+   "-3 1",
+   "-4 -1"
+  ],
+  "a": 1,
+  "d": "Easy–Medium",
+  "sol": "C99 requires division to truncate toward zero, so −7/2 = −3, and the remainder has the sign of the dividend: −7 % 2 = −1 (check: −3×2 + (−1) = −7).",
+  "key": "Python floors (−7//2 = −4, −7%2 = 1); C truncates. Know which one your language uses."
+ },
+ {
+  "n": 34,
+  "s": "Programming & Data Structures",
+  "q": "Input 1, 2, 3, 4 is pushed in this order through a single stack, with pops allowed at any time. Which output order is IMPOSSIBLE?",
+  "c": "",
+  "o": [
+   "2 1 4 3",
+   "3 1 4 2",
+   "3 2 1 4",
+   "4 3 2 1"
+  ],
+  "a": 1,
+  "d": "Medium–Hard",
+  "sol": "After 3 is popped first, the stack holds 1 below 2, so the next pop must give 2 before 1. Hence 3 1 … is impossible. The other three are achievable. In total C(4) = 14 of the 24 permutations are stack-realisable.",
+  "key": "A permutation is stack-sortable/realisable iff it avoids the pattern '3-1-2' (relative order)."
+ },
+ {
+  "n": 35,
+  "s": "Programming & Data Structures",
+  "q": "The number of different max-heaps (array representation of a complete binary tree with 7 nodes) that can be formed using the keys 1 to 7 exactly once is",
+  "c": "",
+  "o": [
+   "64",
+   "40",
+   "80",
+   "120"
+  ],
+  "a": 2,
+  "d": "Medium–Hard",
+  "sol": "The root must be 7. Choose which 3 of the remaining 6 keys go to the left subtree: C(6,3) = 20. Each 3-node subtree has 2 heap arrangements (its max is at its root, the other two keys can be swapped). Total = 20 × 2 × 2 = 80.",
+  "key": "Heap counting recurrence: h(n) = C(n−1, L) · h(L) · h(R), where L, R are the subtree sizes."
+ },
+ {
+  "n": 36,
+  "s": "Programming & Data Structures",
+  "q": "A hash table of size 7 uses h(k) = k mod 7 with linear probing. Keys 14, 21, 7 are inserted (slots 0, 1, 2). Key 14 is then 'deleted' by simply marking its slot empty. A search for key 21 now",
+  "c": "",
+  "o": [
+   "Wrongly reports not found",
+   "Finds 21 at slot 1",
+   "Finds 21 at slot 2",
+   "Loops forever"
+  ],
+  "a": 0,
+  "d": "Easy–Medium",
+  "sol": "Searching 21 starts at slot 0, finds it empty and stops, concluding that 21 is absent although it sits at slot 1. A correct deletion marks the slot with a tombstone ('deleted') so probing continues.",
+  "key": "In open addressing, an empty slot means 'end of probe sequence'. Deleted slots must be marked differently."
+ },
+ {
+  "n": 37,
+  "s": "Programming & Data Structures",
+  "q": "The preorder traversal of a binary SEARCH tree is 10, 5, 1, 7, 40, 50. Its postorder traversal is",
+  "c": "",
+  "o": [
+   "1, 5, 7, 10, 40, 50",
+   "7, 1, 5, 50, 40, 10",
+   "1, 7, 5, 40, 50, 10",
+   "1, 7, 5, 50, 40, 10"
+  ],
+  "a": 3,
+  "d": "Medium",
+  "sol": "Root 10. The next keys smaller than 10 (5, 1, 7) form the left subtree (root 5, left 1, right 7); 40, 50 form the right subtree (root 40, right child 50). Postorder: left (1, 7, 5), right (50, 40), root 10.",
+  "key": "A BST is uniquely determined by its preorder alone (split at the first key larger than the root)."
+ },
+ {
+  "n": 38,
+  "s": "Programming & Data Structures",
+  "q": "Keys 10, 20, 30, 40, 50, 25 are inserted in this order into an initially empty AVL tree. The root of the final tree is",
+  "c": "",
+  "o": [
+   "20",
+   "40",
+   "30",
+   "25"
+  ],
+  "a": 2,
+  "d": "Medium–Hard",
+  "sol": "After 10, 20, 30: root 20. Adding 40, 50 triggers a left rotation at 30, giving 20 → (10, 40(30, 50)). Inserting 25 goes under 30 and unbalances the root (right-left case) → double rotation: the new root is 30 with children 20 (10, 25) and 40 (—, 50).",
+  "key": "Right-left imbalance needs a double rotation; the new root is the inserted-side grandchild (here 30)."
+ },
+ {
+  "n": 39,
+  "s": "Programming & Data Structures",
+  "q": "The function below is called as f(4). Counting the initial call, the total number of calls to f is",
+  "c": "int f(int n) {\n    if (n <= 0) return 0;\n    return f(n-1) + f(n-2) + 1;\n}",
+  "o": [
+   "15",
+   "9",
+   "11",
+   "21"
+  ],
+  "a": 0,
+  "d": "Medium",
+  "sol": "C(n) = 1 + C(n−1) + C(n−2) with C(n ≤ 0) = 1: C(1)=3, C(2)=5, C(3)=9, C(4)=15.",
+  "key": "Count calls with a recurrence; the return value itself is a different recurrence (here it would be 7)."
+ },
+ {
+  "n": 40,
+  "s": "Programming & Data Structures",
+  "q": "The number of different binary-tree SHAPES with 6 nodes whose preorder and inorder traversals list the nodes in exactly the same order is",
+  "c": "",
+  "o": [
+   "6",
+   "42",
+   "132",
+   "1"
+  ],
+  "a": 3,
+  "d": "Easy–Medium",
+  "sol": "Preorder visits root first, inorder visits the left subtree first. They agree only if no node has a left child. So every node has just a right child: one shape, a right-leaning chain.",
+  "key": "Compare traversals structurally: preorder = inorder ⇒ no left children; postorder = inorder ⇒ no right children."
+ },
+ {
+  "n": 41,
+  "s": "Programming & Data Structures",
+  "q": "A singly linked list has a tail of 3 nodes before a cycle of length 5. A slow pointer moves 1 node per step and a fast pointer 2 nodes per step, both starting at the head. After how many steps do they first meet (t > 0)?",
+  "c": "",
+  "o": [
+   "5",
+   "3",
+   "8",
+   "10"
+  ],
+  "a": 0,
+  "d": "Medium–Hard",
+  "sol": "Both pointers must be in the cycle. After t steps their gap inside the cycle is t, so they meet when t is a multiple of 5 and t ≥ 3. The smallest such t is 5.",
+  "key": "In Floyd’s algorithm the meeting time depends on the cycle length, not on the tail length (once t is past the tail)."
+ },
+ {
+  "n": 42,
+  "s": "Algorithms",
+  "q": "The recurrence T(n) = 2T(n/2) + n / log n solves to",
+  "c": "",
+  "o": [
+   "Θ(n log n)",
+   "Θ(n)",
+   "Θ(n log log n)",
+   "Θ(n / log n)"
+  ],
+  "a": 2,
+  "d": "Hard",
+  "sol": "The master theorem does not apply (f(n) is not polynomially smaller than n). Unroll: level i costs n / log(n/2^{i}) = n / (log n − i). Summing over i gives n · H_{log n} ≈ n ln log n = Θ(n log log n).",
+  "key": "When f(n) is only logarithmically smaller than n^(log_b a), expand the recursion tree; the harmonic series appears."
+ },
+ {
+  "n": 43,
+  "s": "Algorithms",
+  "q": "An array of n elements is such that every element is at most k positions away from its position in the sorted order. The asymptotically best sorting time in the comparison model is",
+  "c": "",
+  "o": [
+   "Θ(n log k)",
+   "Θ(n log n)",
+   "Θ(nk)",
+   "Θ(n + k)"
+  ],
+  "a": 0,
+  "d": "Medium–Hard",
+  "sol": "Keep a min-heap of the first k + 1 elements; repeatedly extract the minimum and insert the next element. Each step costs O(log k), so total Θ(n log k). Insertion sort needs Θ(nk).",
+  "key": "Partially ordered inputs can beat n log n: the 'k-sorted array' trick appears in streaming problems."
+ },
+ {
+  "n": 44,
+  "s": "Algorithms",
+  "q": "Directed graph edges: A→B weight 4, A→C weight 5, C→B weight −3. A standard Dijkstra run from A (a vertex is never revisited once settled) reports dist(B) as",
+  "c": "",
+  "o": [
+   "2",
+   "5",
+   "4",
+   "∞"
+  ],
+  "a": 2,
+  "d": "Medium",
+  "sol": "B (distance 4) is settled before C (distance 5). Later the edge C→B would give 2, but B is already settled and is not updated, so Dijkstra reports 4. The true shortest distance is 2.",
+  "key": "Dijkstra’s correctness proof assumes non-negative weights. Use Bellman–Ford when negative edges are present."
+ },
+ {
+  "n": 45,
+  "s": "Algorithms",
+  "q": "The number of distinct minimum spanning trees of the complete graph K_{4} in which every edge has the same weight is",
+  "c": "",
+  "o": [
+   "4",
+   "12",
+   "16",
+   "24"
+  ],
+  "a": 2,
+  "d": "Medium",
+  "sol": "With equal weights every spanning tree is a minimum spanning tree. By Cayley’s formula K_{4} has 4² = 16 spanning trees.",
+  "key": "Distinct edge weights ⇒ unique MST. Ties can create many MSTs."
+ },
+ {
+  "n": 46,
+  "s": "Algorithms",
+  "q": "The length of the longest strictly increasing subsequence of 10, 22, 9, 33, 21, 50, 41, 60, 80 is",
+  "c": "",
+  "o": [
+   "5",
+   "6",
+   "7",
+   "4"
+  ],
+  "a": 1,
+  "d": "Medium",
+  "sol": "One longest subsequence is 10, 22, 33, 50, 60, 80 (length 6). Alternatives like 10, 22, 33, 41, 60, 80 also have length 6.",
+  "key": "Greedy 'pick the next larger element' fails (it would take 10, 22, 33, 50, 60, 80 here only by luck); use DP or patience sorting in O(n log n)."
+ },
+ {
+  "n": 47,
+  "s": "Algorithms",
+  "q": "0/1 knapsack, capacity 50, items (weight, value): (10, 60), (20, 100), (30, 120). A greedy algorithm that picks items in decreasing value/weight order, and the true optimum, give values of",
+  "c": "",
+  "o": [
+   "160 and 220",
+   "220 and 220",
+   "160 and 160",
+   "180 and 240"
+  ],
+  "a": 0,
+  "d": "Medium",
+  "sol": "Ratios: 6, 5, 4. Greedy takes (10,60) and (20,100), total 160, weight 30; the third item (30) does not fit. The optimum picks items 2 and 3: weight 50, value 220. Fractional knapsack would give 240.",
+  "key": "Greedy is optimal for FRACTIONAL knapsack but not for 0/1 knapsack."
+ },
+ {
+  "n": 48,
+  "s": "Algorithms",
+  "q": "A dynamic array starts with capacity 1 and doubles its capacity when full. Appending an element costs 1, and a resize that copies c elements costs c extra. The total cost of 17 appends is",
+  "c": "",
+  "o": [
+   "34",
+   "31",
+   "48",
+   "64"
+  ],
+  "a": 2,
+  "d": "Medium–Hard",
+  "sol": "Resizes occur when inserting the 2nd, 3rd, 5th, 9th and 17th elements, copying 1, 2, 4, 8, 16 elements = 31. Total = 17 + 31 = 48.",
+  "key": "Amortised cost per append is O(1) (total ≤ 3n), but a single append can cost Θ(n)."
+ },
+ {
+  "n": 49,
+  "s": "Algorithms",
+  "q": "Which of the following functions grows asymptotically fastest?",
+  "c": "",
+  "o": [
+   "n^{log n}",
+   "(log n)^{log n}",
+   "n^{10}",
+   "2^{√n}"
+  ],
+  "a": 3,
+  "d": "Medium–Hard",
+  "sol": "Write each as a power of 2: n^{log n} = 2^{log² n}, (log n)^{log n} = 2^{log n · log log n}, n^{10} = 2^{10 log n}, and 2^{√n}. The exponent √n dominates log² n, which dominates log n · log log n, which dominates 10 log n.",
+  "key": "Compare growth by taking log: compare exponents instead of the functions."
+ },
+ {
+  "n": 50,
+  "s": "Algorithms",
+  "q": "In a 32-bit signed int implementation of binary search with low and high possibly close to 2^{31} − 1, which midpoint expression is safe?",
+  "c": "",
+  "o": [
+   "low + (high − low) / 2",
+   "(low + high) / 2",
+   "(low + high) >> 1",
+   "(high − low) / 2"
+  ],
+  "a": 0,
+  "d": "Easy–Medium",
+  "sol": "low + high can exceed 2³¹ − 1 and overflow (undefined behaviour for signed ints in C), giving a negative midpoint. low + (high − low)/2 never overflows when low ≤ high. This bug lay in widely used library code for years.",
+  "key": "A correct algorithm can still fail through integer overflow in its arithmetic."
+ },
+ {
+  "n": 51,
+  "s": "Algorithms",
+  "q": "A connected graph has edge weights that are only 0 or 1. Which approach finds single-source shortest paths correctly in Θ(V + E) time?",
+  "c": "",
+  "o": [
+   "Ordinary BFS that ignores weights",
+   "0–1 BFS using a deque",
+   "Dijkstra with a binary heap",
+   "Floyd–Warshall"
+  ],
+  "a": 1,
+  "d": "Medium–Hard",
+  "sol": "Push the neighbour at the FRONT of the deque for a 0-edge and at the BACK for a 1-edge; each vertex is settled once, giving Θ(V + E). Ordinary BFS counts edges, not weights, so it is wrong; Dijkstra with a binary heap costs Θ((V + E) log V); Floyd–Warshall is Θ(V³).",
+  "key": "Exploit special structure in weights: small integer weights admit faster specialised queues."
+ },
+ {
+  "n": 52,
+  "s": "Theory of Computation",
+  "q": "How many states does the minimal DFA have for the language of binary strings (MSB first, leading zeros allowed) whose value is divisible by 4?",
+  "c": "",
+  "o": [
+   "4",
+   "3",
+   "5",
+   "2"
+  ],
+  "a": 1,
+  "d": "Medium–Hard",
+  "sol": "Track the value mod 4 (states 0–3). From state r, input b moves to (2r + b) mod 4. States 1 and 3 behave identically (both go to 2 on 0 and 3 on 1 … and both reject), so they merge. States 0 and 2 differ only in acceptance. Minimal DFA: {0}, {2}, {1,3} = 3 states.",
+  "key": "Divisibility by 2^{k} only depends on the last k bits, so fewer states than the mod-4 remainder suggests."
+ },
+ {
+  "n": 53,
+  "s": "Theory of Computation",
+  "q": "The minimal DFA for the unary language { a^{n} | n is divisible by 3 or by 5 } has how many states?",
+  "c": "",
+  "o": [
+   "8",
+   "5",
+   "3",
+   "15"
+  ],
+  "a": 3,
+  "d": "Medium–Hard",
+  "sol": "A DFA must track n modulo lcm(3,5) = 15 and all 15 residues are pairwise distinguishable. The tempting 3 + 5 = 8 would be the size of an NFA (union of two cycles).",
+  "key": "Union of DFAs multiplies state counts (product construction); an NFA adds them."
+ },
+ {
+  "n": 54,
+  "s": "Theory of Computation",
+  "q": "Which of the following languages over {0,1} is regular?",
+  "c": "",
+  "o": [
+   "{ 0^{n}1^{n} | n ≥ 0 }",
+   "{ ww | w ∈ {0,1}* }",
+   "{ w | the number of occurrences of the substring 01 equals the number of occurrences of 10 }",
+   "{ 0^{p} | p is prime }"
+  ],
+  "a": 2,
+  "d": "Hard",
+  "sol": "In any binary string, occurrences of 01 and 10 alternate, so their counts differ by at most 1, and they are equal exactly when the first and last symbols are the same (or the string is empty). That is a regular condition. The others are non-regular (pumping lemma).",
+  "key": "A language that looks like 'counting' may secretly be regular; look for hidden structure before reaching for the pumping lemma."
+ },
+ {
+  "n": 55,
+  "s": "Theory of Computation",
+  "q": "Which statement about regular languages is TRUE?",
+  "c": "",
+  "o": [
+   "Every subset of a regular language is regular",
+   "Every language whose complement is finite is regular",
+   "The union of two non-regular languages can never be regular",
+   "The union of infinitely many regular languages is always regular"
+  ],
+  "a": 1,
+  "d": "Medium",
+  "sol": "A language with finite complement is the complement of a finite (regular) language, so it is regular. Subsets of regular languages need not be regular (e.g. { 0^{n}1^{n} } ⊂ 0*1*). L and its complement can both be non-regular and union to Σ*, which is regular. Infinite unions can give any language.",
+  "key": "Regular languages are closed under finite union, not arbitrary subset or infinite union."
+ },
+ {
+  "n": 56,
+  "s": "Theory of Computation",
+  "q": "For context-free grammars G_{1} and G_{2}, which of the following problems is DECIDABLE?",
+  "c": "",
+  "o": [
+   "Is L(G_{1}) = Σ*?",
+   "Is L(G_{1}) = L(G_{2})?",
+   "Is L(G_{1}) finite?",
+   "Is L(G_{1}) ∩ L(G_{2}) = ∅?"
+  ],
+  "a": 2,
+  "d": "Medium–Hard",
+  "sol": "Finiteness is decidable (find a pumpable long string using the pumping lemma bound, or inspect the CNF grammar for recursion on useful symbols). Universality, equivalence and intersection-emptiness for CFGs are all undecidable.",
+  "key": "CFG decidable: emptiness, finiteness, membership. Undecidable: universality, equivalence, ambiguity, intersection emptiness."
+ },
+ {
+  "n": 57,
+  "s": "Theory of Computation",
+  "q": "The language L = { a^{i}b^{j}c^{k} | i = j or j = k } is",
+  "c": "",
+  "o": [
+   "Deterministic context-free",
+   "Regular",
+   "Not context-free",
+   "Context-free but not deterministic context-free"
+  ],
+  "a": 3,
+  "d": "Hard",
+  "sol": "L is the union of two CFLs ({a^{n}b^{n}c*} and {a*b^{n}c^{n}}), so it is a CFL. A deterministic PDA cannot know whether to compare a’s with b’s or b’s with c’s before seeing the c’s. Formally, if L were a DCFL its complement would be a DCFL, but the complement intersected with a*b*c* is { i ≠ j and j ≠ k }, which is not even context-free.",
+  "key": "DCFLs are closed under complement; general CFLs are not. This closure gap separates DCFL from CFL."
+ },
+ {
+  "n": 58,
+  "s": "Theory of Computation",
+  "q": "In a grammar in Greibach Normal Form (every production A → aα, with a terminal and α a string of non-terminals), a string of length 9 is derived in exactly how many steps?",
+  "c": "",
+  "o": [
+   "17",
+   "9",
+   "8",
+   "10"
+  ],
+  "a": 1,
+  "d": "Medium–Hard",
+  "sol": "Every GNF production introduces exactly one terminal. So a string of 9 terminals needs exactly 9 derivation steps. (In CNF the count is 2n − 1 = 17.)",
+  "key": "GNF gives a PDA that consumes one input symbol per move, with no ε-moves."
+ },
+ {
+  "n": 59,
+  "s": "Theory of Computation",
+  "q": "The number of states in the minimal DFA for the language of the regular expression (0+1)*1(0+1)^{3} is",
+  "c": "",
+  "o": [
+   "8",
+   "32",
+   "16",
+   "5"
+  ],
+  "a": 2,
+  "d": "Hard",
+  "sol": "The language is 'the 4th symbol from the right is 1'. A DFA must remember the last 4 symbols, giving 2⁴ = 16 pairwise distinguishable states, whereas an NFA needs just 5 states.",
+  "key": "The classic gap between NFA (n + 1 states) and DFA (2^{n} states)."
+ },
+ {
+  "n": 60,
+  "s": "Theory of Computation",
+  "q": "For which of the following machine models does adding nondeterminism increase the class of languages recognised?",
+  "c": "",
+  "o": [
+   "Pushdown automata",
+   "Finite automata",
+   "Turing machines",
+   "Finite automata with ε-moves"
+  ],
+  "a": 0,
+  "d": "Medium",
+  "sol": "Nondeterministic PDAs recognise all CFLs, while deterministic PDAs recognise only DCFLs (e.g. palindromes need guessing the midpoint). NFAs = DFAs and NTMs = DTMs in recognising power.",
+  "key": "Nondeterminism changes power only for PDAs (among the standard models); for DFA/TM it changes efficiency (states/time)."
+ },
+ {
+  "n": 61,
+  "s": "Compiler Design",
+  "q": "Using the maximal-munch rule, the number of tokens in the C statement x = a+++b; is",
+  "c": "",
+  "o": [
+   "6",
+   "8",
+   "9",
+   "7"
+  ],
+  "a": 3,
+  "d": "Easy–Medium",
+  "sol": "Maximal munch gives: x, =, a, ++, +, b, ; = 7 tokens (a++ + b). If the scanner read three separate + tokens, it would be 9.",
+  "key": "The lexer always takes the longest possible token. It never backtracks to find a different split."
+ },
+ {
+  "n": 62,
+  "s": "Compiler Design",
+  "q": "The grammar S → iEtSS′ | a, S′ → eS | ε, E → b (the dangling-else grammar) is",
+  "c": "",
+  "o": [
+   "LL(1)",
+   "Unambiguous but not LL(1)",
+   "LL(1) after left-factoring",
+   "Ambiguous, so it is not LL(1)"
+  ],
+  "a": 3,
+  "d": "Medium–Hard",
+  "sol": "FIRST(eS) = {e} and FOLLOW(S′) contains e (since S′ ends S, which can be followed by e). So the parse-table entry M[S′, e] has two productions: S′ → eS and S′ → ε. The grammar is ambiguous (else attaches to either if), hence not",
+  "key": "LL(1) conflicts appear when FIRST and FOLLOW sets overlap for a nullable symbol. Parsers resolve dangling-else by binding to the nearest if."
+ },
+ {
+  "n": 63,
+  "s": "Compiler Design",
+  "q": "The grammar S → aAd | bBd | aBe | bAe, A → c, B → c is",
+  "c": "",
+  "o": [
+   "LR(1) but not LALR(1)",
+   "LALR(1) but not LR(1)",
+   "SLR(1)",
+   "Not LR(1)"
+  ],
+  "a": 0,
+  "d": "Hard",
+  "sol": "In canonical LR(1), after 'ac' the state is {A → c., d ; B → c., e} and after 'bc' it is {B → c., d ; A → c., e}. These two states have the same LR(0) core, so LALR merges them into {A → c., d/e ; B → c., d/e}, creating a reduce–reduce conflict. Hence LR(1) but not LALR(1).",
+  "key": "LALR merging can introduce reduce–reduce conflicts (never shift–reduce conflicts) that canonical LR(1) avoids."
+ },
+ {
+  "n": 64,
+  "s": "Compiler Design",
+  "q": "What do these two programs print under static (lexical) scoping, and under dynamic scoping respectively?",
+  "c": "int x = 1;\nvoid f() { print(x); }\nvoid g() { int x = 2; f(); }\nvoid main() { g(); }",
+  "o": [
+   "2 and 2",
+   "1 and 2",
+   "1 and 1",
+   "2 and 1"
+  ],
+  "a": 1,
+  "d": "Medium",
+  "sol": "Static scoping: f refers to the x visible where f is DEFINED (the global x = 1). Dynamic scoping: f refers to the most recent x on the call stack, which is g’s local x = 2.",
+  "key": "Most modern languages are lexically scoped. Dynamic scoping survives in shell scripts and some Lisps."
+ },
+ {
+  "n": 65,
+  "s": "Compiler Design",
+  "q": "With global x = 2, the procedure below is called as f(x). What is x after the call under call-by-reference and call-by-value-result respectively?",
+  "c": "int x = 2;\nvoid f(int a) {\n    x = x + 1;\n    a = a + x;\n}",
+  "o": [
+   "5 and 6",
+   "6 and 5",
+   "6 and 6",
+   "3 and 5"
+  ],
+  "a": 1,
+  "d": "Medium–Hard",
+  "sol": "Reference: a and x are the same variable: x = 3, then a = a + x = 3 + 3 = 6, so x = 6. Value-result: a is a copy (2); x becomes 3; a = 2 + 3 = 5; on return a is copied back into x, so x = 5. (Plain call-by-value would leave x = 3.)",
+  "key": "Aliasing makes by-reference and value-result differ when the procedure also touches the global."
+ },
+ {
+  "n": 66,
+  "s": "Compiler Design",
+  "q": "Which of the following errors is detected during semantic analysis?",
+  "c": "",
+  "o": [
+   "Using an undeclared variable",
+   "A missing semicolon",
+   "An illegal character such as @ in the source",
+   "An array index that goes out of bounds at run time"
+  ],
+  "a": 0,
+  "d": "Easy–Medium",
+  "sol": "Undeclared identifiers (and type mismatches) are caught by semantic analysis using the symbol table. Missing semicolons are syntax errors; illegal characters are lexical errors; out-of-bounds indexing is a run-time error in C.",
+  "key": "Map each error to the phase: lexical (tokens), syntax (grammar), semantic (meaning/types), runtime."
+ },
+ {
+  "n": 67,
+  "s": "Operating Systems",
+  "q": "A low-priority task L holds a lock that a high-priority task H needs. H blocks on the lock. A medium-priority task M (which never needs the lock) becomes ready. With a plain priority-based preemptive scheduler and no priority inheritance, the tasks FINISH in the order",
+  "c": "",
+  "o": [
+   "H, then M, then L",
+   "M, then L, then H",
+   "L, then H, then M",
+   "M, then H, then L"
+  ],
+  "a": 1,
+  "d": "Medium–Hard",
+  "sol": "M preempts L (M has higher priority) and runs to completion. Only then does L run, release the lock, and H finally runs. H is delayed by a lower-priority task: priority inversion. Priority inheritance would boost L above M so H finishes sooner.",
+  "key": "Priority inversion caused the 1997 Mars Pathfinder resets; fixed by enabling priority inheritance on the mutex."
+ },
+ {
+  "n": 68,
+  "s": "Operating Systems",
+  "q": "Round Robin with quantum 5 ms; a context switch costs 1 ms. Every process needs only 3 ms of CPU. The CPU efficiency (useful time / total time) is",
+  "c": "",
+  "o": [
+   "83.3%",
+   "75%",
+   "60%",
+   "50%"
+  ],
+  "a": 1,
+  "d": "Medium",
+  "sol": "Each process finishes within one quantum after 3 ms of work, then a context switch of 1 ms: efficiency = 3 / (3 + 1) = 75%. (If bursts were ≥ 5 ms the figure would be 5/6 ≈ 83.3%.)",
+  "key": "When bursts are shorter than the quantum, the quantum value no longer matters; use the burst length."
+ },
+ {
+  "n": 69,
+  "s": "Operating Systems",
+  "q": "Resource R1 has 2 instances, held by P1 and P2. Resource R2 has 1 instance, held by P3. P1 is waiting for R2, P3 is waiting for R1, and P2 is running and requests nothing more. The resource-allocation graph contains the cycle P1 → R2 → P3 → R1 → P1. Which statement is true?",
+  "c": "",
+  "o": [
+   "The system is deadlocked because there is a cycle",
+   "P1 and P3 are deadlocked, P2 is safe",
+   "Deadlock exists only if P2 requests R2",
+   "There is no deadlock, because P2 can finish and release an instance of R1"
+  ],
+  "a": 3,
+  "d": "Medium–Hard",
+  "sol": "With multiple instances per resource type a cycle is necessary but not sufficient. P2 will complete and release its instance of R1, which P3 can take. P3 then finishes and releases R2, letting P1 proceed. No deadlock.",
+  "key": "Cycle ⇒ deadlock only when every resource type in the cycle has a single instance."
+ },
+ {
+  "n": 70,
+  "s": "Operating Systems",
+  "q": "Two resource types with Available = (2, 1). Allocation: P0 = (1,0), P1 = (0,1), P2 = (1,1). Max: P0 = (3,2), P1 = (1,2), P2 = (2,2). How many distinct safe sequences exist?",
+  "c": "",
+  "o": [
+   "6",
+   "2",
+   "4",
+   "3"
+  ],
+  "a": 2,
+  "d": "Medium–Hard",
+  "sol": "Need = Max − Allocation: P0 (2,2), P1 (1,1), P2 (1,1). P0 cannot go first (needs (2,2) > (2,1)). If P1 or P2 goes first, Available becomes (2,2) or (3,2), and the remaining two can then run in either order. Sequences: P1 P0 P2, P1 P2",
+  "key": "A state can have many safe sequences; it is safe if at least one exists."
+ },
+ {
+  "n": 71,
+  "s": "Operating Systems",
+  "q": "FIFO page replacement on the reference string 1 2 3 4 1 2 5 1 2 3 4 5 gives how many page faults with 3 frames and with 4 frames respectively?",
+  "c": "",
+  "o": [
+   "10 and 9",
+   "9 and 10",
+   "9 and 9",
+   "10 and 10"
+  ],
+  "a": 1,
+  "d": "Medium–Hard",
+  "sol": "Simulating FIFO gives 9 faults with 3 frames and 10 faults with 4 frames. More memory produced more faults: Belady’s anomaly.",
+  "key": "Stack algorithms (LRU, OPT) can never show Belady’s anomaly; FIFO can."
+ },
+ {
+  "n": 72,
+  "s": "Operating Systems",
+  "q": "A system uses 48-bit virtual addresses, 4 KB pages and 8-byte page-table entries; every page-table level occupies exactly one page. The minimum number of page-table levels needed is",
+  "c": "",
+  "o": [
+   "4",
+   "3",
+   "5",
+   "6"
+  ],
+  "a": 0,
+  "d": "Medium",
+  "sol": "Page offset = 12 bits, leaving 36 bits to index. One page holds 4096 / 8 = 512 entries = 9 bits per level, so 36 / 9 = 4 levels. (This is the x86-64 layout.)",
+  "key": "Bits per level = log₂(page size / PTE size)."
+ },
+ {
+  "n": 73,
+  "s": "Operating Systems",
+  "q": "In the bounded-buffer problem with semaphores mutex = 1, empty = N and full = 0, a programmer swaps the order in the producer to wait(mutex) followed by wait(empty). The consequence is",
+  "c": "",
+  "o": [
+   "Starvation of the consumer when the buffer is empty",
+   "A race condition on the buffer",
+   "No effect; the order is irrelevant",
+   "Deadlock when the buffer is full"
+  ],
+  "a": 3,
+  "d": "Medium",
+  "sol": "If the buffer is full the producer holds mutex while waiting on empty. The consumer needs mutex to remove an item and signal empty, but it cannot get it: both are blocked forever.",
+  "key": "Acquire the counting semaphore BEFORE the mutex; never block while holding a lock that your waker needs."
+ },
+ {
+  "n": 74,
+  "s": "Operating Systems",
+  "q": "The disk has cylinders 0–199. The head is at 50 moving towards higher cylinders. Pending requests: 10, 40, 60, 90, 180. The total head movement under SCAN (elevator, travelling to the end of the disk before reversing) is",
+  "c": "",
+  "o": [
+   "338",
+   "300",
+   "320",
+   "260"
+  ],
+  "a": 0,
+  "d": "Medium",
+  "sol": "50 → 199 = 149, then 199 → 10 = 189; total 338. (LOOK, which reverses at the last request 180, would give 130 + 170 = 300.)",
+  "key": "SCAN goes to the physical end; LOOK reverses at the last request. C-SCAN jumps back instead of reversing."
+ },
+ {
+  "n": 75,
+  "s": "Operating Systems",
+  "q": "Partitions in order: 100, 500, 200, 300, 600 KB. Processes in order: 212, 417, 112, 426 KB. Which statement is correct?",
+  "c": "",
+  "o": [
+   "Only first-fit places all four processes",
+   "First-fit and best-fit place all four, worst-fit does not",
+   "None of first-fit, best-fit and worst-fit places all four",
+   "Only best-fit places all four processes"
+  ],
+  "a": 3,
+  "d": "Medium",
+  "sol": "Best-fit: 212→300, 417→500, 112→200, 426→600. First-fit: 212→500, 417→600, 112→the 288 KB leftover, 426 finds no partition. Worst-fit: 212→600, 417→500, 112→388, 426 finds nothing.",
+  "key": "Best-fit is not always best, but here keeping the large partition (600) intact is decisive. External fragmentation depends on order."
+ },
+ {
+  "n": 76,
+  "s": "Operating Systems",
+  "q": "How many processes print X when the following program runs (counting the original process)?",
+  "c": "int main() {\n    fork();\n    if (fork())\n        fork();\n    printf(\"X\");\n}",
+  "o": [
+   "4",
+   "6",
+   "8",
+   "5"
+  ],
+  "a": 1,
+  "d": "Medium–Hard",
+  "sol": "After fork #1 there are 2 processes. Each executes the second fork, giving 4 processes. Only those where the second fork returned non-zero (the original two parents) run the third fork, adding 2 more: total 6.",
+  "key": "For fork counting: draw the process tree; conditions on the return value restrict which side forks again."
+ },
+ {
+  "n": 77,
+  "s": "Operating Systems",
+  "q": "Memory access time is 200 ns and a page-fault service takes 8 ms. For the effective access time to be at most 10% above 200 ns, the page-fault rate p must satisfy approximately",
+  "c": "",
+  "o": [
+   "p ≤ 2.5 × 10^{−6}",
+   "p ≤ 2.5 × 10^{−5}",
+   "p ≤ 2.5 × 10^{−7}",
+   "p ≤ 1 × 10^{−4} DATABASES (DBMS)11 questions · 33 marks"
+  ],
+  "a": 0,
+  "d": "Hard",
+  "sol": "EAT = (1 − p)·200 + p·8,000,000 ≤ 220 → p·(8,000,000 − 200) ≤ 20 → p ≤ 20/7,999,800 ≈ 2.5 × 10^{−6}. That is about one fault in 400,000 accesses.",
+  "key": "The disk is so slow that even a tiny fault rate dominates performance; hence the importance of locality."
+ },
+ {
+  "n": 78,
+  "s": "Databases (DBMS)",
+  "q": "Relation R(A,B,C,D,E) has functional dependencies A → B, BC → E and ED → A. The number of candidate keys of R is",
+  "c": "",
+  "o": [
+   "2",
+   "3",
+   "4",
+   "1"
+  ],
+  "a": 1,
+  "d": "Hard",
+  "sol": "C and D never appear on a right-hand side, so both are in every key. CD⁺ = CD. CDE: ED → A → B, so CDE is a key. ACD: A → B, BC → E, so ACD is a key. BCD: BC → E, ED → A, so BCD is a key. Keys: ACD, BCD, CDE → 3.",
+  "key": "Start with attributes that never appear on a right-hand side, then try adding others."
+ },
+ {
+  "n": 79,
+  "s": "Databases (DBMS)",
+  "q": "R(A,B,C) has FDs AB → C and C → B. The highest normal form R satisfies is",
+  "c": "",
+  "o": [
+   "BCNF",
+   "2NF but not 3NF",
+   "3NF but not BCNF",
+   "1NF only"
+  ],
+  "a": 2,
+  "d": "Medium",
+  "sol": "Candidate keys are AB and AC, so A, B, C are all prime attributes → 3NF holds (every RHS attribute is prime). C → B violates BCNF because C is not a superkey.",
+  "key": "3NF allows a dependency into a prime attribute; BCNF does not. BCNF decomposition may lose dependency preservation."
+ },
+ {
+  "n": 80,
+  "s": "Databases (DBMS)",
+  "q": "Table T(x) contains the rows 1, 2 and NULL. Query Q1 is SELECT COUNT(*) FROM T WHERE x NOT IN",
+  "c": "(SELECT x FROM T WHERE x >= 2); and Q2 is SELECT COUNT(*) FROM T WHERE x NOT IN (SELECT x FROM T);\nThe results of Q1 and Q2 are respectively",
+  "o": [
+   "1 and 0",
+   "2 and 0",
+   "1 and 1",
+   "2 and 1"
+  ],
+  "a": 0,
+  "d": "Medium–Hard",
+  "sol": "Q1: the subquery yields {2}. Row 1: 1 NOT IN (2) is true; row 2 is false; row NULL gives NULL (unknown) so it is excluded → 1. Q2: the subquery yields {1, 2, NULL}; for row 1 the comparison 1 = 1 is true so NOT IN is false; rows 2 and NULL do not qualify either → 0. (With a NULL in the list, x NOT IN (…) can never be TRUE.)",
+  "key": "NOT IN with a NULL in the subquery returns no rows. Prefer NOT EXISTS, which behaves intuitively."
+ },
+ {
+  "n": 81,
+  "s": "Databases (DBMS)",
+  "q": "R(A,B) has 10 tuples; 3 of them have B = NULL and 7 have B matching a tuple of S(B,C), where B is the primary key of S. The numbers of tuples in the natural (inner) join R ⋈ S and the left outer join R ⟕ S are respectively",
+  "c": "",
+  "o": [
+   "10 and 10",
+   "7 and 10",
+   "7 and 7",
+   "10 and 7"
+  ],
+  "a": 1,
+  "d": "Medium",
+  "sol": "NULL never equals anything, so the 3 NULL tuples do not join: the inner join has 7 tuples. The left outer join preserves all 10 tuples of R (the 3 unmatched ones padded with NULLs).",
+  "key": "Joins on NULL keys silently drop rows; outer joins keep them."
+ },
+ {
+  "n": 82,
+  "s": "Databases (DBMS)",
+  "q": "A B+ tree has a root, one level of internal nodes and a leaf level (3 levels). Each internal node can have at most 4 child pointers and each leaf can hold at most 3 keys. The maximum number of keys that can be stored in the leaves is",
+  "c": "",
+  "o": [
+   "48",
+   "27",
+   "64",
+   "36"
+  ],
+  "a": 0,
+  "d": "Medium",
+  "sol": "Maximum leaves = 4 (root children) × 4 (children per internal node) = 16. Each leaf holds up to 3 keys: 16 × 3 = 48.",
+  "key": "Capacity of a tree = (fan-out)^(levels−1) × (keys per leaf). Minimum occupancy (half-full) gives the lower bound."
+ },
+ {
+  "n": 83,
+  "s": "Databases (DBMS)",
+  "q": "Consider the schedule S: r1(x) w2(x) w1(x) w3(x). Which statement is correct?",
+  "c": "",
+  "o": [
+   "Conflict-serializable (and therefore view-serializable)",
+   "Neither conflict- nor view-serializable",
+   "Conflict-serializable but not view-serializable",
+   "Not conflict-serializable but view-serializable"
+  ],
+  "a": 3,
+  "d": "Hard",
+  "sol": "r1(x) before w2(x) gives T1 → T2, and w2(x) before w1(x) gives T2 → T1: a cycle, so not conflict-serializable. But the serial order T1, T2, T3 has the same reads (T1 reads the initial value) and the same final write (T3), so S is view-serializable thanks to blind writes.",
+  "key": "Every conflict-serializable schedule is view-serializable, but not the reverse; the gap needs blind writes."
+ },
+ {
+  "n": 84,
+  "s": "Databases (DBMS)",
+  "q": "R(A,B,C,D) has exactly two candidate keys: {A} and {B,C}. The number of superkeys of R is",
+  "c": "",
+  "o": [
+   "8",
+   "12",
+   "10",
+   "11"
+  ],
+  "a": 2,
+  "d": "Medium–Hard",
+  "sol": "Superkeys containing A: any subset of {B,C,D} → 2³ = 8. Superkeys not containing A must contain {B,C}; D is free → 2 more. Total 10.",
+  "key": "Count superkeys by inclusion–exclusion over the keys; avoid double-counting sets that contain several keys."
+ },
+ {
+  "n": 85,
+  "s": "Databases (DBMS)",
+  "q": "Which of the following expressions is equal to R ∩ S?",
+  "c": "",
+  "o": [
+   "(R ∪ S) − (R − S)",
+   "(R − S) ∪ (S − R)",
+   "R − (R − S)",
+   "R ∪ (S − R)"
+  ],
+  "a": 2,
+  "d": "Medium",
+  "sol": "R − (R − S) removes from R everything not in S, leaving R ∩ S. (R ∪ S) − (R − S) equals S, the symmetric difference is the third option, and R ∪ (S − R) is R ∪ S.",
+  "key": "Intersection is a derived operator: it is not needed in the basic relational algebra."
+ },
+ {
+  "n": 86,
+  "s": "Databases (DBMS)",
+  "q": "After a crash, ARIES redo examines log records for page P. The on-disk page has pageLSN = 50. The log contains update records for P with LSNs 40, 50 and 60. During the redo pass which records are re-applied?",
+  "c": "",
+  "o": [
+   "Only LSN 60",
+   "LSN 50 and 60",
+   "All three",
+   "None of them"
+  ],
+  "a": 0,
+  "d": "Medium–Hard",
+  "sol": "ARIES redoes a logged update only if pageLSN < record LSN. 40 and 50 are already reflected on the page (pageLSN = 50 means the update at LSN 50 is applied), so only LSN 60 is redone.",
+  "key": "pageLSN makes redo idempotent: reapplying a log record twice never corrupts the page."
+ },
+ {
+  "n": 87,
+  "s": "Databases (DBMS)",
+  "q": "A file of 30,000 records, 10 records per block, has a sparse primary index with one entry per data block. Each index entry takes 16 bytes and a block is 1024 bytes. In the worst case, the number of block accesses for a point lookup using binary search on the index (then one data block) is",
+  "c": "",
+  "o": [
+   "7",
+   "12",
+   "6",
+   "8"
+  ],
+  "a": 0,
+  "d": "Medium–Hard",
+  "sol": "Data blocks = 3000. Index entries per block = 1024/16 = 64, so index blocks = ⌈3000/64⌉ = 47. Binary search: ⌈log₂ 47⌉ = 6 index-block accesses, plus 1 data block = 7. (Binary search directly on the data file would take ⌈log₂ 3000⌉ = 12.)",
+  "key": "A sparse index shrinks the binary-search space dramatically because index records are smaller than data records."
+ },
+ {
+  "n": 88,
+  "s": "Databases (DBMS)",
+  "q": "Which of the following statements is TRUE?",
+  "c": "",
+  "o": [
+   "Strict 2PL ensures conflict-serializable and cascadeless schedules",
+   "Two-phase locking guarantees freedom from deadlock",
+   "Every conflict-serializable schedule can be produced by two-phase locking",
+   "Basic timestamp ordering always produces cascadeless schedules"
+  ],
+  "a": 0,
+  "d": "Medium",
+  "sol": "Strict 2PL holds exclusive locks until commit, which gives conflict-serializability and prevents cascading aborts. 2PL can deadlock. Some conflict-serializable schedules cannot be produced by any 2PL scheduler. Basic timestamp ordering may read uncommitted data and cause cascading rollbacks.",
+  "key": "Strict 2PL = 2PL + hold exclusive locks until commit/abort. Deadlock still needs detection or prevention."
+ },
+ {
+  "n": 89,
+  "s": "Computer Networks",
+  "q": "Which of the following IPv4 addresses can be assigned to a host in the subnet 172.16.8.0/21?",
+  "c": "",
+  "o": [
+   "172.16.8.0",
+   "172.16.15.255",
+   "172.16.12.255",
+   "172.16.16.1"
+  ],
+  "a": 2,
+  "d": "Medium–Hard",
+  "sol": "A /21 covers 172.16.8.0 – 172.16.15.255 (third octet 8–15). 172.16.8.0 is the network address and 172.16.15.255 is the broadcast address. 172.16.16.1 lies outside the subnet. 172.16.12.255 lies strictly inside the range, so it is a valid host address even though its last octet is 255.",
+  "key": "A host address ending in .255 or .0 is not automatically invalid; check against the subnet’s block boundaries."
+ },
+ {
+  "n": 90,
+  "s": "Computer Networks",
+  "q": "A router has these forwarding entries: 10.0.0.0/8 → R1, 10.1.0.0/16 → R2, 10.1.2.0/24 → R3, 0.0.0.0/0 → R4. A packet for 10.1.3.7 is forwarded to",
+  "c": "",
+  "o": [
+   "R2",
+   "R1",
+   "R3",
+   "R4"
+  ],
+  "a": 0,
+  "d": "Easy–Medium",
+  "sol": "Longest-prefix match: 10.1.3.7 matches /8 and /16 (10.1.x.x) but not 10.1.2.0/24 (third octet is 3). The longest matching prefix is /16 → R2.",
+  "key": "Forwarding uses the most specific prefix, not the first or the shortest."
+ },
+ {
+  "n": 91,
+  "s": "Computer Networks",
+  "q": "With 4-bit sequence numbers, the maximum sender window sizes for Go-Back-N and Selective Repeat are respectively",
+  "c": "",
+  "o": [
+   "15 and 8",
+   "16 and 8",
+   "15 and 15",
+   "8 and 8"
+  ],
+  "a": 0,
+  "d": "Medium",
+  "sol": "GBN: window ≤ 2^{k} − 1 = 15 (receiver window is 1). Selective Repeat: window ≤ 2^{k−1} = 8, otherwise the receiver cannot distinguish new frames from retransmissions.",
+  "key": "Selective repeat needs sender window + receiver window ≤ 2^{k}."
+ },
+ {
+  "n": 92,
+  "s": "Computer Networks",
+  "q": "In Ethernet CSMA/CD, after the 4th consecutive collision on a frame, a station picks its backoff multiplier K uniformly from",
+  "c": "",
+  "o": [
+   "0 to 7",
+   "0 to 31",
+   "1 to 16",
+   "0 to 15"
+  ],
+  "a": 3,
+  "d": "Medium",
+  "sol": "After the n-th collision K is chosen from {0, 1, …, 2^{n} − 1} (with n capped at 10). For n = 4: 0 to 15 slot times.",
+  "key": "Binary exponential backoff doubles the range after each collision; the frame is dropped after 16 attempts."
+ },
+ {
+  "n": 93,
+  "s": "Computer Networks",
+  "q": "A TCP client with initial sequence number 1000 sends SYN, receives SYN-ACK, and then sends 500 bytes of data. The acknowledgement number the server returns for this data is",
+  "c": "",
+  "o": [
+   "1500",
+   "1001",
+   "501",
+   "1501"
+  ],
+  "a": 3,
+  "d": "Medium",
+  "sol": "The SYN consumes one sequence number, so the first data byte has sequence number 1001. The 500 bytes occupy 1001–1500, and the ACK carries the next expected byte: 1501.",
+  "key": "SYN and FIN each consume one sequence number even though they carry no data."
+ },
+ {
+  "n": 94,
+  "s": "Computer Networks",
+  "q": "Which statement about split horizon with poison reverse in distance-vector routing is correct?",
+  "c": "",
+  "o": [
+   "It prevents routing loops between two adjacent routers but not all larger loops",
+   "It completely eliminates count-to-infinity in every topology",
+   "It prevents loops only in link-state protocols",
+   "It is needed because OSPF uses hop count"
+  ],
+  "a": 0,
+  "d": "Medium",
+  "sol": "Split horizon (poison reverse) stops a router advertising a route back to the neighbour it learned it from, which kills two-node loops. Loops of three or more routers can still cause count-to-infinity, so RIP also uses a small infinity (16) and hold-down timers.",
+  "key": "Defence in depth: split horizon + small infinity + triggered updates/hold-down."
+ },
+ {
+  "n": 95,
+  "s": "Computer Networks",
+  "q": "A router receives a 3000-byte IPv4 datagram with the Don’t Fragment (DF) bit set that must leave on a link with MTU 1500. The router will",
+  "c": "",
+  "o": [
+   "Fragment it into two datagrams",
+   "Forward it unchanged",
+   "Silently discard it with no message",
+   "Discard it and send an ICMP 'fragmentation needed' message to the source"
+  ],
+  "a": 3,
+  "d": "Medium",
+  "sol": "DF = 1 forbids fragmentation. The router drops the datagram and sends ICMP Destination Unreachable (fragmentation needed and DF set), including the next-hop MTU. This is the basis of Path MTU Discovery.",
+  "key": "DF + ICMP feedback lets the source learn the path MTU. Firewalls that block this ICMP cause mysterious hangs."
+ },
+ {
+  "n": 96,
+  "s": "Computer Networks",
+  "q": "Approximately how many random messages must be hashed by a 64-bit hash function before the probability of at least one collision becomes about 50%?",
+  "c": "",
+  "o": [
+   "2^{64}",
+   "2^{32}",
+   "2^{63}",
+   "2^{16}"
+  ],
+  "a": 1,
+  "d": "Medium–Hard",
+  "sol": "This is the birthday paradox: collisions appear after about √(2^{64}) = 2^{32} samples (~1.18 × 2^{32} for 50%). Brute-force preimage search would need about 2^{64}.",
+  "key": "Collision resistance of an n-bit hash is only n/2 bits. This is why 128-bit hashes (MD5) are broken for signatures."
+ },
+ {
+  "n": 97,
+  "s": "Computer Networks",
+  "q": "A learning switch with 4 ports starts with an empty MAC table. Host A (port 1) sends a frame to B (port 2). B replies to A. A then sends a frame to C (port 3). How many frame transmissions does the switch perform in total, counting each port a frame is sent out on? (Flooding goes to all ports except the incoming one.)",
+  "c": "",
+  "o": [
+   "5",
+   "9",
+   "3",
+   "7"
+  ],
+  "a": 3,
+  "d": "Medium",
+  "sol": "Frame 1 (A→B): B unknown → flooded to ports 2, 3, 4 (3 transmissions); A is learned on port 1. Frame 2 (B→A): A is known → port 1 only (1); B learned. Frame 3 (A→C): C unknown → flooded to ports 2, 3, 4 (3). Total 3 + 1 + 3 = 7.",
+  "key": "Switches learn from the source address and forward by the destination; unknown unicast is flooded."
+ },
+ {
+  "n": 98,
+  "s": "Computer Networks",
+  "q": "Which of the following protocols uses TCP rather than UDP?",
+  "c": "",
+  "o": [
+   "DHCP",
+   "TFTP",
+   "SNMP trap",
+   "DNS zone transfer (AXFR)"
+  ],
+  "a": 3,
+  "d": "Easy–Medium",
+  "sol": "Zone transfers move large data reliably over TCP port 53. DHCP, TFTP and SNMP traps use UDP. (Normal DNS queries use UDP but switch to TCP when the answer is truncated.)",
+  "key": "DNS uses both transports: UDP for typical queries, TCP for large responses and zone transfers."
+ },
+ {
+  "n": 99,
+  "s": "Computer Networks",
+  "q": "A host sends an ARP request in which the sender IP address and the target IP address are the same address (its own). This is",
+  "c": "",
+  "o": [
+   "An ARP poisoning attack by definition",
+   "An invalid ARP packet",
+   "A proxy ARP reply",
+   "A gratuitous ARP, used to detect duplicate IP addresses and refresh neighbours' caches"
+  ],
+  "a": 3,
+  "d": "Medium–Hard",
+  "sol": "A gratuitous ARP announces the host’s IP–MAC binding. Receivers update their ARP caches, and if some other host replies, an IP conflict is detected. It is also used after failover (e.g. a virtual IP moving between machines). Attackers can abuse it, but the packet itself is legitimate.",
+  "key": "Gratuitous ARP is the IPv4 counterpart of duplicate address detection in IPv6."
+ },
+ {
+  "n": 100,
+  "s": "Computer Networks",
+  "q": "A channel has bandwidth 4 kHz and a signal-to-noise ratio of 15 (a plain ratio, not in dB). Using Nyquist’s formula for the noiseless case, the number of signal levels needed to reach the Shannon capacity of this channel is",
+  "c": "",
+  "o": [
+   "8",
+   "4",
+   "16",
+   "2"
+  ],
+  "a": 1,
+  "d": "Medium–Hard",
+  "sol": "Shannon: C = B·log₂(1 + SNR) = 4000 × log₂ 16 = 16 kbps. Nyquist: C = 2B·log₂ L = 8000·log₂ L = 16000 → log₂ L = 2 → L = 4 levels.",
+  "key": "Shannon sets the ceiling; Nyquist tells how many levels (bits per symbol) you need to reach it."
+ }
+]

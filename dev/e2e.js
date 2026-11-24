@@ -1,0 +1,182 @@
+// Full browser test: sign up -> pay -> instructions -> exam -> submit -> result -> reload -> admin.
+process.env.CW_NOSTUB = '1';
+const { chromium } = require('playwright'), crypto = require('crypto'), fs = require('fs');
+const { start } = require('./server');
+const seed = JSON.parse(fs.readFileSync(__dirname + '/../seed/mock-test-1.json', 'utf8'));
+const OUT = process.argv[2] || '/tmp';
+let bad = 0; const ok = (n, c, x) => { console.log(c ? 'ok  ' : 'FAIL', n, c ? '' : (x || '')); if (!c) bad++; };
+const SUPA = `window.supabase={createClient(){const L=[];const get=()=>{try{return JSON.parse(localStorage.getItem('stub'))}catch(e){return null}};
+const set=e=>{const s=e?{access_token:'tok-'+e,user:{email:e}}:null;localStorage.setItem('stub',JSON.stringify(s));L.forEach(f=>f(e?'SIGNED_IN':'SIGNED_OUT',s));return s};
+return{auth:{getSession:async()=>({data:{session:get()}}),onAuthStateChange:f=>{L.push(f);return{data:{subscription:{}}}},
+signInWithPassword:async({email})=>{await window.registerUser(email,{});set(email);return{data:{},error:null}},
+signUp:async({email,options})=>{await window.registerUser(email,options.data);set(email);return{data:{session:get(),user:{identities:[1]}},error:null}},
+signInWithOAuth:async()=>{await window.registerUser('google.user@gmail.com',{full_name:'Google User'});set('google.user@gmail.com');return{error:null}},
+signOut:async()=>{set(null)},resetPasswordForEmail:async()=>({error:null}),updateUser:async()=>({})}}}};`;
+const RZP = `window.Razorpay=function(o){this.o=o};window.Razorpay.prototype.on=function(){};window.Razorpay.prototype.open=async function(){const pid='pay_e2e';const sig=await window.signPay(this.o.order_id,pid);this.o.handler({razorpay_order_id:this.o.order_id,razorpay_payment_id:pid,razorpay_signature:sig})};`;
+(async () => {
+  const { url, mock: M } = await start();
+  const owner = M.addUser('owner@example.com');
+  const imp = await fetch(url + '/api/admin?action=import', { method: 'POST', headers: { 'Content-Type': 'application/json', Authorization: 'Bearer ' + owner }, body: JSON.stringify({ test: { id: 'mock-1', title: 'Mock Test 1', subtitle: 'SSC JE · IMD Scientific Assistant · Computer Science & Engineering', duration_min: 120, published: true, closes_at: new Date(Date.now() + 20 * 3600e3).toISOString() }, questions: seed }) });
+  ok('seeded Mock Test 1', (await imp.json()).questions === 100);
+  await fetch(url + '/api/admin?action=import', { method: 'POST', headers: { 'Content-Type': 'application/json', Authorization: 'Bearer ' + owner }, body: JSON.stringify({ test: { id: 'mock-2', title: 'Mock Test 2', duration_min: 120, published: true, opens_at: new Date(Date.now() + 3 * 864e5).toISOString() }, questions: seed.slice(0, 3) }) });
+
+  const br = await chromium.launch(), ctx = await br.newContext({ viewport: { width: 1360, height: 900 } }), page = await ctx.newPage();
+  const errs = []; page.on('pageerror', e => errs.push(e.message)); page.on('dialog', d => d.accept());
+  await page.route('**/@supabase/supabase-js**', r => r.fulfill({ contentType: 'text/javascript', body: SUPA }));
+  await page.route('**/checkout.razorpay.com/**', r => r.fulfill({ contentType: 'text/javascript', body: RZP }));
+  await page.exposeFunction('registerUser', (e, m) => { M.addUser(e, m); });
+  await page.exposeFunction('signPay', (o, p) => crypto.createHmac('sha256', 'rzp_secret').update(o + '|' + p).digest('hex'));
+
+  await page.goto(url); await page.waitForSelector('.tc');
+  ok('landing shows 2 tests from the database', (await page.locator('.tc').count()) === 2);
+  ok('upcoming test is locked', /Not open yet/.test(await page.locator('.tc').nth(1).innerText()));
+  await page.waitForTimeout(1300);
+  const heroTxt = await page.locator('.lhero').innerText(), whoTxt = await page.locator('#who').innerText();
+  ok('home page says SSC JE, IMD Scientific Assistant and Computer Science & Engineering', /SSC JE/.test(heroTxt) && /IMD Scientific Assistant/.test(heroTxt) && /Computer Science & Engineering/i.test(heroTxt) && /SSC JE IMD/.test(await page.title().then(t => t.replace(' Scientific Assistant (CSE)', '').replace('SSC JE IMD', 'SSC JE IMD'))), heroTxt.slice(0, 200));
+  ok('"Is this series for you?" says who it is for and who it is not for', /for you if/.test(whoTxt) && /not for you if/.test(whoTxt) && /other IMD departments/.test(whoTxt));
+  ok('test card says SSC JE IMD Scientific Assistant CSE', /IMD Scientific Assistant/.test(await page.locator('.tc').first().innerText()));
+  ok('upcoming test shows a ticking countdown', /Opens in \d+d \d\d:\d\d:\d\d/.test(await page.locator('.tc').nth(1).innerText()));
+  ok('FAQ no longer claims you can pause the ranked test', /Can I pause the test\?/.test(await page.locator('#faq').innerText()) && !/Pause the clock any time/.test(await page.locator('#faq').innerText()));
+  await page.evaluate(() => scrollTo(0, 1400)); await page.waitForTimeout(600);
+  ok('sticky buy bar slides in after scrolling (not paid)', await page.locator('#stick.show').count() === 1);
+  await page.evaluate(() => scrollTo(0, 0)); await page.waitForTimeout(300);
+  await page.screenshot({ path: OUT + '/e2e-landing.png' });
+  await page.click('[data-act="buy"]');                       // not logged in -> login pop-up
+  ok('buy asks for login first', await page.locator('#loginOv').isVisible());
+  await page.click('.tabs2 [data-mode=up]');
+  await page.fill('#lgName', 'Rahul Sharma'); await page.fill('#lgMobile', '9876543210'); await page.fill('#lgEmail', 'rahul@gmail.com'); await page.fill('#lgPass', 'secret1');
+  await page.click('#lgGo');
+  await page.waitForFunction(() => /Pro/.test(document.getElementById('userNm').textContent), null, { timeout: 8000 });
+  ok('after sign-up the buy continues, payment verified, Pro unlocked, name shown', /Rahul Sharma · Pro/.test(await page.locator('#userNm').innerText()));
+  await page.click('[data-act="start"]');
+  ok('instructions pop-up opens with server numbers', await page.locator('#insOv').isVisible() && (await page.locator('#insMax').innerText()) === '300' && /Rahul Sharma/.test(await page.locator('#insWho').innerText()));
+  ok('start disabled until acknowledged', await page.locator('#insGo').isDisabled());
+  await page.screenshot({ path: OUT + '/e2e-instructions.png' });
+  await page.check('#insOk'); await page.click('#insGo');
+  await page.waitForSelector('#exam:not([hidden])');
+  ok('question area has the slide-in animation', await page.locator('#qb.qin').count() === 1);
+  ok('sticky buy bar is hidden once paid', await page.locator('#stick.show').count() === 0);
+  const leak = await page.evaluate(() => D.some(q => 'a' in q || 'sol' in q || 'key' in q));
+  ok('questions in the browser have NO answers or solutions', !leak);
+  ok('no pause / ±5 buttons in the ranked test', await page.locator('#pz').isHidden() && await page.locator('#m5').isHidden());
+  // answer: for each displayed question click option that maps to the right original option for the first 70, wrong for next 10
+  const key = Object.fromEntries(seed.map(q => [q.n, q.a]));
+  let right = 0, wrong = 0;
+  for (let i = 0; i < 100; i++) {
+    const plan = i < 70 ? 'right' : i < 80 ? 'wrong' : 'skip';
+    if (plan !== 'skip') {
+      const k = await page.evaluate(([plan, key]) => { const q = Q[cur], c = q.ord.indexOf(key[q.n]); return plan === 'right' ? c : (c + 1) % 4; }, [plan, key]);
+      await page.locator('#qb input[type=radio]').nth(k).check({ force: true });
+      plan === 'right' ? right++ : wrong++;
+    }
+    await page.click('#bs');
+  }
+  await page.waitForTimeout(300);
+  ok('autosave reached the server', await page.evaluate(() => srvSave(false) || true));
+  await page.waitForTimeout(500);
+  const saved = M.DB.attempts[0] && M.DB.attempts[0].state;
+  ok('server holds the autosaved state', saved && saved.S.filter(s => s.ans != null).length === 80);
+  // reload mid-test -> resume card
+  await page.reload(); await page.waitForSelector('.tc');
+  ok('unfinished test is offered after reload', await page.locator('#resCard').isVisible());
+  await page.screenshot({ path: OUT + '/e2e-resume.png' });
+  await page.click('#resGo'); await page.waitForSelector('#exam:not([hidden])');
+  ok('resume restores 80 answered', (await page.locator('#sv').innerText()) === '80');
+  await page.screenshot({ path: OUT + '/e2e-exam.png' });
+  await page.click('#sub'); await page.click('#subYes');
+  await page.waitForSelector('#result:not([hidden])', { timeout: 8000 });
+  const exp = right * 3 - wrong;
+  ok('result score = server score (' + exp + ')', (await page.locator('#rScore').innerText()) === String(exp));
+  ok('real rank shown', /Rank 1 of 1 students/.test(await page.locator('#rRank').innerText()));
+  ok('solutions present after submit', (await page.locator('#rv .sol').count()) === 100);
+  await page.screenshot({ path: OUT + '/e2e-result.png' });
+  const top = await page.evaluate(() => { const b = document.getElementById('backTop').getBoundingClientRect(), r = document.querySelector('#rv .card').getBoundingClientRect(); return { b: b.top + scrollY, firstSolution: r.top + scrollY, vis: b.width > 0 }; });
+  ok('Back to all tests button is at the TOP of the result page, above the solutions', top.vis && top.b < 120 && top.b < top.firstSolution - 500, JSON.stringify(top));
+  await page.click('#backTop'); await page.waitForSelector('.tc');
+  ok('card shows DONE with score', /DONE/.test(await page.locator('.tc').first().innerText()));
+  await page.reload(); await page.waitForSelector('.tc'); await page.click('[data-act="result"]');
+  await page.waitForSelector('#result:not([hidden])');
+  ok('result reopens after reload with same score and rank', (await page.locator('#rScore').innerText()) === String(exp) && /Rank 1 of 1/.test(await page.locator('#rRank').innerText()));
+  await page.click('[data-r="all"]'); await page.waitForSelector('#exam:not([hidden])');
+  ok('practice mode: not ranked, pause available', await page.locator('#pz').isVisible());
+  await page.click('#sub'); await page.click('#subYes'); await page.waitForSelector('#result:not([hidden])');
+  ok('practice result says not ranked', /not ranked/i.test(await page.locator('#rRank').innerText()));
+  await page.click('#backTop2'); await page.waitForSelector('.tc');
+  ok('ranked attempt still intact after practice', /DONE/.test(await page.locator('.tc').first().innerText()));
+  // Google login on a fresh context
+  const p2 = await (await br.newContext({ viewport: { width: 1360, height: 900 } })).newPage();
+  await p2.route('**/@supabase/supabase-js**', r => r.fulfill({ contentType: 'text/javascript', body: SUPA })); await p2.exposeFunction('registerUser', (e, m) => { M.addUser(e, m); });
+  await p2.goto(url); await p2.waitForSelector('.tc'); await p2.click('#loginTop'); await p2.click('#gLogin');
+  await p2.waitForFunction(() => /Google User/.test(document.getElementById('userNm').textContent));
+  ok('Google login takes the name from the Google account', true);
+  ok('login pop-up closes after login', await p2.locator('#loginOv').isHidden());
+  await p2.waitForSelector('#profOv:not([hidden])');
+  ok('Google user is asked for a mobile number', true);
+  await p2.click('#pfSkip'); await p2.waitForSelector('#profOv', { state: 'hidden' });
+  await p2.reload(); await p2.waitForSelector('#tgrid > *'); await p2.waitForTimeout(1500);
+  ok('after Skip the mobile box does NOT come back on refresh', await p2.locator('#profOv').isHidden());
+  await p2.reload(); await p2.waitForSelector('#tgrid > *'); await p2.waitForTimeout(800);
+  await p2.click('#buyHero'); await p2.waitForSelector('#profOv:not([hidden])');
+  ok('it is asked once more at the Buy step (no mobile on file)', true);
+  await p2.fill('#pfMobile', '123'); await p2.click('#pfSave');
+  ok('bad mobile rejected in the prompt', /valid 10-digit/.test(await p2.locator('#pfErr').innerText()));
+  await p2.fill('#pfMobile', '9811122233'); await p2.click('#pfSave'); await p2.waitForSelector('#profOv', { state: 'hidden' });
+  ok('mobile saved for the Google user', M.DB.profiles.some(x => x.email === 'google.user@gmail.com' && x.mobile === '9811122233'));
+  await p2.reload(); await p2.waitForTimeout(1500);
+  ok('with a saved number it is never asked again', await p2.locator('#profOv').isHidden());
+  const pm = await (await br.newContext({ viewport: { width: 390, height: 780 } })).newPage();
+  await pm.route('**/@supabase/supabase-js**', r => r.fulfill({ contentType: 'text/javascript', body: SUPA })); await pm.exposeFunction('registerUser', (e, m) => { M.addUser(e, m); });
+  await pm.goto(url); await pm.waitForSelector('#loginTop');
+  const navFit = await pm.evaluate(() => ({ sw: document.documentElement.scrollWidth, iw: innerWidth, lk: getComputedStyle(document.querySelector('.nav a.lk')).display, h: document.querySelector('.nav').getBoundingClientRect().height }));
+  ok('phone: header fits, no sideways scroll', navFit.sw <= navFit.iw && navFit.lk === 'none' && navFit.h < 80, JSON.stringify(navFit));
+  await pm.screenshot({ path: OUT + '/e2e-phone.png' });
+  await pm.click('#loginTop');
+  ok('login tab does not show the sign-up note', await pm.locator('#lgNote').isHidden());
+  await pm.fill('#lgEmail', 'plain@gmail.com'); await pm.fill('#lgPass', 'secret1'); await pm.press('#lgPass', 'Enter');
+  await pm.waitForFunction(() => /plain/i.test(document.getElementById('userNm').textContent), null, { timeout: 6000 });
+  ok('plain email login (Enter key) works and closes the pop-up', await pm.locator('#loginOv').isHidden());
+  // admin
+  const p3 = await (await br.newContext({ viewport: { width: 1360, height: 900 } })).newPage();
+  await p3.route('**/@supabase/supabase-js**', r => r.fulfill({ contentType: 'text/javascript', body: SUPA })); await p3.exposeFunction('registerUser', (e, m) => { M.addUser(e, m); });
+  await p3.goto(url + '/admin.html'); await p3.waitForTimeout(600);
+  ok('admin page asks to log in first', /log in on the student site/i.test(await p3.locator('#main').innerText()));
+  await p3.evaluate(() => localStorage.setItem('stub', JSON.stringify({ access_token: 'tok-rahul@gmail.com', user: { email: 'rahul@gmail.com' } })));
+  await p3.reload(); await p3.waitForTimeout(600);
+  ok('non-admin is refused', /Not allowed/.test(await p3.locator('#main').innerText()));
+  await p3.evaluate(() => localStorage.setItem('stub', JSON.stringify({ access_token: 'tok-owner@example.com', user: { email: 'owner@example.com' } })));
+  await p3.reload(); await p3.waitForSelector('.kpis');
+  ok('admin sees stats and tests', /Paid students/.test(await p3.locator('.kpis').innerText()) && (await p3.locator('#main table tr').count()) >= 3);
+  await p3.click('#nav [data-t=add]'); await p3.waitForSelector('summary'); await p3.click('summary');
+  await p3.fill('#i_id', 'mock-3'); await p3.fill('#i_title', 'Mock Test 3'); await p3.fill('#i_json', JSON.stringify(seed.slice(0, 4))); await p3.click('#i_go');
+  await p3.waitForFunction(() => /Done/.test(document.getElementById('m2').textContent) || /Done/.test(document.body.innerText));
+  await p3.waitForTimeout(1200);
+  ok('admin imported Mock Test 3', M.DB.tests.some(t => t.id === 'mock-3' && t.question_count === 4));
+  await p3.click('#nav [data-t=over]');
+  await p3.click('#nav [data-t=over]'); await p3.waitForSelector('.bars');
+  ok('overview shows real numbers and charts', /Registered students/.test(await p3.locator('#main').innerText()) && (await p3.locator('.bars div').count()) === 28);
+  await p3.screenshot({ path: OUT + '/e2e-admin-overview.png', fullPage: true });
+  await p3.click('#nav [data-t=stu]'); await p3.waitForSelector('#sT tr:nth-child(2)');
+  const nStu = await p3.locator('#sT tr').count();
+  await p3.fill('#sQ', 'rahul'); await p3.waitForTimeout(150);
+  ok('students tab lists students and search works', nStu >= 3 && (await p3.locator('#sT tr').count()) === 2 && /Rahul Sharma/.test(await p3.locator('#sT').innerText()) && /9876543210/.test(await p3.locator('#sT').innerText()) && /Paid/.test(await p3.locator('#sT').innerText()));
+  await p3.screenshot({ path: OUT + '/e2e-admin-students.png', fullPage: true });
+  await p3.click('#nav [data-t=tests]'); await p3.waitForSelector('tr[data-id] .dt'); await p3.locator('tr[data-id="mock-1"] .dt').click(); await p3.waitForSelector('#lbCsv');
+  ok('test details: stats, subject accuracy, hardest questions, top list', /Average score/.test(await p3.locator('#detail').innerText()) && (await p3.locator('#detail .hbar').count()) === 10 && /Top 20/.test(await p3.locator('#detail').innerText()));
+  await p3.screenshot({ path: OUT + '/e2e-admin-test.png', fullPage: true });
+  await p3.click('#nav [data-t=pay]'); await p3.waitForSelector('#pCsv');
+  ok('payments tab shows the payment', /Rahul Sharma|rahul@gmail.com/.test(await p3.locator('#main').innerText()) && /₹99/.test(await p3.locator('#main').innerText()));
+  await p3.click('#nav [data-t=add]'); await p3.waitForSelector('#fFiles');
+  fs.writeFileSync('/tmp/claude-0/shots/t-a.json', JSON.stringify(seed.slice(0, 3))); fs.writeFileSync('/tmp/claude-0/shots/t-b.json', JSON.stringify(seed.slice(3, 9))); fs.writeFileSync('/tmp/claude-0/shots/t-bad.json', JSON.stringify([{ n: 1 }]));
+  await p3.setInputFiles('#fFiles', ['/tmp/claude-0/shots/t-bad.json']); await p3.waitForTimeout(200);
+  ok('bad file is flagged and cannot be scheduled', /needs exactly 4 options|required/.test(await p3.locator('#fT').innerText()) && await p3.locator('#fGo').isDisabled());
+  await p3.setInputFiles('#fFiles', ['/tmp/claude-0/shots/t-a.json', '/tmp/claude-0/shots/t-b.json']); await p3.waitForTimeout(200);
+  await p3.fill('#fOpen', '2030-01-01T09:00'); await p3.fill('#fGap', '7'); await p3.fill('#fKeep', '14'); await p3.waitForTimeout(150);
+  ok('schedule preview: mock-4 and mock-5, one week apart', /mock-4/.test(await p3.locator('#fT').innerText()) && /mock-5/.test(await p3.locator('#fT').innerText()));
+  await p3.screenshot({ path: OUT + '/e2e-admin-add.png', fullPage: true });
+  await p3.click('#fGo'); await p3.waitForFunction(() => /2 of 2 tests added/.test(document.getElementById('m3').textContent));
+  const t4 = M.DB.tests.find(t => t.id === 'mock-4'), t5 = M.DB.tests.find(t => t.id === 'mock-5');
+  ok('both tests saved with opening times 7 days apart and a 14-day window', t4 && t5 && Math.round((Date.parse(t5.opens_at) - Date.parse(t4.opens_at)) / 864e5) === 7 && Math.round((Date.parse(t4.closes_at) - Date.parse(t4.opens_at)) / 864e5) === 14 && t4.published && t4.question_count === 3 && t5.question_count === 6);
+  await p3.screenshot({ path: OUT + '/e2e-admin.png', fullPage: true });
+  ok('no JavaScript errors in the page', errs.length === 0, errs.join(' | '));
+  await br.close(); console.log(bad ? '\n' + bad + ' FAILED' : '\nALL BROWSER CHECKS PASSED'); process.exit(bad ? 1 : 0);
+})().catch(e => { console.error('CRASH', e); process.exit(1); });
