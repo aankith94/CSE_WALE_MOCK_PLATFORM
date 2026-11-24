@@ -1,5 +1,18 @@
 // Shared helpers. No npm packages: only Node built-ins and fetch.
 const crypto = require('crypto');
+// Network hardening: some connections (Windows, some Indian ISPs) hang on IPv6 or on the first connect.
+// Prefer IPv4, try the next address quickly, and retry once or twice on connection errors.
+try { require('dns').setDefaultResultOrder('ipv4first'); } catch (e) {}
+try { const n = require('net'); n.setDefaultAutoSelectFamily && n.setDefaultAutoSelectFamily(true); n.setDefaultAutoSelectFamilyAttemptTimeout && n.setDefaultAutoSelectFamilyAttemptTimeout(1500); } catch (e) {}
+const NETERR = /fetch failed|ECONNRESET|ETIMEDOUT|ENOTFOUND|EAI_AGAIN|UND_ERR|timeout|socket/i;
+async function sfetch(url, opts, tries = 3) {
+  let last;
+  for (let i = 0; i < tries; i++) {
+    try { return await fetch(url, opts); }
+    catch (e) { last = e; const m = String(e && e.message) + ' ' + String(e && e.cause && (e.cause.code || e.cause.message)); if (!NETERR.test(m) || i === tries - 1) break; await new Promise(r => setTimeout(r, 400 * (i + 1))); }
+  }
+  throw Object.assign(new Error('Cannot reach the database (Supabase). Check your internet connection or DNS and try again.'), { status: 503, cause: last });
+}
 const env = n => process.env[n] || '';
 const SBURL = () => env('SUPABASE_URL').replace(/\/$/, '');
 const KEY = () => env('SUPABASE_SERVICE_KEY');
@@ -9,7 +22,7 @@ const MRP = () => parseInt(env('MRP_PAISE') || '19900', 10);
 const err = (status, message) => Object.assign(new Error(message), { status });
 
 async function sb(method, path, { body, prefer, headers } = {}) {
-  const r = await fetch(SBURL() + '/rest/v1/' + path, {
+  const r = await sfetch(SBURL() + '/rest/v1/' + path, {
     method,
     // Old-style keys are JWTs (start with eyJ) and go in both headers. New-style keys (sb_secret_...) go in apikey only.
     headers: Object.assign({ apikey: KEY(), 'Content-Type': 'application/json' }, KEY().startsWith('eyJ') ? { Authorization: 'Bearer ' + KEY() } : {},
@@ -54,7 +67,7 @@ async function getUser(req, required = true) {
   if (!tok) { if (required) throw err(401, 'Please log in.'); return null; }
   const hit = cache.get(tok);
   if (hit && hit.exp > Date.now()) return hit.user;
-  const r = await fetch(SBURL() + '/auth/v1/user', { headers: { apikey: env('SUPABASE_ANON_KEY') || KEY(), Authorization: 'Bearer ' + tok } });
+  const r = await sfetch(SBURL() + '/auth/v1/user', { headers: { apikey: env('SUPABASE_ANON_KEY') || KEY(), Authorization: 'Bearer ' + tok } });
   if (!r.ok) { if (required) throw err(401, 'Your session has expired. Please log in again.'); return null; }
   const u = await r.json();
   const user = { id: u.id, email: (u.email || '').toLowerCase(), meta: u.user_metadata || {} };
@@ -104,4 +117,4 @@ const q = req => new URL(req.url, 'http://x').searchParams;
 const hmac = (secret, data) => crypto.createHmac('sha256', secret).update(data).digest('hex');
 const safeEq = (a, b) => { a = Buffer.from(String(a)); b = Buffer.from(String(b)); return a.length === b.length && crypto.timingSafeEqual(a, b); };
 
-module.exports = { env, err, sb, select, selectAll, insert, update, remove, count, getUser, ensureProfile, isAdmin, isPaid, status, publicTest, wrap, body, q, hmac, safeEq, PRICE, MRP };
+module.exports = { sfetch, env, err, sb, select, selectAll, insert, update, remove, count, getUser, ensureProfile, isAdmin, isPaid, status, publicTest, wrap, body, q, hmac, safeEq, PRICE, MRP };

@@ -3,6 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="description" content="Mock tests for SSC JE IMD Scientific Assistant, made only for Computer Science &amp; Engineering students. One-time ₹99 for all tests.">
 <title>CSE WALE · SSC JE IMD Scientific Assistant (CSE) Mock Tests</title>
 <style>
 :root{--bg:#eef2f7;--panel:#fff;--ink:#14202e;--mut:#5b6b7d;--line:#d3dce6;--brand:#9a6700;--btn:#f5b400;--btnink:#111;--hd:#0f1115;--sel:#fff4cc;--nv:#c9d1db;--na:#d9534f;--an:#2e9b4e;--mk:#7a4fb0;--ok:#1d8a46;--okbg:#e3f5e9;--bad:#c4372f;--badbg:#fbe8e6;--warn:#fff4c2;--warnink:#5a4700;--code:#f1f4f8;color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
@@ -244,6 +245,7 @@ body{transition:background-color .3s ease,color .3s ease}
 #stick s{opacity:.6}#stick .btn{padding:.45rem 1.2rem}
 @media (max-width:600px){.lhero .rot{min-height:2.5em}}
 .tc .cd{display:inline-block;min-width:7.5em}.tg{min-height:20rem}
+#setup>.ft{padding-bottom:5.5rem;padding-top:1.4rem;color:var(--ink)}#setup>.ft a{color:inherit;text-decoration:underline;text-underline-offset:2px}
 @media (prefers-reduced-motion:reduce){*,*::before,*::after{animation:none!important;transition:none!important;scroll-behavior:auto!important}.rvl{opacity:1!important;transform:none!important}}
 @media print{
  :root:root:root{--bg:#fff;--panel:#fff;--ink:#111;--mut:#555;--line:#ccc;--okbg:#e3f5e9;--badbg:#fbe8e6;--warn:#fff4c2;--warnink:#5a4700;--code:#f1f4f8;--nv:#ccc;--ok:#1d8a46;--bad:#c4372f}
@@ -286,7 +288,7 @@ body{transition:background-color .3s ease,color .3s ease}
    <div class="pr"><span class="now">₹99</span><span class="was">₹199</span></div>
    <div class="mut">Launch offer, for a limited time</div>
    <ul><li>Every mock test in the series, today and as new ones are added</li><li>Full solutions and key takeaways</li><li>Live rank among all students, plus accuracy and time analysis</li><li>Auto-saved: resume if your phone or browser closes</li><li>Practise your wrong questions again</li><li>Works on phone and laptop</li></ul>
-   <button class="btn go lg" id="buyCard">Buy now for ₹99</button>
+   <button class="btn go lg" id="buyCard">Buy now for ₹99</button><p class="mut" style="text-align:center;font-size:.8rem;margin:.6rem 0 0">One-time payment of ₹99 · no subscription · secure payment by Razorpay · instant access · see <a href="/refund.html">refund policy</a></p>
    <div class="mut" style="margin-top:.6rem;text-align:center">Secure payment by Razorpay · UPI, cards, net banking</div>
   </aside>
  </div></header>
@@ -380,7 +382,7 @@ body{transition:background-color .3s ease,color .3s ease}
  <input type="password" id="lgPass" placeholder="Password (min 6 characters)" autocomplete="current-password">
  <div style="text-align:right"><a href="#" id="lgForgot" style="font-size:.85rem">Forgot password?</a></div>
  <div class="mut" id="lgNote" hidden style="font-size:.82rem">Your name is shown on the exam and your result card.</div>
- <div class="err" id="lgErr"></div>
+ <div class="mut" style="font-size:.78rem">By continuing you agree to our <a href="/terms.html" target="_blank">Terms</a> and <a href="/privacy.html" target="_blank">Privacy Policy</a>.</div><div class="err" id="lgErr"></div>
  <div style="display:flex;gap:.6rem;justify-content:flex-end;margin-top:.4rem"><button class="btn ghost" id="lgX">Cancel</button><button class="btn go" id="lgGo">Log in</button></div>
 </div></div>
 
@@ -731,7 +733,7 @@ document.querySelectorAll('.th').forEach(b=>b.insertAdjacentHTML('beforebegin','
 document.addEventListener('click',e=>{const b=e.target.closest('.zm');if(!b)return;const k=b.dataset.z;
  if(k==='f'){const d=document,msg=()=>toast('Full screen is blocked here. Press F11, or open the page in its own tab.');try{d.fullscreenElement?d.exitFullscreen():d.documentElement.requestFullscreen().catch(msg)}catch(x){msg()}}
  else zoom(Z+(+k)*.1)});
-document.querySelectorAll('#setup,#exam,#result').forEach(s=>s.insertAdjacentHTML('beforeend','<div class="ft">CSE WALE · <a href="https://csewale.vercel.app" target="_blank" rel="noopener">csewale.vercel.app</a></div>'));
+document.querySelectorAll('#setup,#exam,#result').forEach(s=>s.insertAdjacentHTML('beforeend','<div class="ft">CSE WALE · <a href="/terms.html">Terms</a> · <a href="/privacy.html">Privacy</a> · <a href="/refund.html">Refund &amp; Cancellation</a> · <a href="/shipping.html">Delivery</a> · <a href="/contact.html">Contact</a></div>'));
 </script>
 </body>
 </html>

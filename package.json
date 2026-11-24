@@ -7,6 +7,7 @@
     "dev": "node dev/server.js",
     "live": "node dev/live.js",
     "check": "node dev/check-setup.js",
-    "test": "node dev/api.test.js"
+    "test": "node dev/api.test.js",
+    "legal": "node dev/build-legal.js"
   }
 }
