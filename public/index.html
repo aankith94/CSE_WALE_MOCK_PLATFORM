@@ -245,6 +245,13 @@ body{transition:background-color .3s ease,color .3s ease}
 #stick s{opacity:.6}#stick .btn{padding:.45rem 1.2rem}
 @media (max-width:600px){.lhero .rot{min-height:2.5em}}
 .tc .cd{display:inline-block;min-width:7.5em}.tg{min-height:20rem}
+#topbar{position:fixed;top:0;left:0;height:3px;width:0;background:linear-gradient(90deg,#f5b400,#ffd75e);z-index:10;opacity:0;transition:width .35s ease,opacity .25s ease;pointer-events:none;box-shadow:0 0 8px #f5b400}
+#net{position:fixed;left:50%;top:.8rem;transform:translate(-50%,-180%);z-index:10;background:#0b0c0f;color:#fff;border:1px solid rgba(245,180,0,.45);border-radius:2rem;padding:.5rem 1.1rem;font-size:.9rem;display:flex;gap:.6rem;align-items:center;transition:transform .35s cubic-bezier(.2,.8,.2,1);max-width:92vw;pointer-events:none}#net.on{transform:translate(-50%,0)}
+.spin{width:1.1rem;height:1.1rem;border-radius:50%;border:3px solid rgba(245,180,0,.25);border-top-color:#f5b400;animation:spin .8s linear infinite;flex:none}.spin.big{width:2.8rem;height:2.8rem;border-width:4px}
+@keyframes spin{to{transform:rotate(360deg)}}
+.btn.ld{pointer-events:none;opacity:.85}.btn.ld::after{content:"";display:inline-block;width:.9em;height:.9em;margin-left:.6em;vertical-align:-.1em;border-radius:50%;border:2px solid currentColor;border-right-color:transparent;animation:spin .7s linear infinite}
+#loading{z-index:8}#loading .card{text-align:center;min-width:15rem;display:flex;flex-direction:column;align-items:center;gap:.9rem}#loading .card p{margin:0;font-weight:600}
+.sk{border-radius:1rem;min-height:11rem;background:linear-gradient(100deg,var(--panel) 30%,var(--line) 50%,var(--panel) 70%);background-size:200% 100%;animation:shim 1.3s linear infinite;border:1px solid var(--line)}@keyframes shim{to{background-position:-200% 0}}
 #setup>.ft{padding-bottom:5.5rem;padding-top:1.4rem;color:var(--ink)}#setup>.ft a{color:inherit;text-decoration:underline;text-underline-offset:2px}
 @media (prefers-reduced-motion:reduce){*,*::before,*::after{animation:none!important;transition:none!important;scroll-behavior:auto!important}.rvl{opacity:1!important;transform:none!important}}
 @media print{
@@ -307,7 +314,7 @@ body{transition:background-color .3s ease,color .3s ease}
 
   <section class="sec rvl" id="tests">
    <h2 class="t">Choose your test</h2><p class="sub">New mock tests are added to the same pass. You do not pay again.</p>
-   <div class="tg" id="tgrid"></div>
+   <div class="tg" id="tgrid"><div class="sk"></div><div class="sk"></div><div class="sk"></div></div>
   </section>
 
   <section class="sec rvl">
@@ -370,6 +377,8 @@ body{transition:background-color .3s ease,color .3s ease}
 <div id="profOv" class="ov" hidden><div class="card mbox"><h2 style="margin-top:0">One last step</h2><p class="mut" style="margin-top:0">Add your mobile number so we can reach you about your tests and payment.</p>
  <input type="tel" id="pfMobile" placeholder="Mobile number (10 digits)" inputmode="numeric" maxlength="10" autocomplete="tel">
  <div class="err" id="pfErr"></div><div style="display:flex;gap:.6rem;justify-content:flex-end"><button class="btn ghost" id="pfSkip">Skip for now</button><button class="btn go" id="pfSave">Save</button></div></div></div>
+<div id="loading" class="ov" hidden role="status" aria-live="polite"><div class="card"><div class="spin big"></div><p id="loadMsg">Please wait…</p></div></div>
+<div id="topbar"></div><div id="net" role="status" aria-live="polite"><span class="spin"></span><span id="netMsg"></span></div>
 <div id="sending" class="ov" hidden><div class="card"><h2>Submitting your test…</h2><p class="mut">Please keep this page open.</p></div></div>
 <div id="loginOv" class="ov" hidden><div class="card mbox">
  <h2 id="lgT">Log in to CSE WALE</h2>
@@ -530,13 +539,14 @@ async function finish(){
 }
 function mergeReview(rv){[D,Q||[]].forEach(arr=>arr.forEach(q=>{const x=rv[q.n];if(x){q.a=x.a;q.sol=x.sol;q.key=x.key}}))}
 async function loadResult(id){
+ busyOn('Loading your result…');
  try{const r=await api('test?action=result&test='+encodeURIComponent(id));
   CUR=r.test;D=r.questions;ranked=false;const st=r.state;
   cfg=Object.assign({order:'mix',shq:false,sho:false,showtm:true,min:CUR.duration_min,nolim:false,rev:false},st&&st.cfg,{name:ME.user.name,label:''});
   if(st){Q=st.q.map(([n,o])=>({...D.find(d=>d.n===n),ord:o}));S=st.S.map(x=>Object.assign({sel:null,rev:false},x))}
   else{Q=D.map(q=>({...q,ord:[0,1,2,3]}));S=Q.map(()=>({ans:null,sel:null,vis:false,mark:false,t:0,bm:false,tag:'',rev:false}))}
-  cur=0;spent=r.time_spent;mergeReview(r.review);SRV=r;renderResult()
- }catch(e){toast(e.message)}
+  cur=0;spent=r.time_spent;mergeReview(r.review);SRV=r;renderResult();busyOff()
+ }catch(e){busyOff();toast(e.message)}
 }
 function renderResult(){
  R=Q.map((q,i)=>{const a=S[i].ans,c=cp(q);return{q,i,a,c,t:S[i].t||0,st:a==null?'skip':a===c?'ok':'bad'}});
@@ -596,10 +606,20 @@ $('bcard').onclick=async()=>{
  const u=c.toDataURL('image/png');$('cardImg').src=u;$('cardDl').href=u;$('cardOv').hidden=false};
 /* ===== platform: auth, payment, tests ===== */
 let lastUid=null,CFG={price:99,mrp:199},ME=null,SBC=null,TOK='',pendingAfter=null,busy=false,lgMode='in';
-async function api(path,opt){opt=opt||{};const h={'Content-Type':'application/json'};
+const NT={n:0,slow:0,off:false,hold:0};
+function netBanner(msg){const b=$('net');if(msg){$('netMsg').textContent=msg;b.classList.add('on')}else b.classList.remove('on')}
+function barStart(){if(++NT.n===1){const b=$('topbar');b.style.transition='none';b.style.width='0';b.style.opacity='1';void b.offsetWidth;b.style.transition='';b.style.width='72%';NT.slow=setTimeout(()=>{if(!NT.off)netBanner('Slow connection. Still trying…')},4000)}}
+function barEnd(){if(--NT.n<=0){NT.n=0;clearTimeout(NT.slow);const b=$('topbar');b.style.width='100%';setTimeout(()=>{if(!NT.n)b.style.opacity='0'},250);if(!NT.off)netBanner('')}}
+function busyOn(msg){clearTimeout(busyOn.t);clearTimeout(busyOn.s);busyOn.t=setTimeout(()=>{$('loadMsg').textContent=msg;$('loading').hidden=false},120);busyOn.s=setTimeout(busyOff,15000)}
+function busyOff(){clearTimeout(busyOn.t);clearTimeout(busyOn.s);$('loading').hidden=true}
+window.addEventListener('offline',()=>{NT.off=true;netBanner('You are offline. We will reconnect when your internet is back.')});
+window.addEventListener('online',()=>{NT.off=false;netBanner('Back online');setTimeout(()=>{if(!NT.off)netBanner('')},2200);if(!$('setup').hidden)refresh()});
+async function nfetch(url,init){const n=init.method==='GET'?3:1;let last;for(let i=0;i<n;i++){try{return await fetch(url,init)}catch(e){last=e;if(i<n-1)await new Promise(r=>setTimeout(r,700*(i+1)))}}const e=new Error('Cannot reach the server. Check your internet and try again.');e.status=0;throw e}
+async function api(path,opt){const quiet=/action=save/.test(path)||(opt&&opt.quiet);if(!quiet)barStart();try{return await apiRaw(path,opt)}finally{if(!quiet)barEnd()}}
+async function apiRaw(path,opt){opt=opt||{};const h={'Content-Type':'application/json'};
  if(SBC&&path!=='config'){try{const {data}=await SBC.auth.getSession();if(data&&data.session)TOK=data.session.access_token}catch(e){}}   // refreshes an expired login before a long exam submit
  if(TOK)h.Authorization='Bearer '+TOK;
- const r=await fetch('/api/'+path,{method:opt.body!==undefined?'POST':'GET',headers:h,body:opt.body!==undefined?JSON.stringify(opt.body):undefined,keepalive:!!opt.keepalive});
+ const r=await nfetch('/api/'+path,{method:opt.body!==undefined?'POST':'GET',headers:h,body:opt.body!==undefined?JSON.stringify(opt.body):undefined,keepalive:!!opt.keepalive});
  let j={};try{j=await r.json()}catch(e){}
  if(!r.ok){const e=new Error(j.error||'Something went wrong. Please try again.');e.status=r.status;throw e}return j}
 const user=()=>ME&&ME.user;
@@ -607,7 +627,7 @@ const notReady=()=>CFG.missing&&CFG.missing.length?'The site is not fully set up
 async function refresh(){
  try{ME=await api('me')}catch(e){ME=ME||{tests:[],user:null};toast('Could not reach the server. Check your internet.')}
  uiUser();chk();
- if(user()){closeLogin();if(pendingAfter){const f=pendingAfter;pendingAfter=null;f()}else maybeProfile()}}
+ busyOff();if(user()){closeLogin();if(pendingAfter){const f=pendingAfter;pendingAfter=null;f()}else maybeProfile()}}
 function uiUser(){const u=user();
  $('userBox').style.display=u?'flex':'none';$('userBox').hidden=!u;$('loginTop').hidden=!!u;$('adminLk').hidden=!(u&&u.admin);
  $('userNm').textContent=u?u.name+(u.paid?' · Pro':''):'';
@@ -645,23 +665,23 @@ document.querySelectorAll('.tabs2 button').forEach(b=>b.onclick=()=>{lgMode=b.da
  $('lgName').hidden=$('lgMobile').hidden=lgMode!=='up';$('lgGo').textContent=lgMode==='up'?'Create account':'Log in';$('lgT').textContent=lgMode==='up'?'Create your account':'Log in to CSE WALE';$('lgForgot').parentNode.hidden=lgMode==='up';$('lgNote').hidden=lgMode!=='up';$('lgErr').textContent=''});
 $('loginOv').addEventListener('keydown',e=>{if(e.key==='Enter'&&e.target.tagName==='INPUT'){e.preventDefault();$('lgGo').click()}});
 $('loginTop').onclick=()=>openLogin();$('lgX').onclick=()=>{pendingAfter=null;closeLogin()};
-$('logout').onclick=async()=>{if(SBC)await SBC.auth.signOut();TOK='';ME=null;await refresh();toast('Logged out')};
+$('logout').onclick=async()=>{busyOn('Logging you out…');if(SBC)await SBC.auth.signOut();TOK='';ME=null;await refresh();toast('Logged out')};
 const friendly=m=>/invalid login/i.test(m)?'Wrong email or password.':/not confirmed/i.test(m)?'Please confirm your email first (check your inbox), then log in.':/signups? (not allowed|disabled)/i.test(m)?'New sign-ups are switched off right now.':/password.*(weak|short|least)/i.test(m)?'Choose a stronger password (at least 6 characters).':/already registered/i.test(m)?'This email already has an account. Please log in.':/rate limit/i.test(m)?'Too many attempts. Please wait a few minutes.':/network|fetch/i.test(m)?'Network problem. Check your internet.':m;
 $('gLogin').onclick=async()=>{if(!SBC)return $('lgErr').textContent=notReady();
- const {error}=await SBC.auth.signInWithOAuth({provider:'google',options:{redirectTo:location.origin+location.pathname}});if(error)$('lgErr').textContent='Google sign-in failed. Please try again.'};
+ busyOn('Taking you to Google…');const {error}=await SBC.auth.signInWithOAuth({provider:'google',options:{redirectTo:location.origin+location.pathname}});if(error){busyOff();$('lgErr').textContent='Google sign-in failed. Please try again.'}};
 $('lgGo').onclick=async()=>{const em=$('lgEmail').value.trim(),pw=$('lgPass').value,nm=$('lgName').value.trim(),mb=$('lgMobile').value.trim(),er=$('lgErr');er.style.color='';
  if(!/^\S+@\S+\.\S+$/.test(em))return er.textContent='Enter a valid email address.';
  if(pw.length<6)return er.textContent='Password must be at least 6 characters.';
  if(lgMode==='up'&&!nm)return er.textContent='Enter your full name.';
  if(lgMode==='up'&&!/^[6-9]\d{9}$/.test(mb))return er.textContent='Enter a valid 10-digit mobile number.';
  if(!SBC)return er.textContent=notReady();
- $('lgGo').disabled=true;er.textContent='';
+ $('lgGo').disabled=true;$('lgGo').classList.add('ld');er.textContent='';
  try{
   if(lgMode==='up'){const {data,error}=await SBC.auth.signUp({email:em,password:pw,options:{data:{name:nm,mobile:mb}}});if(error)throw error;
    if(data.user&&data.user.identities&&!data.user.identities.length)throw new Error('This email already has an account. Please log in.');
-   if(!data.session){er.style.color='var(--an)';er.textContent='Account created. Please confirm your email, then log in.';return}}
-  else{const {error}=await SBC.auth.signInWithPassword({email:em,password:pw});if(error)throw error}
- }catch(e){er.textContent=friendly(e.message||'Could not sign in.')}finally{$('lgGo').disabled=false}};
+   if(!data.session){er.style.color='var(--an)';er.textContent='Account created. Please confirm your email, then log in.';return}busyOn('Setting up your account…')}
+  else{const {error}=await SBC.auth.signInWithPassword({email:em,password:pw});if(error)throw error;busyOn('Signing you in…')}
+ }catch(e){busyOff();er.textContent=friendly(e.message||'Could not sign in.')}finally{$('lgGo').disabled=false;$('lgGo').classList.remove('ld')}};
 $('lgForgot').onclick=async e=>{e.preventDefault();const em=$('lgEmail').value.trim(),er=$('lgErr');if(!/^\S+@\S+\.\S+$/.test(em))return er.textContent='Type your email above first.';
  if(!SBC)return;const {error}=await SBC.auth.resetPasswordForEmail(em,{redirectTo:location.origin+location.pathname});er.style.color=error?'':'var(--an)';er.textContent=error?friendly(error.message):'Password reset link sent to your email.'};
 
@@ -670,13 +690,13 @@ const loadRzp=()=>new Promise((ok,no)=>{if(window.Razorpay)return ok();const x=d
 let buyAsked=false;
 async function buy(){const u=user();if(!u)return openLogin(buy);if(u.paid)return;
  if(!u.mobile&&!buyAsked){buyAsked=true;return askMobile(buy)}   // we need a number to reach students about payments
- try{const o=await api('pay?action=order',{body:{}});if(o.paid){await refresh();return}
-  await loadRzp();
+ try{busyOn('Preparing secure payment…');const o=await api('pay?action=order',{body:{}});if(o.paid){await refresh();return}
+  await loadRzp();busyOff();
   const rz=new Razorpay({key:o.key_id,order_id:o.order_id,amount:o.amount,currency:o.currency,name:'CSE WALE',description:'Complete Test Series',prefill:{name:u.name,email:u.email,contact:u.mobile||''},theme:{color:'#f5b400'},
-   handler:async r=>{try{await api('pay?action=verify',{body:r});await refresh();toast('Payment successful. All tests are unlocked.')}catch(e){toast('Payment received. Unlocking can take a minute. Please refresh the page.');setTimeout(refresh,6000)}},
+   handler:async r=>{busyOn('Confirming your payment…');try{await api('pay?action=verify',{body:r});await refresh();toast('Payment successful. All tests are unlocked.')}catch(e){busyOff();toast('Payment received. Unlocking can take a minute. Please refresh the page.');setTimeout(refresh,6000)}},
    modal:{ondismiss:()=>toast('Payment cancelled.')}});
   rz.on('payment.failed',()=>toast('Payment failed. Your money was not taken. Please try again.'));rz.open()
- }catch(e){toast(e.message)}}
+ }catch(e){busyOff();toast(e.message)}}
 ['buyHero','buyCard','buyBand'].forEach(id=>$(id).onclick=buy);
 
 /* starting a test */
@@ -685,14 +705,14 @@ function showIns(){const u=user();$('insWho').textContent='Candidate: '+u.name+'
 $('insOk').onchange=()=>$('insGo').disabled=!$('insOk').checked;
 $('insX').onclick=()=>$('insOv').hidden=true;
 $('insGo').onclick=()=>{if($('insOk').checked&&CUR)launch(CUR.id)};
-async function launch(id){if(busy)return;busy=true;
+async function launch(id){if(busy)return;busy=true;busyOn('Preparing your test…');
  try{const r=await api('test?action=start',{body:{test_id:id}}),u=user();
   CUR=r.test;D=r.questions;REM=r.remaining_sec;ranked=true;SRV=null;finishing=false;nextTry=0;$('insOv').hidden=true;
   if(r.state&&!(r.state.q.length===D.length&&r.state.q.every(x=>D.some(d=>d.n===x[0]))))r.state=null;   // questions were replaced by the admin: start fresh
   if(r.state){cfg=Object.assign({},r.state.cfg,{name:u.name,label:'',nolim:false,rev:false});begin(D,'',{q:r.state.q,S:r.state.S,limit:0,spent:r.state.spent,cur:r.state.cur})}
   else{cfg=readCfg();begin(D,'')}
  }catch(e){toast(e.message);if(e.status===409||e.status===403){$('insOv').hidden=true;await refresh()}}
- finally{busy=false}}
+ finally{busy=false;busyOff()}}
 
 
 /* ===== motion: reveal, count-up, countdowns, rotating word, sticky buy bar ===== */
@@ -716,6 +736,7 @@ window.addEventListener('scroll',stickUpdate,{passive:true});$('buyStick').oncli
 
 /* start-up */
 (async function init(){
+ if(/access_token=|[?&]code=/.test(location.hash+location.search))busyOn('Signing you in…');
  try{CFG=Object.assign(CFG,await api('config'))}catch(e){}
  if(window.supabase&&CFG.supabaseUrl&&CFG.supabaseAnonKey){
   SBC=supabase.createClient(CFG.supabaseUrl,CFG.supabaseAnonKey,{auth:{persistSession:true,autoRefreshToken:true,detectSessionInUrl:true}});
