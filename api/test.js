@@ -78,7 +78,7 @@ module.exports = L.wrap(async req => {
   if (req.method !== 'POST') throw L.err(405, 'POST only');
   const b = L.body(req);
   const test = await getTest(b.test_id);
-  if (!(await L.isPaid(user.id))) throw L.err(402, 'Buy the test series to start.');
+  if (!test.is_free && !(await L.isPaid(user.id))) throw L.err(402, 'Buy the test series to start.');
   let att = await getAttempt(user.id, test.id);
 
   if (action === 'start') {

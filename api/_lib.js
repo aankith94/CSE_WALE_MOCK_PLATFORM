@@ -97,7 +97,7 @@ function status(t, now = Date.now()) {
   return 'live';
 }
 const publicTest = t => ({ id: t.id, title: t.title, subtitle: t.subtitle, duration_min: t.duration_min, questions: t.question_count,
-  total_marks: t.question_count * t.positive, positive: t.positive, negative: t.negative, opens_at: t.opens_at, closes_at: t.closes_at, status: status(t) });
+  total_marks: t.question_count * t.positive, positive: t.positive, negative: t.negative, opens_at: t.opens_at, closes_at: t.closes_at, status: status(t), free: !!t.is_free });
 
 function wrap(fn) {
   return async (req, res) => {

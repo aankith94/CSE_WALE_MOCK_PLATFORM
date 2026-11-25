@@ -286,7 +286,7 @@ body{transition:background-color .3s ease,color .3s ease}
    <h1>Crack the <em>IMD Scientific Assistant</em> paper with <span class="rot" id="rot">real mock tests</span></h1>
    <p class="forwho">For <b>Computer Science &amp; Engineering</b> candidates only · SSC JE 2026 · IMD (Scientific Assistant)</p>
    <p class="lead">100 questions, 300 marks, negative marking and a live timer, built exactly like the exam. Detailed solutions and a key takeaway for every question, plus a subject-wise report to show where you lose marks.</p>
-   <div class="cta"><button class="btn lg gold" id="buyHero">Get all tests for ₹99</button><a class="btn lg line" href="#tests">See the tests</a></div>
+   <div class="cta"><button class="btn lg gold" id="buyHero">Get all tests for ₹99</button><a class="btn lg line" href="#tests">Try the free demo</a></div>
    <div class="stats"><div><b data-count="100">100</b><span>questions per test</span></div><div><b data-count="300">300</b><span>marks, +3 / −1</span></div><div><b data-count="120">120</b><span>minutes</span></div><div><b>CSE</b><span>only paper</span></div></div>
   </div>
   <aside class="price" id="pricing">
@@ -340,6 +340,7 @@ body{transition:background-color .3s ease,color .3s ease}
   <section class="sec rvl" id="faq">
    <h2 class="t">Questions</h2>
    <details class="fq"><summary>Who is this test series for?</summary><p>Candidates preparing for the SSC JE, IMD Scientific Assistant post in the Computer Science &amp; Engineering stream. It does not cover the other IMD departments or other engineering branches.</p></details>
+   <details class="fq"><summary>Is there a free demo?</summary><p>Yes. Mock Test 1 is free for every logged-in student, so you can try the exam interface, the paper, the solutions and the report card before you pay. The other tests unlock with the ₹99 pass.</p></details>
    <details class="fq"><summary>Is ₹99 one-time?</summary><p>Yes. One payment unlocks every test in the series, including the ones added later.</p></details>
    <details class="fq"><summary>Can I pause the test?</summary><p>No. Like the real exam, the timer runs continuously and is kept by our server. If your phone or browser closes, your answers are saved and you can come back and resume until the time runs out.</p></details>
    <details class="fq"><summary>Can I attempt a test again?</summary><p>Your first attempt is the ranked one. After that you can practise again as often as you like: the full test, only the wrong questions, or the wrong plus unattempted ones. Practice attempts do not change your rank.</p></details>
@@ -636,13 +637,13 @@ function uiUser(){const u=user();
  drawTests();fxStats();stickUpdate()}
 const fmtDT=s=>new Date(s).toLocaleString('en-IN',{day:'numeric',month:'short',hour:'numeric',minute:'2-digit',hour12:true});
 function drawTests(){setTimeout(tickCd,0);const u=user(),paid=u&&u.paid,at=(ME&&ME.attempts)||{},ts=(ME&&ME.tests)||[];
- const gh=ts.length?ts.map(t=>{const a=at[t.id]||{};let badge='<span class="badge">LIVE</span>',btn,cls='tc live';
+ const gh=ts.length?ts.map(t=>{const a=at[t.id]||{};let badge=t.free?'<span class="badge" style="background:#16a34a;color:#fff">FREE DEMO</span>':'<span class="badge">LIVE</span>',btn,cls='tc live';
   if(a.status==='submitted'){badge='<span class="badge" style="background:#2563eb">DONE · '+a.score+' / '+t.total_marks+'</span>';btn='<button class="btn" data-act="result" data-id="'+t.id+'">View result and rank</button>'}
   else if(a.status==='in_progress'){badge='<span class="badge" style="background:#d9534f">IN PROGRESS</span>';btn='<button class="btn go" data-act="resume" data-id="'+t.id+'">Resume test</button>'}
   else if(a.status==='expired'){badge='<span class="badge soon">TIME OVER</span>';btn='<button class="btn" data-act="resume" data-id="'+t.id+'">See my result</button>'}
   else if(t.status==='upcoming'){cls='tc dim';badge='<span class="badge soon">OPENS '+esc(fmtDT(t.opens_at)).toUpperCase()+'</span>';btn='<button class="btn ghost" disabled>Not open yet</button>'}
   else if(t.status==='closed'){cls='tc dim';badge='<span class="badge soon">CLOSED</span>';btn='<button class="btn ghost" disabled>Test closed</button>'}
-  else btn=paid?'<button class="btn go" data-act="start" data-id="'+t.id+'">Start this test</button>':'<button class="btn go" data-act="buy">Buy to unlock · ₹'+CFG.price+'</button>';
+  else btn=(paid||t.free)?'<button class="btn go" data-act="start" data-id="'+t.id+'">'+(!paid&&t.free?'Start free demo':'Start this test')+'</button>':'<button class="btn go" data-act="buy">Buy to unlock · ₹'+CFG.price+'</button>';
   return '<div class="'+cls+'">'+badge+'<h4>'+esc(t.title)+'</h4>'+(t.subtitle?'<div class="meta">'+esc(t.subtitle)+'</div>':'')+'<div class="meta">'+t.questions+' questions · '+t.duration_min+' min · '+t.total_marks+' marks</div>'+(t.status==='live'&&t.closes_at&&!a.status?'<div class="meta">Closes '+esc(fmtDT(t.closes_at))+' · <span class="cd" data-k="close" data-t="'+esc(t.closes_at)+'"></span></div>':'')+(t.status==='upcoming'?'<div class="meta">Opens in <span class="cd" data-k="open" data-t="'+esc(t.opens_at)+'"></span></div>':'')+btn+'</div>'}).join(''):'<div class="card mut">No tests are published yet. Check back soon.</div>';if(drawTests.h!==gh){drawTests.h=gh;$('tgrid').innerHTML=gh;tickCd()}}
 $('tgrid').onclick=e=>{const b=e.target.closest('[data-act]');if(!b)return;const id=b.dataset.id,act=b.dataset.act;
  if(act==='start')startTest(id);else if(act==='resume')launch(id);else if(act==='result')loadResult(id);else if(act==='buy')buy()};
@@ -700,7 +701,7 @@ async function buy(){const u=user();if(!u)return openLogin(buy);if(u.paid)return
 ['buyHero','buyCard','buyBand'].forEach(id=>$(id).onclick=buy);
 
 /* starting a test */
-function startTest(id){const u=user();if(!u)return openLogin(()=>startTest(id));if(!u.paid)return buy();CUR=ME.tests.find(t=>t.id===id);if(CUR)showIns()}
+function startTest(id){const u=user();if(!u)return openLogin(()=>startTest(id));CUR=ME.tests.find(t=>t.id===id);if(!u.paid&&!(CUR&&CUR.free))return buy();if(CUR)showIns()}
 function showIns(){const u=user();$('insWho').textContent='Candidate: '+u.name+'.';$('insMin').textContent=CUR.duration_min+' min';$('insQ').textContent=CUR.questions;$('insMax').textContent=CUR.total_marks;$('insPos').textContent='+'+CUR.positive;$('insNeg').textContent='−'+CUR.negative;$('insOk').checked=false;$('insGo').disabled=true;$('insOv').hidden=false}
 $('insOk').onchange=()=>$('insGo').disabled=!$('insOk').checked;
 $('insX').onclick=()=>$('insOv').hidden=true;

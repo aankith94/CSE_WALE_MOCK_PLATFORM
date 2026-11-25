@@ -15,6 +15,7 @@ create table if not exists tests (
   opens_at timestamptz,                -- null = open immediately
   closes_at timestamptz,               -- null = never closes
   published boolean not null default false,
+  is_free boolean not null default false,   -- free demo: anyone logged in can take it without paying
   sort int not null default 0,
   created_at timestamptz not null default now()
 );

@@ -115,6 +115,7 @@ module.exports = L.wrap(async (req, res) => {
     const b = L.body(req), patch = {}, a = b.patch || {};
     ['title', 'subtitle'].forEach(k => { if (k in a) patch[k] = String(a[k]).slice(0, 200); });
     if ('published' in a) patch.published = !!a.published;
+    if ('is_free' in a) patch.is_free = !!a.is_free;
     if ('duration_min' in a) patch.duration_min = Math.max(1, parseInt(a.duration_min) || 120);
     if ('sort' in a) patch.sort = parseInt(a.sort) || 0;
     ['opens_at', 'closes_at'].forEach(k => { if (k in a) patch[k] = a[k] ? new Date(a[k]).toISOString() : null; });
