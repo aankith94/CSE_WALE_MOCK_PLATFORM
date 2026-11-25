@@ -3,5 +3,6 @@ const NEED = ['SUPABASE_URL', 'SUPABASE_ANON_KEY', 'SUPABASE_SERVICE_KEY', 'RAZO
 module.exports = wrap(async () => ({
   supabaseUrl: env('SUPABASE_URL'), supabaseAnonKey: env('SUPABASE_ANON_KEY'),
   razorpayKeyId: env('RAZORPAY_KEY_ID'), price: PRICE() / 100, mrp: MRP() / 100,
+  ai: !!(env('OPENAI_API_KEY') || process.env.CW_FAKE_AI),
   missing: NEED.filter(k => !env(k))
 }));

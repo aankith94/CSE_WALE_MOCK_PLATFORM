@@ -252,6 +252,23 @@ body{transition:background-color .3s ease,color .3s ease}
 .btn.ld{pointer-events:none;opacity:.85}.btn.ld::after{content:"";display:inline-block;width:.9em;height:.9em;margin-left:.6em;vertical-align:-.1em;border-radius:50%;border:2px solid currentColor;border-right-color:transparent;animation:spin .7s linear infinite}
 #loading{z-index:8}#loading .card{text-align:center;min-width:15rem;display:flex;flex-direction:column;align-items:center;gap:.9rem}#loading .card p{margin:0;font-weight:600}
 .sk{border-radius:1rem;min-height:11rem;background:linear-gradient(100deg,var(--panel) 30%,var(--line) 50%,var(--panel) 70%);background-size:200% 100%;animation:shim 1.3s linear infinite;border:1px solid var(--line)}@keyframes shim{to{background-position:-200% 0}}
+#ai{position:fixed;top:0;right:0;bottom:0;width:min(27rem,100vw);z-index:7;background:var(--panel);border-left:1px solid var(--line);box-shadow:-12px 0 40px rgba(0,0,0,.35);display:flex;flex-direction:column;transform:translateX(105%);transition:transform .32s cubic-bezier(.2,.8,.2,1);visibility:hidden}
+#ai.on{transform:none;visibility:visible}
+#ai .ah{display:flex;align-items:center;gap:.6rem;padding:.8rem 1rem;border-bottom:1px solid var(--line);background:var(--hd);color:#fff}#ai .ah b{flex:1;font-size:1.02rem}#ai .ah small{display:block;font-weight:400;color:#aab6c2;font-size:.78rem}
+#ai .ah button{background:transparent;border:0;color:#fff;font-size:1.4rem;line-height:1;cursor:pointer}
+#aiQ{padding:.55rem 1rem;font-size:.82rem;color:var(--mut);border-bottom:1px solid var(--line);max-height:4.2rem;overflow:auto}
+#aiMsgs{flex:1;overflow:auto;padding:1rem;display:flex;flex-direction:column;gap:.7rem}
+.am{max-width:92%;padding:.65rem .85rem;border-radius:.9rem;line-height:1.5;font-size:.95rem;word-wrap:break-word;overflow-wrap:anywhere}
+.am.u{align-self:flex-end;background:#f5b400;color:#111;border-bottom-right-radius:.25rem}.am.b{align-self:flex-start;background:var(--bg);border:1px solid var(--line);border-bottom-left-radius:.25rem}
+.am code{background:rgba(127,127,127,.2);padding:.05rem .3rem;border-radius:.25rem;font-family:ui-monospace,Consolas,monospace;font-size:.88em}.am pre{background:var(--code);padding:.6rem;border-radius:.4rem;overflow:auto;margin:.4rem 0;font-size:.85rem}.am.err{border-color:#d9534f;color:var(--bad)}
+.am .note{display:block;margin-top:.5rem;font-size:.74rem;color:var(--mut)}
+.dots{display:inline-flex;gap:.25rem}.dots i{width:.45rem;height:.45rem;border-radius:50%;background:var(--mut);animation:dot 1s infinite ease-in-out}.dots i:nth-child(2){animation-delay:.15s}.dots i:nth-child(3){animation-delay:.3s}@keyframes dot{0%,80%,100%{opacity:.25;transform:scale(.8)}40%{opacity:1;transform:scale(1)}}
+#aiChips{display:flex;gap:.4rem;flex-wrap:wrap;padding:.5rem 1rem 0}#aiChips button{font-size:.8rem;padding:.3rem .7rem;border-radius:999px;border:1px solid var(--line);background:var(--bg);color:var(--ink)}
+#aiForm{display:flex;gap:.5rem;padding:.7rem 1rem 1rem}#aiForm textarea{flex:1;resize:none;height:2.9rem;border:1px solid var(--line);border-radius:.6rem;padding:.5rem .7rem;background:var(--bg);color:var(--ink);font:inherit}
+#aiForm button{border:0;border-radius:.6rem;background:#f5b400;color:#111;font-weight:700;padding:0 1rem}#aiForm button:disabled{opacity:.5}
+.askb{margin:.5rem 0 0;border:1px solid #f5b400;background:transparent;color:var(--ink);border-radius:.5rem;padding:.4rem .9rem;font-weight:600}.askb:hover{background:rgba(245,180,0,.14)}
+@media (min-width:900px){#result{transition:width .32s cubic-bezier(.2,.8,.2,1)}body.aiopen #result{width:calc(100% - min(27rem,100vw))}}
+@media (max-width:700px){#ai{top:auto;height:86vh;width:100vw;border-left:0;border-top:1px solid var(--line);border-radius:1rem 1rem 0 0;transform:translateY(105%)}}
 #setup>.ft{padding-bottom:5.5rem;padding-top:1.4rem;color:var(--ink)}#setup>.ft a{color:inherit;text-decoration:underline;text-underline-offset:2px}
 @media (prefers-reduced-motion:reduce){*,*::before,*::after{animation:none!important;transition:none!important;scroll-behavior:auto!important}.rvl{opacity:1!important;transform:none!important}}
 @media print{
@@ -380,6 +397,7 @@ body{transition:background-color .3s ease,color .3s ease}
  <div class="err" id="pfErr"></div><div style="display:flex;gap:.6rem;justify-content:flex-end"><button class="btn ghost" id="pfSkip">Skip for now</button><button class="btn go" id="pfSave">Save</button></div></div></div>
 <div id="loading" class="ov" hidden role="status" aria-live="polite"><div class="card"><div class="spin big"></div><p id="loadMsg">Please wait…</p></div></div>
 <div id="topbar"></div><div id="net" role="status" aria-live="polite"><span class="spin"></span><span id="netMsg"></span></div>
+<aside id="ai" aria-label="AI tutor"><div class="ah"><b>✨ AI tutor<small id="aiLeft">Explains solutions step by step</small></b><button id="aiX" aria-label="Close">×</button></div><div id="aiQ"></div><div id="aiMsgs"></div><div id="aiChips"></div><form id="aiForm"><textarea id="aiIn" maxlength="1200" placeholder="Ask your doubt…" rows="1"></textarea><button id="aiGo">Send</button></form></aside>
 <div id="sending" class="ov" hidden><div class="card"><h2>Submitting your test…</h2><p class="mut">Please keep this page open.</p></div></div>
 <div id="loginOv" class="ov" hidden><div class="card mbox">
  <h2 id="lgT">Log in to CSE WALE</h2>
@@ -416,7 +434,7 @@ body{transition:background-color .3s ease,color .3s ease}
 
 <div id="cardOv" class="ov" hidden><div class="card" style="max-width:34rem"><h2>Your result card</h2><img id="cardImg" style="width:100%;border-radius:.5rem" alt="Result card"><p class="mut">Press and hold the image (phone) or right-click it (laptop) to save it, or use Download.</p><div class="acts" style="justify-content:flex-end"><a class="btn go" id="cardDl" download="cse-wale-result.png">Download</a><button class="btn ghost" id="cardX">Close</button></div></div></div>
 <div id="result" hidden>
- <div class="hd"><div class="brand"><span class="logo"></span><b id="rT">Result</b></div><span style="display:flex;gap:.5rem;align-items:center;flex-wrap:wrap"><button id="backTop" style="background:#f5b400;color:#111;font-weight:700">← Back to all tests</button><button class="th" title="Switch theme">Theme</button></span></div>
+ <div class="hd"><div class="brand"><span class="logo"></span><b id="rT">Result</b></div><span style="display:flex;gap:.5rem;align-items:center;flex-wrap:wrap"><button id="aiOpen" style="background:transparent;border:1px solid #f5b400;color:#fff;border-radius:.5rem;padding:.35rem .8rem;font-weight:600">✨ AI tutor</button><button id="backTop" style="background:#f5b400;color:#111;font-weight:700">← Back to all tests</button><button class="th" title="Switch theme">Theme</button></span></div>
  <div class="rw">
   <div class="rtop">
    <div class="card"><button class="btn ghost" id="backTop2" style="margin-bottom:.8rem">← Back to all tests</button><div class="mut" id="rWho"></div><div class="big"><span id="rScore">0</span> <span class="mut" style="font-size:1.5rem;font-weight:400">/ <span id="rMax">300</span></span></div>
@@ -455,7 +473,7 @@ function chk(){const a=ME&&ME.attempts,act=a&&Object.keys(a).find(id=>a[id].stat
 
 document.querySelectorAll('.th').forEach(b=>b.onclick=()=>{const r=document.documentElement,t=r.dataset.theme;r.dataset.theme=t==='dark'?'light':t==='light'?'':'dark'});
 
-const show=id=>['setup','exam','result'].forEach(x=>$(x).hidden=x!==id);
+const show=id=>{['setup','exam','result'].forEach(x=>$(x).hidden=x!==id);const a=$('ai');if(a){a.classList.remove('on');document.body.classList.remove('aiopen')}};
 const toast=m=>{const t=$('toast');t.textContent=m;t.hidden=false;clearTimeout(toast.h);toast.h=setTimeout(()=>t.hidden=true,3800)};
 
 function readCfg(){const u=ME&&ME.user;return {name:(u&&u.name)||'Candidate',min:CUR?CUR.duration_min:120,nolim:false,shq:$('shq').checked,sho:$('sho').checked,showtm:$('showtm').checked,order:$('ord').value,rev:false}}
@@ -575,7 +593,7 @@ function review(){
   return '<div class="card rv"><h3>Q'+(r.i+1)+' <span class="tag">'+esc(q.s)+'</span><span class="tag">'+q.d+'</span><span class="tag">Paper Q'+q.n+'</span><span class="tag">'+mm(r.t)+'</span>'+(S[r.i].bm?'<span class="tag">★ Bookmarked</span>':'')+'<span class="st '+r.st+'">'+{ok:'Correct +3',bad:'Incorrect −1',skip:'Unattempted'}[r.st]+'</span></h3>'+
   '<div class="qt">'+fm(q.q)+'</div>'+(q.c?'<pre class="code">'+esc(q.c)+'</pre>':'')+
   q.ord.map((oi,k)=>'<div class="ro'+(k===r.c?' ok':k===r.a?' bad':'')+'"><span><b>'+'ABCD'[k]+'.</b> '+fm(q.o[oi])+'</span><em>'+(k===r.c?'Correct answer':'')+(k===r.a?(k===r.c?' · Your answer':'Your answer'):'')+'</em></div>').join('')+
-  '<div class="sol"><b>Solution.</b> '+fm(q.sol)+'</div><div class="key"><b>Key takeaway.</b> '+fm(q.key)+'</div><div class="tags" data-i="'+r.i+'"><span class="mut">Tag:</span> '+TG.map(x=>'<button class="chip'+(S[r.i].tag===x[0]?' on':'')+'" data-tag="'+x[0]+'">'+x[1]+'</button>').join('')+'</div></div>'}).join('')||'<div class="card mut">No questions in this group.</div>';
+  '<div class="sol"><b>Solution.</b> '+fm(q.sol)+'</div><div class="key"><b>Key takeaway.</b> '+fm(q.key)+'</div><button class="askb" data-ask="'+r.i+'">'+((user()&&user().paid)?'✨ Explain with AI':'🔒 Explain with AI (full series)')+'</button><div class="tags" data-i="'+r.i+'"><span class="mut">Tag:</span> '+TG.map(x=>'<button class="chip'+(S[r.i].tag===x[0]?' on':'')+'" data-tag="'+x[0]+'">'+x[1]+'</button>').join('')+'</div></div>'}).join('')||'<div class="card mut">No questions in this group.</div>';
 }
 $('flt').onclick=e=>{const b=e.target.closest('[data-f]');if(b){filter=b.dataset.f;review()}};
 const goHome=()=>{show('setup');refresh();window.scrollTo(0,0)};['again','backTop','backTop2'].forEach(id=>$(id).onclick=goHome);$('brandHome').onclick=e=>{e.preventDefault();if($('setup').hidden){if(!$('exam').hidden&&!confirm('Leave the test screen? Your test keeps running.'))return;goHome()}else window.scrollTo({top:0,behavior:'smooth'})};
@@ -715,6 +733,36 @@ async function launch(id){if(busy)return;busy=true;busyOn('Preparing your test�
  }catch(e){toast(e.message);if(e.status===409||e.status===403){$('insOv').hidden=true;await refresh()}}
  finally{busy=false;busyOff()}}
 
+
+
+/* ===== AI tutor (paid students, after submitting a test) ===== */
+const AI={ctx:null,hist:{},busy:false};
+const aiFmt=t=>esc(t).replace(/```([\s\S]*?)```/g,(m,c)=>'<pre>'+c.replace(/^\w*\n/,'')+'</pre>').replace(/`([^`\n]+)`/g,'<code>$1</code>').replace(/\*\*([^*\n]+)\*\*/g,'<b>$1</b>').replace(/\n/g,'<br>').replace(/<\/pre><br>/g,'</pre>');
+function aiLocked(){const u=user();if(!CFG.ai){toast('The AI tutor is coming soon.');return true}if(!u||!u.paid){toast('The AI tutor is part of the full test series.');buy();return true}return false}
+function aiKey(){return AI.ctx?AI.ctx.n:'general'}
+function aiRender(){const h=AI.hist[aiKey()]||[];const box=$('aiMsgs');
+ box.innerHTML=(h.length?'':'<div class="am b">Hi! Ask me about this question, or any CSE topic from the exam. I explain step by step and keep it short, and I teach a topic from scratch only when you ask.</div>')+h.map(m=>'<div class="am '+(m.role==='user'?'u':'b'+(m.err?' err':''))+'">'+aiFmt(m.content)+(m.role==='assistant'&&!m.err?'<span class="note">AI explanation. Check with the official solution if unsure.</span>':'')+'</div>').join('')+(AI.busy?'<div class="am b"><span class="dots"><i></i><i></i><i></i></span></div>':'');
+ box.scrollTop=box.scrollHeight;
+ $('aiChips').innerHTML=AI.ctx&&!AI.busy?['Explain step by step','Explain more simply','Why are the other options wrong?','Teach the concept from scratch','Give me a similar question'].map(x=>'<button type="button">'+x+'</button>').join(''):''}
+function aiOpen(i,card){if(aiLocked())return;
+ if(i==null)AI.ctx=null;else{const r=R[i],q=r.q;AI.ctx={test_id:CUR.id,n:q.n,subject:q.s,chosen:r.a==null?'':q.o[q.ord[r.a]],label:'Q'+(r.i+1)+' · '+q.s}}
+ $('aiQ').textContent=AI.ctx?AI.ctx.label+' (paper Q'+AI.ctx.n+')':'General doubt: any CSE exam topic';
+ aiRender();$('ai').classList.add('on');document.body.classList.add('aiopen');
+ if(card)setTimeout(()=>card.scrollIntoView({behavior:'smooth',block:'start'}),380);setTimeout(()=>{if(matchMedia('(min-width:700px)').matches)$('aiIn').focus()},250)}
+function aiClose(){$('ai').classList.remove('on');document.body.classList.remove('aiopen')}
+async function aiSend(text){text=(text||'').trim();if(!text||AI.busy)return;const k=aiKey(),h=AI.hist[k]=AI.hist[k]||[];
+ const hist=h.filter(m=>!m.err).slice(-8).map(m=>({role:m.role,content:m.content}));
+ h.push({role:'user',content:text});AI.busy=true;$('aiIn').value='';$('aiGo').disabled=true;aiRender();
+ try{const r=await api('ask',{body:Object.assign({message:text,history:hist},AI.ctx?{test_id:AI.ctx.test_id,n:AI.ctx.n,chosen:AI.ctx.chosen}:{})});
+  h.push({role:'assistant',content:r.reply});if(r.left!=null)$('aiLeft').textContent=r.left+' questions left today'}
+ catch(e){h.push({role:'assistant',content:e.message||'Something went wrong.',err:true});if(e.status===402)setTimeout(()=>{aiClose();buy()},900)}
+ AI.busy=false;$('aiGo').disabled=false;aiRender()}
+$('aiForm').onsubmit=e=>{e.preventDefault();aiSend($('aiIn').value)};
+$('aiIn').onkeydown=e=>{if(e.key==='Enter'&&!e.shiftKey){e.preventDefault();aiSend($('aiIn').value)}};
+$('aiChips').onclick=e=>{const b=e.target.closest('button');if(b)aiSend(b.textContent)};
+$('aiX').onclick=aiClose;$('aiOpen').onclick=()=>aiOpen(null);
+$('rv').addEventListener('click',e=>{const b=e.target.closest('[data-ask]');if(b)aiOpen(+b.dataset.ask,b.closest('.rv'))});
+document.addEventListener('keydown',e=>{if(e.key==='Escape')aiClose()});
 
 /* ===== motion: reveal, count-up, countdowns, rotating word, sticky buy bar ===== */
 const reduce=window.matchMedia&&matchMedia('(prefers-reduced-motion: reduce)').matches;
