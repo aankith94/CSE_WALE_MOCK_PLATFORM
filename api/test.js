@@ -66,6 +66,37 @@ async function doSubmit(att, test, state, late) {
   return buildResult(done, test);
 }
 
+// Progress across mocks and weak-question practice: both use only tests this student has already SUBMITTED, so no answers leak early.
+async function progress(user, action) {
+  const atts = await L.select('attempts', 'user_id=eq.' + user.id + '&submitted_at=not.is.null&select=test_id,score,time_spent,state');
+  if (!atts.length) return action === 'weak' ? { questions: [] } : { tests: [] };
+  const ids = [...new Set(atts.map(a => a.test_id))].map(enc).join(',');
+  const [tests, qs] = await Promise.all([
+    L.select('tests', 'id=in.(' + ids + ')&published=eq.true&order=sort.asc,created_at.asc&select=id,title,sort,positive,negative'),
+    L.selectAll('questions', 'test_id=in.(' + ids + ')&order=n.asc')
+  ]);
+  const by = {}; qs.forEach(r => { (by[r.test_id] = by[r.test_id] || []).push(r); });
+  const out = [], weak = [];
+  tests.forEach(t => {
+    const a = atts.find(x => x.test_id === t.id), rows = by[t.id] || [];
+    if (!a || !rows.length) return;
+    const key = {}; rows.forEach(r => { key[r.n] = r.answer; });
+    const ans = derive(a.state, key), sub = {};
+    let c = 0, w = 0;
+    rows.forEach(r => {
+      const o = sub[r.subject] = sub[r.subject] || { n: 0, c: 0, w: 0 };
+      o.n++;
+      if (!(r.n in ans)) { weak.push({ st: 'skip', r, t }); return; }
+      if (ans[r.n] === r.answer) { o.c++; c++; } else { o.w++; w++; weak.push({ st: 'bad', r, t }); }
+    });
+    Object.values(sub).forEach(o => { o.score = o.c * t.positive - o.w * t.negative; o.max = o.n * t.positive; });
+    out.push({ id: t.id, title: t.title, score: a.score, max: rows.length * t.positive, correct: c, wrong: w, unattempted: rows.length - c - w, time_spent: a.time_spent, subjects: sub });
+  });
+  if (action === 'history') return { tests: out };
+  weak.sort((x, y) => (x.st === y.st ? 0 : x.st === 'bad' ? -1 : 1));
+  return { questions: weak.slice(0, 400).map(({ st, r, t }) => ({ st, src_t: t.id, src_title: t.title, src_n: r.n, s: r.subject, d: r.difficulty, q: r.q, c: r.code || '', o: r.options, a: r.answer, sol: r.solution, key: r.takeaway })) };
+}
+
 module.exports = L.wrap(async req => {
   const user = await L.getUser(req);
   const p = L.q(req), action = p.get('action');
@@ -75,6 +106,7 @@ module.exports = L.wrap(async req => {
     if (!att || !att.submitted_at) throw L.err(404, 'No submitted attempt for this test.');
     return buildResult(att, test);
   }
+  if (action === 'history' || action === 'weak') return progress(user, action);
   if (req.method !== 'POST') throw L.err(405, 'POST only');
   const b = L.body(req);
   const test = await getTest(b.test_id);

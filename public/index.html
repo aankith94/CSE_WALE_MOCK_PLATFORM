@@ -1,3 +1,966 @@
+<!-- <!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="description" content="Mock tests for SSC JE IMD Scientific Assistant, made only for Computer Science &amp; Engineering students. One-time ₹99 for all tests.">
+<title>CSE WALE · SSC JE IMD Scientific Assistant (CSE) Mock Tests</title>
+<style>
+:root{--bg:#eef2f7;--panel:#fff;--ink:#14202e;--mut:#5b6b7d;--line:#d3dce6;--brand:#9a6700;--btn:#f5b400;--btnink:#111;--hd:#0f1115;--sel:#fff4cc;--nv:#c9d1db;--na:#d9534f;--an:#2e9b4e;--mk:#7a4fb0;--ok:#1d8a46;--okbg:#e3f5e9;--bad:#c4372f;--badbg:#fbe8e6;--warn:#fff4c2;--warnink:#5a4700;--code:#f1f4f8;color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#0e151d;--panel:#18222e;--ink:#e6edf5;--mut:#9aabbd;--line:#2c3a4a;--brand:#f5b400;--btn:#f5b400;--btnink:#111;--hd:#0b0c0f;--sel:#2c2610;--nv:#3a4756;--na:#e0605b;--an:#37b25b;--mk:#9b74d0;--ok:#4fcf7d;--okbg:#14301f;--bad:#f08078;--badbg:#3a1b19;--warn:#3a3210;--warnink:#f1dc8a;--code:#101922;color-scheme:dark}}
+:root[data-theme="dark"]{--bg:#0e151d;--panel:#18222e;--ink:#e6edf5;--mut:#9aabbd;--line:#2c3a4a;--brand:#f5b400;--btn:#f5b400;--btnink:#111;--hd:#0b0c0f;--sel:#2c2610;--nv:#3a4756;--na:#e0605b;--an:#37b25b;--mk:#9b74d0;--ok:#4fcf7d;--okbg:#14301f;--bad:#f08078;--badbg:#3a1b19;--warn:#3a3210;--warnink:#f1dc8a;--code:#101922;color-scheme:dark}
+*{box-sizing:border-box}
+html,body{min-height:100%}
+body{margin:0;background:var(--bg);color:var(--ink);font:1rem/1.5 "Segoe UI",Roboto,"Noto Sans",system-ui,sans-serif}
+[hidden]{display:none!important}
+html{font-size:calc(clamp(15px,min(1.25vw,2.25vh),30px)*var(--z,1))}
+button{font:inherit;cursor:pointer}
+.btn{background:var(--btn);color:var(--btnink);border:0;border-radius:0.375rem;padding:0.625rem 1.125rem;font-weight:600}
+.btn.ghost{background:transparent;color:var(--brand);border:1.5px solid var(--brand)}
+.btn.mk{background:var(--mk);color:#fff}
+.btn.go{background:var(--an);color:#fff}
+.hd{background:var(--hd);color:#fff;display:flex;align-items:center;justify-content:space-between;gap:0.75rem;padding:0.625rem 1.125rem;flex-wrap:wrap}
+.hd b{font-size:1.0625rem}
+.hd small{opacity:.8;margin-left:0.625rem}
+.hd button{background:rgba(255,255,255,.14);color:#fff;border:0;border-radius:0.3125rem;padding:0.25rem 0.625rem}
+.tm{display:flex;align-items:center;gap:0.5rem}
+.tm #tm{font:700 1.5rem/1 ui-monospace,Consolas,monospace;background:rgba(255,255,255,.12);padding:0.375rem 0.75rem;border-radius:0.375rem;min-width:7rem;text-align:center}
+.tm.low #tm{background:#c4372f}
+#setup,#result{width:100%;margin:0;padding:0 0 2.5rem}
+.card{background:var(--panel);border:1px solid var(--line);border-radius:0.625rem;padding:1.375rem;margin:1.125rem 1rem}
+.card h2{margin:0 0 0.75rem;font-size:1.1875rem}
+.fld{display:flex;align-items:center;gap:0.75rem;flex-wrap:wrap;margin:0.75rem 0}
+.fld>label:first-child{min-width:9.375rem;font-weight:600}
+input[type=text],input[type=number],select{font:inherit;padding:0.5rem 0.625rem;border:1.5px solid var(--line);border-radius:0.375rem;background:var(--bg);color:var(--ink)}
+input[type=number]{width:6rem}
+.chip{background:var(--bg);color:var(--ink);border:1.5px solid var(--line);border-radius:1.25rem;padding:0.25rem 0.875rem}
+.mut{color:var(--mut);font-size:0.875rem}
+ul.rules{margin:0.5rem 0 0;padding-left:1.25rem}
+#exam{display:flex;flex-direction:column;height:100vh;height:100dvh}
+.main{flex:1;display:grid;grid-template-columns:1fr 20.625rem;gap:0.875rem;padding:0.875rem;min-height:0}
+.qa,.pal{background:var(--panel);border:1px solid var(--line);border-radius:0.625rem;display:flex;flex-direction:column;min-height:0}
+.qh{display:flex;justify-content:space-between;align-items:center;padding:0.75rem 1.25rem;border-bottom:1px solid var(--line);font-weight:700;flex-wrap:wrap;gap:0.375rem}
+.qh span{font-weight:400;color:var(--mut);font-size:0.875rem}
+.qb{flex:1;overflow:auto;padding:1.25rem 1.5rem}
+.qt{font-size:1.1875rem;line-height:1.55;margin-bottom:0.875rem;max-width:78ch}
+pre.code{background:var(--code);border:1px solid var(--line);border-radius:0.375rem;padding:0.75rem 1rem;font:1rem/1.5 ui-monospace,Consolas,monospace;overflow:auto;margin:0 0 1rem}
+.op{display:flex;gap:0.75rem;align-items:flex-start;border:1.5px solid var(--line);border-radius:0.5rem;padding:0.6875rem 0.875rem;margin:0.5625rem 0;cursor:pointer;font-size:1.125rem;max-width:78ch}
+.op:hover{border-color:var(--brand)}
+.op.on{background:var(--sel);border-color:var(--brand)}
+.op input{position:absolute;opacity:0;pointer-events:none}
+.ol{flex:none;width:1.75rem;height:1.75rem;border-radius:50%;border:1.5px solid var(--mut);display:grid;place-items:center;font-size:0.875rem;font-weight:700}
+.op.on .ol{background:var(--brand);color:var(--panel);border-color:var(--brand)}
+.bar{display:flex;gap:0.625rem;flex-wrap:wrap;padding:0.75rem 1.25rem;border-top:1px solid var(--line);align-items:center}
+.bar .sp{flex:1}
+.pal{padding:0.875rem}
+.solved{font-size:0.9375rem;margin-bottom:0.625rem}
+.solved b{font-size:1.75rem;color:var(--an)}
+.pb{height:0.5rem;border-radius:0.25rem;background:var(--nv);margin-top:0.375rem;overflow:hidden}
+.pb i{display:block;height:100%;width:0;background:var(--an);transition:width .25s}
+.leg{display:grid;grid-template-columns:1fr 1fr;gap:0.375rem 0.625rem;font-size:0.8125rem;margin:0.5rem 0 0.75rem}
+.leg div{display:flex;align-items:center;gap:0.4375rem}
+.p{width:2.125rem;height:2.125rem;border:0;color:#fff;font-weight:700;font-size:0.8125rem;background:var(--nv);border-radius:0.25rem;position:relative}
+.p.na{background:var(--na);border-radius:0.1875rem 0.1875rem 0.875rem 0.875rem}
+.p.an{background:var(--an);border-radius:0.875rem 0.875rem 0.1875rem 0.1875rem}
+.p.mk,.p.ma{background:var(--mk);border-radius:50%}
+.p.ma::after{content:"";position:absolute;right:0;bottom:0;width:0.625rem;height:0.625rem;border-radius:50%;background:var(--an);border:2px solid var(--panel)}
+.p.nv{color:var(--ink)}
+.p.cur{outline:0.1875rem solid var(--brand);outline-offset:1px}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(2.375rem,1fr));gap:0.4375rem;overflow:auto;flex:1;align-content:start;padding:0.1875rem}
+.pal .btn{margin-top:0.75rem;width:100%}
+.ov{position:fixed;inset:0;background:rgba(8,16,26,.72);display:grid;place-items:center;z-index:5;padding:1.25rem}
+.ov .card{margin:0;max-width:28.75rem;width:100%}
+table{border-collapse:collapse;width:100%;font-size:0.9375rem}
+th,td{padding:0.5rem 0.625rem;border-bottom:1px solid var(--line);text-align:left}
+td.n,th.n{text-align:right}
+.big{font-size:3.5rem;font-weight:800;line-height:1.1}
+.kpi{display:grid;grid-template-columns:repeat(auto-fit,minmax(8.125rem,1fr));gap:0.75rem;margin-top:1rem}
+.kpi div{background:var(--bg);border-radius:0.5rem;padding:0.625rem 0.875rem}
+.kpi b{display:block;font-size:1.5rem}
+.acc{height:0.5rem;background:var(--nv);border-radius:0.25rem;min-width:5.625rem}
+.acc i{display:block;height:100%;background:var(--an);border-radius:0.25rem}
+.flt{display:flex;gap:0.5rem;flex-wrap:wrap;margin:0.625rem 0 0}
+.chip.on{background:var(--btn);color:var(--btnink);border-color:var(--btn)}
+.rv h3{margin:0 0 0.5rem;font-size:1.0625rem;display:flex;gap:0.625rem;flex-wrap:wrap;align-items:baseline}
+.rv .tag{font-size:0.75rem;border:1px solid var(--line);border-radius:0.625rem;padding:1px 0.5625rem;color:var(--mut);font-weight:400}
+.rv .st{font-size:0.8125rem;padding:2px 0.625rem;border-radius:0.625rem;color:#fff}
+.st.ok{background:var(--ok)}.st.bad{background:var(--bad)}.st.skip{background:var(--mut)}
+.ro{padding:0.5rem 0.75rem;border:1.5px solid var(--line);border-radius:0.375rem;margin:0.375rem 0;display:flex;gap:0.625rem;justify-content:space-between}
+.ro.ok{background:var(--okbg);border-color:var(--ok)}
+.ro.bad{background:var(--badbg);border-color:var(--bad)}
+.ro em{font-style:normal;font-size:0.8125rem;font-weight:700;white-space:nowrap}
+.sol{margin-top:0.75rem;font-size:0.9375rem}
+.key{background:var(--warn);color:var(--warnink);border-radius:0.375rem;padding:0.5rem 0.75rem;margin-top:0.5rem;font-size:0.9375rem}
+.toast{position:fixed;left:50%;transform:translateX(-50%);bottom:calc(1.5rem + env(safe-area-inset-bottom,0px));background:var(--hd);color:#fff;padding:0.5rem 1.125rem;border-radius:1.25rem;z-index:6}
+.logo{flex:none;width:2.375rem;height:2.375rem;border-radius:50%;background:#000 url("data:image/jpeg;base64,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") center/108% no-repeat}
+.logo.xl{width:8rem;height:8rem}
+.brand{display:flex;align-items:center;gap:0.625rem}
+.brand .w{font:italic 900 1.25rem/1 "Segoe UI",Roboto,system-ui,sans-serif;letter-spacing:.5px}
+.brand .w i{font-style:inherit;color:#f5b400}
+.hero{display:flex;gap:1.375rem;align-items:center;flex-wrap:wrap}
+.hero h1{margin:0 0 0.25rem;font-size:1.75rem;line-height:1.2}
+.hero p{margin:0}
+.ft{text-align:center;padding:0.625rem 0.75rem;font-size:0.8125rem;color:var(--mut)}
+.ft a{color:inherit}
+.acts{display:flex;gap:0.625rem;flex-wrap:wrap;margin-top:1rem}
+a.btn{text-decoration:none;display:inline-block}
+.tabs{display:flex;gap:.4rem;overflow:auto;padding:.5rem 1rem;border-bottom:1px solid var(--line)}
+.tabs button{white-space:nowrap;background:var(--bg);color:var(--ink);border:1.5px solid var(--line);border-radius:1rem;padding:.2rem .8rem;font-size:.85rem}
+.tabs button.on{background:var(--btn);color:var(--btnink);border-color:var(--btn)}
+.p.bm::before{content:"★";position:absolute;top:-.4rem;right:-.2rem;font-size:.85rem;color:#f5b400;text-shadow:0 0 2px #000}
+.op.ok{background:var(--okbg);border-color:var(--ok)}
+.op.bad{background:var(--badbg);border-color:var(--bad)}
+.op.lock{cursor:default}
+.tags{display:flex;gap:.5rem;flex-wrap:wrap;margin-top:.75rem;align-items:center}
+.tags .chip{font-size:.85rem;padding:.15rem .8rem}
+.sl{display:grid;grid-template-columns:minmax(10rem,1.6fr) 2fr 5rem;gap:.75rem;align-items:center;margin:.4rem 0;font-size:.9rem}
+
+/* ===== landing + wide result ===== */
+.wrap{width:100%;max-width:1360px;margin:0 auto;padding:0 clamp(1rem,3vw,2.5rem)}
+.nav{position:sticky;top:0;z-index:4;background:var(--hd);color:#fff}
+.nav .wrap{display:flex;align-items:center;justify-content:space-between;gap:.75rem;padding-top:.7rem;padding-bottom:.7rem;flex-wrap:wrap}
+.nav .r{display:flex;gap:.6rem;align-items:center;flex-wrap:wrap}
+.nav a.lk{color:#d7dee6;text-decoration:none;font-size:.9rem;padding:.25rem .4rem}
+.nav a.lk:hover{color:#f5b400}
+.nav .zm,.nav .th,.nav button.sm{background:rgba(255,255,255,.14);color:#fff;border:0;border-radius:.3125rem;padding:.3rem .7rem}
+.nav .btn{padding:.4rem 1rem}
+@media (max-width:700px){.nav a.lk,.nav .zm{display:none}.nav .wrap{padding-top:.5rem;padding-bottom:.5rem}.nav .r{gap:.4rem}#userNm{max-width:9rem;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}}
+.demo{background:#f5b400;color:#111;font-size:.7rem;font-weight:800;border-radius:.6rem;padding:.1rem .5rem;letter-spacing:.04em}
+.lhero{background:radial-gradient(1200px 500px at 85% -10%,rgba(245,180,0,.28),transparent 60%),linear-gradient(135deg,#0b0c0f 0%,#14202e 60%,#1b2b3d 100%);color:#fff}
+.lhero .wrap{display:grid;grid-template-columns:1.25fr 1fr;gap:clamp(1.5rem,4vw,4rem);align-items:center;padding-top:clamp(2rem,6vh,4.5rem);padding-bottom:clamp(2rem,6vh,4.5rem)}
+.eyebrow{display:inline-block;background:rgba(245,180,0,.16);color:#f5b400;border:1px solid rgba(245,180,0,.5);border-radius:2rem;padding:.2rem .85rem;font-size:.82rem;font-weight:700;letter-spacing:.03em}
+.lhero h1{font-size:clamp(2rem,4.2vw,3.4rem);line-height:1.1;margin:1rem 0 .8rem;font-weight:800}
+.lhero h1 em{font-style:normal;color:#f5b400}
+.lhero p.lead{font-size:1.15rem;color:#c3cdd8;max-width:40rem;margin:0 0 1.4rem}
+.stats{display:flex;gap:1.6rem;flex-wrap:wrap;margin-top:1.6rem}
+.stats div{min-width:6rem}.stats b{display:block;font-size:1.8rem;color:#f5b400}.stats span{font-size:.85rem;color:#aab6c2}
+.cta{display:flex;gap:.75rem;flex-wrap:wrap;align-items:center}
+.btn.lg{padding:.85rem 1.7rem;font-size:1.1rem;border-radius:.5rem}
+.btn.gold{background:var(--btn);color:#111;box-shadow:0 6px 22px rgba(245,180,0,.35)}
+.btn.line{background:transparent;color:#fff;border:1.5px solid rgba(255,255,255,.5)}
+.price{background:var(--panel);color:var(--ink);border-radius:1rem;padding:1.6rem;border:1px solid var(--line);box-shadow:0 20px 60px rgba(0,0,0,.35);position:relative}
+.price .off{position:absolute;top:-.9rem;right:1.2rem;background:#d9534f;color:#fff;font-weight:800;border-radius:.5rem;padding:.3rem .8rem;font-size:.9rem}
+.price h3{margin:0 0 .3rem;font-size:1.2rem}
+.price .pr{display:flex;align-items:baseline;gap:.8rem;margin:.6rem 0}
+.price .now{font-size:3.4rem;font-weight:800;line-height:1;color:var(--ink)}
+.price .was{font-size:1.4rem;color:var(--mut);text-decoration:line-through}
+.price ul{list-style:none;padding:0;margin:1rem 0}
+.price li{padding:.28rem 0 .28rem 1.6rem;position:relative}
+.price li::before{content:"✓";position:absolute;left:0;color:var(--an);font-weight:800}
+.price .btn{width:100%;text-align:center}
+.sec{padding:clamp(2rem,5vh,3.5rem) 0}
+.sec h2.t{font-size:clamp(1.5rem,2.6vw,2.1rem);margin:0 0 .4rem}
+.sec p.sub{color:var(--mut);margin:0 0 1.6rem;max-width:46rem}
+.tg{display:grid;grid-template-columns:repeat(auto-fill,minmax(17rem,1fr));gap:1rem}
+.tc{background:var(--panel);border:1px solid var(--line);border-radius:.8rem;padding:1.2rem;display:flex;flex-direction:column;gap:.5rem}
+.tc.live{border-color:var(--brand);box-shadow:0 0 0 2px rgba(245,180,0,.25)}
+.tc h4{margin:0;font-size:1.1rem}
+.tc .meta{color:var(--mut);font-size:.88rem}
+.tc .badge{align-self:flex-start;font-size:.72rem;font-weight:800;border-radius:.6rem;padding:.1rem .55rem;background:var(--an);color:#fff}
+.tc .badge.soon{background:var(--nv);color:var(--ink)}
+.tc .btn{margin-top:auto}
+.tc.dim{opacity:.7}
+.ft3{display:grid;grid-template-columns:repeat(auto-fit,minmax(15rem,1fr));gap:1rem}
+.ft3 .card{margin:0}
+.ft3 h4{margin:.1rem 0 .3rem}
+.how{display:grid;grid-template-columns:repeat(auto-fit,minmax(13rem,1fr));gap:1rem;counter-reset:s}
+.how div{background:var(--panel);border:1px solid var(--line);border-radius:.8rem;padding:1.1rem;counter-increment:s}
+.how div::before{content:counter(s);display:grid;place-items:center;width:2rem;height:2rem;border-radius:50%;background:var(--btn);color:#111;font-weight:800;margin-bottom:.5rem}
+.setupgrid{display:grid;grid-template-columns:1.2fr 1fr;gap:1rem}
+.setupgrid .card{margin:0}
+details.fq{background:var(--panel);border:1px solid var(--line);border-radius:.6rem;padding:.8rem 1rem;margin:.5rem 0}
+details.fq summary{cursor:pointer;font-weight:600}
+details.fq p{margin:.5rem 0 0;color:var(--mut)}
+.bandcta{background:linear-gradient(135deg,#14202e,#0b0c0f);color:#fff;text-align:center}
+.bandcta .wrap{padding-top:2.5rem;padding-bottom:2.5rem}
+.mbox{max-width:26rem!important}
+.prefs{margin-top:1rem;padding:.8rem 1rem;border:1px solid var(--line);border-radius:.5rem;display:flex;flex-wrap:wrap;gap:.5rem 1.2rem;align-items:center}.prefs>b{flex-basis:100%}.prefs .prow{flex-basis:100%;display:flex;gap:.6rem;align-items:center;flex-wrap:wrap}.insg{display:grid;grid-template-columns:repeat(auto-fit,minmax(9.5rem,1fr));gap:.6rem}
+.insg div{border:1px solid var(--line);border-radius:.5rem;padding:.55rem .7rem;background:var(--bg)}
+.insg b{display:block;font-size:.78rem;color:var(--mut);font-weight:600}
+.insg span{font-size:1.35rem;font-weight:800}
+#insGo:disabled{opacity:.45;cursor:not-allowed}
+.mbox #lgForgot{color:inherit;text-decoration:underline;opacity:.8}
+.mbox .tabs2{display:flex;gap:.4rem;margin:.2rem 0 1rem}
+.mbox .tabs2 button{flex:1;background:var(--bg);color:var(--ink);border:1.5px solid var(--line);border-radius:.4rem;padding:.4rem}
+.mbox .tabs2 button.on{background:var(--btn);color:#111;border-color:var(--btn)}
+.mbox input[type=tel],.mbox input[type=text],.mbox input[type=email],.mbox input[type=password]{width:100%;margin:.3rem 0;font:inherit;padding:.6rem .7rem;border:1.5px solid var(--line);border-radius:.4rem;background:var(--bg);color:var(--ink)}
+.gbtn{width:100%;display:flex;gap:.6rem;align-items:center;justify-content:center;background:#fff;color:#222;border:1.5px solid #cfd6de;border-radius:.4rem;padding:.6rem;font-weight:600}
+.or{text-align:center;color:var(--mut);margin:.8rem 0;font-size:.85rem}
+.err{color:var(--bad);font-size:.88rem;min-height:1.2rem}
+.rw{width:100%;max-width:1500px;margin:0 auto;padding:0 clamp(1rem,3vw,2.5rem)}
+.rw .card{margin:1.1rem 0}
+.rtop{display:grid;grid-template-columns:1.1fr 1fr;gap:1rem;align-items:stretch}
+.rtop .card{margin:1.1rem 0;height:calc(100% - 2.2rem)}
+.rmid{display:grid;grid-template-columns:1.4fr 1fr;gap:1rem;align-items:start}
+.rmid .card{margin:0}
+.rmid .col{display:grid;gap:1rem;align-content:start}
+.rrv{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,34rem),1fr));gap:1rem}
+.rrv .card{margin:0}
+@media (max-width:980px){.lhero .wrap,.setupgrid,.rtop,.rmid{grid-template-columns:1fr}.rtop .card{height:auto}}
+
+.pgchart{width:100%;height:auto;display:block}.pgchart .gl{stroke:var(--line);stroke-width:1}.pgchart .gt{fill:var(--mut);font-size:11px}.pgchart .gv{fill:var(--ink);font-size:12px;font-weight:700}.pgchart .gd{fill:var(--btn);stroke:var(--panel);stroke-width:2}.pgchart .gp{fill:none;stroke:var(--btn);stroke-width:3;stroke-linejoin:round;stroke-linecap:round}
+#progSec>.card{margin:1rem 0}@media (max-width:600px){.pgchart .gt{font-size:17px}.pgchart .gv{font-size:19px}}
+.hm{overflow:auto}.hm td.c,.hm th.c{text-align:center;min-width:3.2rem}.tips{margin:.8rem 0 0;padding-left:1.1rem;display:grid;gap:.45rem}#progSec .flt{margin:.7rem 0}#progSec .acts{margin-top:.8rem}
+
+.sflt{margin-top:.5rem}.srtrow{margin-top:.7rem;display:flex;gap:.6rem;align-items:center;font-size:.9rem}.srtrow select{background:var(--bg);color:var(--ink);border:1.5px solid var(--line);border-radius:.5rem;padding:.3rem .6rem}
+.tabs2{display:flex;gap:.5rem;flex-wrap:wrap;margin:.6rem 0}.sl[data-jq]{cursor:pointer;border-radius:.4rem;padding:.2rem .3rem}.sl[data-jq]:hover,.sl[data-jq]:focus-visible{background:var(--sel);outline:none}
+.dif{font-style:normal;font-size:.72rem;border:1px solid var(--line);border-radius:.6rem;padding:0 .4rem;color:var(--mut);margin-left:.3rem}
+.tgt-t{width:100%;border-collapse:collapse;margin:.6rem 0;font-size:.92rem}.tgt-t th,.tgt-t td{padding:.4rem .5rem;border-bottom:1px solid var(--line);text-align:left}.tgt-t .n{text-align:right;white-space:nowrap}.tgw{display:grid;grid-template-columns:1fr 1fr;gap:1.5rem 2rem;align-items:start}.tgr .rec{margin:0 0 .3rem}.tgt-t th{white-space:nowrap}@media (max-width:900px){.tgw{grid-template-columns:1fr}}.rec{margin:1rem 0 0;font-size:1rem}.neg{color:var(--bad);font-weight:700}.pos{color:var(--ok);font-weight:700}
+.rv.flash{animation:flash 1.8s ease}@keyframes flash{0%,60%{box-shadow:0 0 0 3px var(--btn)}100%{box-shadow:none}}
+
+/* ===== result page redesign ===== */
+#result .hero{position:relative;overflow:hidden;color:#f3efe3;border:0;background:radial-gradient(120% 140% at 0% 0%,#24304a 0%,#121a2b 55%,#0c111c 100%)}
+#result .hero::after{content:"";position:absolute;right:-6rem;top:-6rem;width:20rem;height:20rem;border-radius:50%;background:radial-gradient(circle,rgba(245,180,0,.22),transparent 65%);pointer-events:none}
+#result .hero .btn.ghost{background:rgba(255,255,255,.08);color:#f3efe3;border-color:rgba(255,255,255,.22);margin-bottom:.4rem}
+#result .hero .mut{color:#aab6c8}
+#result .hgrid{display:flex;gap:clamp(1rem,3vw,2.2rem);align-items:center;flex-wrap:wrap;margin:.6rem 0 1rem;position:relative;z-index:1}
+#result .ring{position:relative;width:clamp(9.5rem,22vw,12.5rem);aspect-ratio:1;flex:none}
+#result .ring svg{width:100%;height:100%;transform:rotate(-90deg)}
+#result .ring circle{fill:none;stroke-width:9;stroke-linecap:round}
+#result .ring .rt{stroke:rgba(255,255,255,.12)}
+#result .ring .rf{stroke:#f5b400;stroke-dasharray:326.7;stroke-dashoffset:326.7;transition:stroke-dashoffset 1.4s cubic-bezier(.2,.8,.2,1);filter:drop-shadow(0 0 6px rgba(245,180,0,.55))}
+#result .rin{position:absolute;inset:0;display:grid;place-content:center;text-align:center}
+#result .rin .big{font-size:clamp(2.6rem,6vw,3.6rem);font-weight:800;letter-spacing:-.03em;color:#fff;line-height:1}
+#result .rmax{font-size:.85rem;color:#aab6c8;margin-top:.15rem}
+#result .hinfo{flex:1;min-width:14rem;display:grid;gap:.55rem}
+#result .who{font-size:1.35rem;font-weight:700;color:#fff}
+#result #rRank{font-size:1rem}
+#result .rk{display:inline-block;background:#f5b400;color:#111;border-radius:2rem;padding:.2rem .85rem;font-weight:600;margin-right:.35rem}
+#result .rk b{font-size:1.25rem}
+#result .pills{display:flex;gap:.5rem;flex-wrap:wrap}
+#result .chip2{border:1px solid rgba(255,255,255,.22);border-radius:2rem;padding:.2rem .7rem;font-size:.85rem;color:#e6ebf3}
+#result .chip2.gold{border-color:#f5b400;color:#f5b400;font-weight:700}
+#result .rtop .card{height:auto}#result .hero{display:flex;flex-direction:column}#result .hero #backTop2{align-self:flex-start}#result .hgrid{flex:0 0 auto}
+#result .rtop>.card:last-child{display:flex;flex-direction:column}#result .rtop .kpi{align-content:start;grid-auto-rows:minmax(5.2rem,auto)}#result .rtop .kpi div{display:flex;flex-direction:column;justify-content:center}#result .kpi b{font-size:1.7rem}
+#result .hero .acts{position:relative;z-index:1}
+#result .hero .acts .btn:not(.ghost){box-shadow:0 4px 18px rgba(245,180,0,.3)}
+#result .hero .acts .btn.ghost{margin-bottom:0}
+#result .seg .sb{display:flex;height:.9rem;border-radius:1rem;overflow:hidden;background:var(--bg);margin-top:.6rem}
+#result .seg i{display:block;height:100%;transition:width 1s ease}
+#result .s-ok{background:var(--ok)}#result .s-bad{background:var(--bad)}#result .s-sk{background:var(--nv)}
+#result .kpi div{border-left:4px solid var(--line);background:var(--bg)}
+#result .kpi .k-ok{border-left-color:var(--ok)}#result .kpi .k-bad{border-left-color:var(--bad)}#result .kpi .k-sk{border-left-color:var(--nv)}
+#result .acc{height:.55rem;border-radius:1rem;background:var(--bg);overflow:hidden}
+#result .acc i{display:block;height:100%;border-radius:1rem;background:linear-gradient(90deg,#f5b400,var(--ok))}
+#result #subj tr:hover td{background:var(--sel)}
+#result .rv{border-left:5px solid var(--line)}
+#result .rv:has(.st.ok){border-left-color:var(--ok)}#result .rv:has(.st.bad){border-left-color:var(--bad)}
+@media (max-width:560px){#result .hgrid{justify-content:center;text-align:center}#result .pills{justify-content:center}}
+@media (prefers-reduced-motion:reduce){#result .ring .rf,#result .seg i{transition:none}}
+
+/* ===== motion and new sections ===== */
+html{scroll-behavior:smooth}
+body{transition:background-color .3s ease,color .3s ease}
+@keyframes viewIn{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:none}}
+@keyframes fadeIn{from{opacity:0}to{opacity:1}}
+@keyframes pop{from{opacity:0;transform:translateY(14px) scale(.96)}to{opacity:1;transform:none}}
+@keyframes qIn{from{opacity:0;transform:translateX(22px)}to{opacity:1;transform:none}}
+@keyframes toastIn{from{opacity:0;transform:translate(-50%,14px)}to{opacity:1;transform:translate(-50%,0)}}
+@keyframes floaty{0%,100%{transform:translate(0,0) scale(1)}50%{transform:translate(30px,-24px) scale(1.12)}}
+@keyframes bob{0%,100%{transform:translateY(0)}50%{transform:translateY(-6px)}}
+@keyframes pulse{0%,100%{box-shadow:0 0 0 0 rgba(217,83,79,.55)}50%{box-shadow:0 0 0 8px rgba(217,83,79,0)}}
+@keyframes ping{0%{box-shadow:0 0 0 0 rgba(245,180,0,.7)}100%{box-shadow:0 0 0 10px rgba(245,180,0,0)}}
+@keyframes wordIn{from{opacity:0;transform:translateY(.4em)}to{opacity:1;transform:none}}
+@keyframes slide{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+#setup:not([hidden]),#exam:not([hidden]),#result:not([hidden]){animation:viewIn .4s cubic-bezier(.2,.7,.2,1) both}
+.ov:not([hidden]){animation:fadeIn .2s ease both}
+.ov:not([hidden])>.card{animation:pop .28s cubic-bezier(.2,.8,.2,1) both}
+.qb.qin{animation:qIn .3s cubic-bezier(.2,.7,.2,1) both}
+.toast{z-index:9!important}.toast:not([hidden]){animation:toastIn .28s ease both}
+.btn,.chip,.p,.op,.tc,.th,.nav button,.hd button,.tabs button{transition:transform .15s ease,box-shadow .2s ease,background-color .2s ease,border-color .2s ease,color .2s ease,opacity .2s ease}
+.btn:hover:not(:disabled){transform:translateY(-2px);box-shadow:0 8px 20px rgba(0,0,0,.18)}
+.btn:active:not(:disabled){transform:scale(.97)}
+.p:hover{transform:scale(1.08)}.op:hover:not(.lock){transform:translateX(3px)}
+.tc:hover{transform:translateY(-5px);box-shadow:0 14px 30px rgba(0,0,0,.16)}
+.lhero{position:relative;overflow:hidden}.lhero .wrap{position:relative;z-index:1}
+.orb{position:absolute;border-radius:50%;filter:blur(70px);opacity:.38;animation:floaty 16s ease-in-out infinite;pointer-events:none}
+.orb.o1{width:30rem;height:30rem;background:#f5b400;top:-12rem;right:-6rem}
+.orb.o2{width:26rem;height:26rem;background:#2563eb;bottom:-14rem;left:-8rem;animation-delay:-7s}
+.eyebrow .dot{display:inline-block;width:.55rem;height:.55rem;border-radius:50%;background:#f5b400;margin-right:.5rem;animation:ping 1.6s ease-out infinite}
+.lhero .rot{display:block;min-height:1.25em;color:#fff;border-bottom:3px solid #f5b400;animation:wordIn .5s ease both}
+.forwho{margin:0 0 .9rem;color:#f5b400;font-weight:600;font-size:1.05rem}
+.price{animation:bob 7s ease-in-out infinite}.price .off{animation:pulse 2s infinite}
+.strip{display:flex;gap:1.2rem 2.5rem;flex-wrap:wrap;justify-content:center;padding:.9rem 1rem;margin-top:1.2rem;background:var(--panel);border:1px solid var(--line);border-radius:.8rem;font-size:1.05rem}
+.strip{min-height:3.6rem;align-items:center;align-content:center}.strip b{font-size:1.3rem;font-variant-numeric:tabular-nums}@media (max-width:700px){.strip{min-height:5.6rem}}
+.rvl{opacity:0;transform:translateY(26px);transition:opacity .6s ease,transform .6s cubic-bezier(.2,.7,.2,1)}.rvl.in{opacity:1;transform:none}
+.two{display:grid;grid-template-columns:1fr 1fr;gap:1rem}.two .card{margin:0}
+.two h3{margin:.1rem 0 .5rem}.two .yes{border-color:var(--an)}.two .no{border-color:#c9a1a0}
+@media (max-width:760px){.two{grid-template-columns:1fr}}
+.chips{display:flex;flex-wrap:wrap;gap:.6rem}
+.chips span{background:var(--panel);border:1.5px solid var(--line);border-radius:2rem;padding:.4rem 1rem;font-weight:600;transition:transform .2s,border-color .2s,background-color .2s}
+.chips span:hover{transform:translateY(-3px);border-color:var(--brand);background:rgba(245,180,0,.12)}
+.tc .cd{font-weight:700;color:var(--ink);font-variant-numeric:tabular-nums}
+#stick{position:fixed;left:0;right:0;bottom:0;z-index:4;background:#0b0c0f;color:#fff;display:flex;gap:.8rem;align-items:center;justify-content:center;padding:.6rem 1rem;box-shadow:0 -6px 24px rgba(0,0,0,.3);transform:translateY(110%);transition:transform .35s cubic-bezier(.2,.8,.2,1)}
+#stick.show{transform:none}#stick[hidden]{display:flex!important;visibility:hidden}#stick.show[hidden]{visibility:visible}
+#stick s{opacity:.6}#stick .btn{padding:.45rem 1.2rem}
+@media (max-width:600px){.lhero .rot{min-height:2.5em}}
+.tc .cd{display:inline-block;min-width:7.5em}.tg{min-height:20rem}
+#topbar{position:fixed;top:0;left:0;height:3px;width:0;background:linear-gradient(90deg,#f5b400,#ffd75e);z-index:10;opacity:0;transition:width .35s ease,opacity .25s ease;pointer-events:none;box-shadow:0 0 8px #f5b400}
+#net{position:fixed;left:50%;top:.8rem;transform:translate(-50%,-180%);z-index:10;background:#0b0c0f;color:#fff;border:1px solid rgba(245,180,0,.45);border-radius:2rem;padding:.5rem 1.1rem;font-size:.9rem;display:flex;gap:.6rem;align-items:center;transition:transform .35s cubic-bezier(.2,.8,.2,1);max-width:92vw;pointer-events:none}#net.on{transform:translate(-50%,0)}
+.spin{width:1.1rem;height:1.1rem;border-radius:50%;border:3px solid rgba(245,180,0,.25);border-top-color:#f5b400;animation:spin .8s linear infinite;flex:none}.spin.big{width:2.8rem;height:2.8rem;border-width:4px}
+@keyframes spin{to{transform:rotate(360deg)}}
+.btn.ld{pointer-events:none;opacity:.85}.btn.ld::after{content:"";display:inline-block;width:.9em;height:.9em;margin-left:.6em;vertical-align:-.1em;border-radius:50%;border:2px solid currentColor;border-right-color:transparent;animation:spin .7s linear infinite}
+#loading{z-index:8}#loading .card{text-align:center;min-width:15rem;display:flex;flex-direction:column;align-items:center;gap:.9rem}#loading .card p{margin:0;font-weight:600}
+.sk{border-radius:1rem;min-height:11rem;background:linear-gradient(100deg,var(--panel) 30%,var(--line) 50%,var(--panel) 70%);background-size:200% 100%;animation:shim 1.3s linear infinite;border:1px solid var(--line)}@keyframes shim{to{background-position:-200% 0}}
+#ai{position:fixed;top:0;right:0;bottom:0;width:min(27rem,100vw);z-index:7;background:var(--panel);border-left:1px solid var(--line);box-shadow:-12px 0 40px rgba(0,0,0,.35);display:flex;flex-direction:column;transform:translateX(105%);transition:transform .32s cubic-bezier(.2,.8,.2,1);visibility:hidden}
+#ai.on{transform:none;visibility:visible}
+#ai .ah{display:flex;align-items:center;gap:.6rem;padding:.8rem 1rem;border-bottom:1px solid var(--line);background:var(--hd);color:#fff}#ai .ah b{flex:1;font-size:1.02rem}#ai .ah small{display:block;font-weight:400;color:#aab6c2;font-size:.78rem}
+#ai .ah button{background:transparent;border:0;color:#fff;font-size:1.4rem;line-height:1;cursor:pointer}
+#aiQ{padding:.55rem 1rem;font-size:.82rem;color:var(--mut);border-bottom:1px solid var(--line);max-height:4.2rem;overflow:auto}
+#aiMsgs{flex:1;overflow:auto;padding:1rem;display:flex;flex-direction:column;gap:.7rem}
+.am{max-width:92%;padding:.65rem .85rem;border-radius:.9rem;line-height:1.5;font-size:.95rem;word-wrap:break-word;overflow-wrap:anywhere}
+.am.u{align-self:flex-end;background:#f5b400;color:#111;border-bottom-right-radius:.25rem}.am.b{align-self:flex-start;background:var(--bg);border:1px solid var(--line);border-bottom-left-radius:.25rem}
+.am code{background:rgba(127,127,127,.2);padding:.05rem .3rem;border-radius:.25rem;font-family:ui-monospace,Consolas,monospace;font-size:.88em}.am pre{background:var(--code);padding:.6rem;border-radius:.4rem;overflow:auto;margin:.4rem 0;font-size:.85rem}.am.err{border-color:#d9534f;color:var(--bad)}
+.am .note{display:block;margin-top:.5rem;font-size:.74rem;color:var(--mut)}
+.dots{display:inline-flex;gap:.25rem}.dots i{width:.45rem;height:.45rem;border-radius:50%;background:var(--mut);animation:dot 1s infinite ease-in-out}.dots i:nth-child(2){animation-delay:.15s}.dots i:nth-child(3){animation-delay:.3s}@keyframes dot{0%,80%,100%{opacity:.25;transform:scale(.8)}40%{opacity:1;transform:scale(1)}}
+#aiChips{display:flex;gap:.4rem;flex-wrap:wrap;padding:.5rem 1rem 0}#aiChips button{font-size:.8rem;padding:.3rem .7rem;border-radius:999px;border:1px solid var(--line);background:var(--bg);color:var(--ink)}
+#aiForm{display:flex;gap:.5rem;padding:.7rem 1rem 1rem}#aiForm textarea{flex:1;resize:none;height:2.9rem;border:1px solid var(--line);border-radius:.6rem;padding:.5rem .7rem;background:var(--bg);color:var(--ink);font:inherit}
+#aiForm button{border:0;border-radius:.6rem;background:#f5b400;color:#111;font-weight:700;padding:0 1rem}#aiForm button:disabled{opacity:.5}
+.askb{margin:.5rem 0 0;border:1px solid #f5b400;background:transparent;color:var(--ink);border-radius:.5rem;padding:.4rem .9rem;font-weight:600}.askb:hover{background:rgba(245,180,0,.14)}
+@media (min-width:900px){#result{transition:width .32s cubic-bezier(.2,.8,.2,1)}body.aiopen #result{width:calc(100% - min(27rem,100vw))}}
+@media (max-width:700px){#ai{top:auto;height:86vh;width:100vw;border-left:0;border-top:1px solid var(--line);border-radius:1rem 1rem 0 0;transform:translateY(105%)}}
+#setup>.ft{padding-bottom:5.5rem;padding-top:1.4rem;color:var(--ink)}#setup>.ft a{color:inherit;text-decoration:underline;text-underline-offset:2px}
+@media (prefers-reduced-motion:reduce){*,*::before,*::after{animation:none!important;transition:none!important;scroll-behavior:auto!important}.rvl{opacity:1!important;transform:none!important}}
+@media print{
+ #sflt,.srtrow{display:none!important}
+ :root:root:root{--bg:#fff;--panel:#fff;--ink:#111;--mut:#555;--line:#ccc;--okbg:#e3f5e9;--badbg:#fbe8e6;--warn:#fff4c2;--warnink:#5a4700;--code:#f1f4f8;--nv:#ccc;--ok:#1d8a46;--bad:#c4372f}
+ body{background:#fff;color:#111}
+ .hd,.nav,.acts,.flt,.ft,#again,.tags,.toast,.ov{display:none!important}
+ .card{break-inside:avoid;margin:.6rem 0}
+ body.ps #rv,body.ps #revCard{display:none}
+ #result .hero{background:#fff!important;color:#111;border:1px solid #ccc}#result .hero .mut,#result .rmax{color:#555}#result .rin .big,#result .who{color:#111}#result .chip2{color:#111;border-color:#999}#result .hero::after{display:none}
+ *{-webkit-print-color-adjust:exact;print-color-adjust:exact}
+}
+@media (max-width:880px){#exam{height:auto}.main{grid-template-columns:1fr}.grid{max-height:15rem}}
+@media (prefers-reduced-motion:reduce){*{transition:none!important}}
+</style>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.45.4/dist/umd/supabase.min.js"></script>
+</head>
+<body>
+
+<div id="setup">
+ <nav class="nav"><div class="wrap">
+  <a class="brand" id="brandHome" href="#" title="CSE WALE home" style="color:inherit;text-decoration:none;cursor:pointer"><span class="logo"></span><span class="w">CSE <i>WALE</i></span></a>
+  <div class="r">
+   <a class="lk" href="#tests">Tests</a><a class="lk" href="#pricing">Pricing</a><a class="lk" href="#faq">FAQ</a>
+   <a class="lk" id="adminLk" href="/admin.html" hidden>Admin</a>
+   <span id="userBox" hidden style="display:none;gap:.5rem;align-items:center"><span id="userNm" style="font-size:.9rem"></span><button class="sm" id="logout">Log out</button></span>
+   <button class="btn" id="loginTop">Log in</button>
+   <button class="th sm" title="Switch theme">Theme</button>
+  </div></div></nav>
+
+<header class="lhero"><span class="orb o1"></span><span class="orb o2"></span><div class="wrap">
+  <div>
+   <span class="eyebrow"><i class="dot"></i>LIVE NOW · SSC JE · IMD Scientific Assistant</span>
+   <h1>Crack the <em>IMD Scientific Assistant</em> paper with <span class="rot" id="rot">real mock tests</span></h1>
+   <p class="forwho">For <b>Computer Science &amp; Engineering</b> candidates only · SSC JE 2026 · IMD (Scientific Assistant)</p>
+   <p class="lead">100 questions, 300 marks, negative marking and a live timer, built exactly like the exam. Detailed solutions and a key takeaway for every question, plus a subject-wise report to show where you lose marks.</p>
+   <div class="cta"><button class="btn lg gold" id="buyHero">Get all tests for ₹99</button><a class="btn lg line" href="#tests">Try the free demo</a></div>
+   <div class="stats"><div><b data-count="100">100</b><span>questions per test</span></div><div><b data-count="300">300</b><span>marks, +3 / −1</span></div><div><b data-count="120">120</b><span>minutes</span></div><div><b>CSE</b><span>only paper</span></div></div>
+  </div>
+  <aside class="price" id="pricing">
+   <span class="off">50% OFF</span>
+   <h3>Complete Test Series</h3><div class="mut">SSC JE · IMD Scientific Assistant · CSE. One payment, all mock tests.</div>
+   <div class="pr"><span class="now">₹99</span><span class="was">₹199</span></div>
+   <div class="mut">Launch offer, for a limited time</div>
+   <ul><li>Every mock test in the series, today and as new ones are added</li><li>Full solutions and key takeaways</li><li>Live rank among all students, plus accuracy and time analysis</li><li>Auto-saved: resume if your phone or browser closes</li><li>Practise your wrong questions again</li><li>Works on phone and laptop</li></ul>
+   <button class="btn go lg" id="buyCard">Buy now for ₹99</button><p class="mut" style="text-align:center;font-size:.8rem;margin:.6rem 0 0">One-time payment of ₹99 · no subscription · secure payment by Razorpay · instant access · see <a href="/refund.html">refund policy</a></p>
+   <div class="mut" style="margin-top:.6rem;text-align:center">Secure payment by Razorpay · UPI, cards, net banking</div>
+  </aside>
+ </div></header>
+ <div class="wrap" id="statsWrap"><div class="strip"><span id="stBase">🎯 Made only for <b>CSE students</b> · SSC JE · IMD Scientific Assistant</span><span id="stNum" hidden>🎓 <b id="stStu">0</b> students registered</span><span id="stNum2" hidden>✅ <b id="stSub">0</b> tests completed</span></div></div>
+
+ <div class="wrap">
+  <div class="card" id="resCard" hidden><h2>Unfinished test found</h2><p id="resTxt"></p><div class="acts"><button class="btn go" id="resGo">Resume test</button></div></div>
+
+  <section class="sec" id="progSec" hidden></section>
+
+  <section class="sec rvl" id="who">
+   <h2 class="t">Is this series for you?</h2><p class="sub">One exam, one branch, nothing extra.</p>
+   <div class="two">
+    <div class="card yes"><h3>✅ This is for you if</h3><ul class="rules"><li>You are preparing for <b>SSC JE, IMD Scientific Assistant</b> in the <b>Computer Science &amp; Engineering</b> stream.</li><li>You want exam-style practice: 100 questions, +3 / −1, a real timer.</li><li>You want to see your rank among other aspirants and fix your weak subjects.</li></ul></div>
+    <div class="card no"><h3>🚫 This is not for you if</h3><ul class="rules"><li>You are preparing for the other IMD departments or for another engineering branch. Every question here is Computer Science &amp; Engineering.</li><li>You want a general all-subjects test.</li></ul></div>
+   </div>
+  </section>
+
+  <section class="sec rvl" id="tests">
+   <h2 class="t">Choose your test</h2><p class="sub">New mock tests are added to the same pass. You do not pay again.</p>
+   <div class="tg" id="tgrid"><div class="sk"></div><div class="sk"></div><div class="sk"></div></div>
+  </section>
+
+  <section class="sec rvl">
+   <h2 class="t">What the tests cover</h2><p class="sub">The Computer Science &amp; Engineering syllabus, subject by subject.</p>
+   <div class="chips"><span>Engineering Mathematics</span><span>Digital Logic</span><span>Computer Organization &amp; Architecture</span><span>Programming &amp; Data Structures</span><span>Algorithms</span><span>Theory of Computation</span><span>Compiler Design</span><span>Operating Systems</span><span>Databases (DBMS)</span><span>Computer Networks</span></div>
+  </section>
+
+  <section class="sec rvl">
+   <h2 class="t">Why students pick CSE WALE</h2><p class="sub">Built only for SSC JE IMD, Computer Science &amp; Engineering aspirants.</p>
+   <div class="ft3">
+    <div class="card"><h4>Exam-like interface</h4><p class="mut">Question palette, mark for review, section tabs and a countdown, just like the real test.</p></div>
+    <div class="card"><h4>Explained solutions</h4><p class="mut">Every question has a step-by-step solution and a one-line takeaway to avoid the same trap again.</p></div>
+    <div class="card"><h4>Smart analysis</h4><p class="mut">Subject-wise accuracy, time per question, error tags and one-click re-attempt of wrong questions.</p></div>
+    <div class="card"><h4>Result card and PDF</h4><p class="mut">Download your scorecard as an image or save the full review as a PDF.</p></div>
+   </div>
+  </section>
+
+  <section class="sec rvl">
+   <h2 class="t">How it works</h2>
+   <div class="how"><div><b>Log in</b><p class="mut">Use your Google account or email.</p></div><div><b>Pay ₹99 once</b><p class="mut">UPI, card or net banking via Razorpay.</p></div><div><b>Take the test</b><p class="mut">Timed, 100 questions, auto-saved.</p></div><div><b>Review and improve</b><p class="mut">See your rank, solutions and weak subjects.</p></div></div>
+  </section>
+
+  <section class="sec rvl" id="faq">
+   <h2 class="t">Questions</h2>
+   <details class="fq"><summary>Who is this test series for?</summary><p>Candidates preparing for the SSC JE, IMD Scientific Assistant post in the Computer Science &amp; Engineering stream. It does not cover the other IMD departments or other engineering branches.</p></details>
+   <details class="fq"><summary>Is there a free demo?</summary><p>Yes. Mock Test 1 is free for every logged-in student, so you can try the exam interface, the paper, the solutions and the report card before you pay. The other tests unlock with the ₹99 pass.</p></details>
+   <details class="fq"><summary>Is ₹99 one-time?</summary><p>Yes. One payment unlocks every test in the series, including the ones added later.</p></details>
+   <details class="fq"><summary>Can I pause the test?</summary><p>No. Like the real exam, the timer runs continuously and is kept by our server. If your phone or browser closes, your answers are saved and you can come back and resume until the time runs out.</p></details>
+   <details class="fq"><summary>Can I attempt a test again?</summary><p>Your first attempt is the ranked one. After that you can practise again as often as you like: the full test, only the wrong questions, or the wrong plus unattempted ones. Practice attempts do not change your rank.</p></details>
+   <details class="fq"><summary>Which payment methods work?</summary><p>UPI, debit and credit cards and net banking, through Razorpay.</p></details>
+  </section>
+ </div>
+
+ <section class="bandcta"><div class="wrap"><h2 style="margin:0 0 .4rem">Ready for your SSC JE IMD paper?</h2><p style="color:#c3cdd8;margin:0 0 1rem">Launch offer: ₹199 → ₹99 for the complete series.</p><button class="btn lg gold" id="buyBand">Get all tests for ₹99</button></div></section>
+</div>
+
+<div id="stick" hidden><span><b>₹99</b> <s>₹199</s> · SSC JE IMD · CSE test series</span><button class="btn gold" id="buyStick">Buy now</button></div>
+<div id="insOv" class="ov" hidden><div class="card mbox" style="max-width:44rem!important;max-height:92vh;overflow:auto">
+ <h2 style="margin-top:0">Exam instructions</h2>
+ <p class="mut" style="margin-top:0">Read carefully before you begin. <b id="insWho"></b></p>
+ <div class="insg">
+  <div><b>Total questions</b><span id="insQ">100</span></div><div><b>Maximum marks</b><span id="insMax">300</span></div><div><b>Duration</b><span id="insMin">120 min</span></div><div><b>Correct answer</b><span style="color:var(--an)" id="insPos">+3</span></div><div><b>Wrong answer</b><span style="color:var(--bad)" id="insNeg">−1</span></div><div><b>Unattempted</b><span>0</span></div>
+ </div>
+ <ol class="rules" style="margin-top:1rem">
+  <li>Every question has four options and <b>only one is correct</b>. This is the <b>Computer Science &amp; Engineering</b> paper for <b>SSC JE, IMD Scientific Assistant</b>.</li>
+  <li>Select an option and press <b>Save &amp; Next</b>. An answer that is not saved is not counted.</li>
+  <li><b>Mark for Review &amp; Next</b> flags a question for later. A marked question with a saved answer is still counted.</li>
+  <li>The question palette shows: Not visited, Not answered, Answered, Marked for review, Answered and marked.</li>
+  <li>The countdown timer is kept by our server and runs continuously, even if you close the page. When it reaches zero, the test is <b>submitted automatically</b>. You can not pause it.</li>
+  <li>Do not refresh, close the tab or switch devices. Your answers are auto-saved and you can resume on this device if it happens.</li>
+  <li>Once you press <b>Submit</b>, answers cannot be changed. Your score, rank, solutions and analysis open straight after. Your <b>first attempt</b> is the ranked one; you can practise again later.</li>
+  <li>Keyboard: 1–4 or A–D choose an option, Enter saves &amp; next, M marks, X clears, ← → move between questions.</li>
+  <li>Using unfair means, sharing this test or its questions is not allowed and can lead to account removal.</li>
+ </ol>
+ <div class="prefs"><b>Your preferences</b><div class="prow"><label for="ord">Question order</label><select id="ord"><option value="mix">Mixed: all subjects shuffled</option><option value="sec">Subject-wise, with subject tabs</option></select></div>
+  <label><input type="checkbox" id="shq" checked> Shuffle questions</label> <label><input type="checkbox" id="sho"> Shuffle options</label> <label><input type="checkbox" id="showtm" checked> Show timer on screen</label></div>
+ <label style="display:flex;gap:.6rem;align-items:flex-start;margin:1rem 0;padding:.8rem;border:1.5px solid var(--line);border-radius:.5rem;cursor:pointer"><input type="checkbox" id="insOk" style="margin-top:.25rem"><span>I have read and understood all the instructions above and I agree to follow them. I am ready to begin.</span></label>
+ <div style="display:flex;gap:.6rem;justify-content:flex-end;flex-wrap:wrap"><button class="btn ghost" id="insX">Go back</button><button class="btn go lg" id="insGo" disabled>I am ready, start test</button></div>
+</div></div>
+
+<div id="profOv" class="ov" hidden><div class="card mbox"><h2 style="margin-top:0">One last step</h2><p class="mut" style="margin-top:0">Add your mobile number so we can reach you about your tests and payment.</p>
+ <input type="tel" id="pfMobile" placeholder="Mobile number (10 digits)" inputmode="numeric" maxlength="10" autocomplete="tel">
+ <div class="err" id="pfErr"></div><div style="display:flex;gap:.6rem;justify-content:flex-end"><button class="btn ghost" id="pfSkip">Skip for now</button><button class="btn go" id="pfSave">Save</button></div></div></div>
+<div id="loading" class="ov" hidden role="status" aria-live="polite"><div class="card"><div class="spin big"></div><p id="loadMsg">Please wait…</p></div></div>
+<div id="topbar"></div><div id="net" role="status" aria-live="polite"><span class="spin"></span><span id="netMsg"></span></div>
+<aside id="ai" aria-label="AI tutor"><div class="ah"><b>✨ AI tutor<small id="aiLeft">Explains solutions step by step</small></b><button id="aiX" aria-label="Close">×</button></div><div id="aiQ"></div><div id="aiMsgs"></div><div id="aiChips"></div><form id="aiForm"><textarea id="aiIn" maxlength="1200" placeholder="Ask your doubt…" rows="1"></textarea><button id="aiGo">Send</button></form></aside>
+<div id="sending" class="ov" hidden><div class="card"><h2>Submitting your test…</h2><p class="mut">Please keep this page open.</p></div></div>
+<div id="loginOv" class="ov" hidden><div class="card mbox">
+ <h2 id="lgT">Log in to CSE WALE</h2>
+ <button class="gbtn" id="gLogin"><svg width="18" height="18" viewBox="0 0 48 48" aria-hidden="true"><path fill="#EA4335" d="M24 9.5c3.5 0 6.6 1.2 9 3.5l6.7-6.7C35.6 2.4 30.2 0 24 0 14.6 0 6.5 5.4 2.6 13.2l7.8 6.1C12.3 13.6 17.7 9.5 24 9.5z"/><path fill="#4285F4" d="M46.5 24.5c0-1.6-.1-3.1-.4-4.5H24v9h12.7c-.6 3-2.3 5.5-4.8 7.2l7.5 5.8c4.4-4.1 7.1-10.1 7.1-17.5z"/><path fill="#FBBC05" d="M10.4 28.7A14.5 14.5 0 0 1 9.5 24c0-1.6.3-3.2.9-4.7l-7.8-6.1A24 24 0 0 0 0 24c0 3.9.9 7.5 2.6 10.8l7.8-6.1z"/><path fill="#34A853" d="M24 48c6.2 0 11.4-2 15.2-5.5l-7.5-5.8c-2.1 1.4-4.7 2.3-7.7 2.3-6.3 0-11.7-4.1-13.6-9.8l-7.8 6.1C6.5 42.6 14.6 48 24 48z"/></svg>Continue with Google</button>
+ <div class="or">or use your email</div>
+ <div class="tabs2"><button class="on" data-mode="in">Log in</button><button data-mode="up">Create account</button></div>
+ <input type="text" id="lgName" placeholder="Full name" autocomplete="name" hidden>
+ <input type="tel" id="lgMobile" placeholder="Mobile number (10 digits)" autocomplete="tel" inputmode="numeric" maxlength="10" hidden>
+ <input type="email" id="lgEmail" placeholder="Email address" autocomplete="email">
+ <input type="password" id="lgPass" placeholder="Password (min 6 characters)" autocomplete="current-password">
+ <div style="text-align:right"><a href="#" id="lgForgot" style="font-size:.85rem">Forgot password?</a></div>
+ <div class="mut" id="lgNote" hidden style="font-size:.82rem">Your name is shown on the exam and your result card.</div>
+ <div class="mut" style="font-size:.78rem">By continuing you agree to our <a href="/terms.html" target="_blank">Terms</a> and <a href="/privacy.html" target="_blank">Privacy Policy</a>.</div><div class="err" id="lgErr"></div>
+ <div style="display:flex;gap:.6rem;justify-content:flex-end;margin-top:.4rem"><button class="btn ghost" id="lgX">Cancel</button><button class="btn go" id="lgGo">Log in</button></div>
+</div></div>
+
+<div id="exam" hidden>
+ <div class="hd"><div class="brand"><span class="logo"></span><div><b id="eT">Mock Test 1</b><small id="eN"></small></div></div>
+  <div class="tm" id="tmBox"><span id="tmL">Time left</span><b id="tm">00:00:00</b><button id="m5">−5</button><button id="p5">+5</button><button id="pz">Pause</button><button class="th" title="Switch theme">Theme</button></div></div>
+ <div class="main">
+  <section class="qa"><div class="qh"><b id="qNo"></b><span>+3 correct, −1 wrong</span></div><div class="tabs" id="tabs" hidden></div><div class="qb" id="qb"></div>
+   <div class="bar"><button class="btn mk" id="bm">Mark for Review &amp; Next</button><button class="btn ghost" id="bc">Clear Response</button><button class="btn ghost" id="bb">Bookmark</button><button class="btn ghost" id="br" hidden>Reveal answer</button><button class="btn ghost" id="bp">Previous</button><span class="sp"></span><button class="btn go" id="bs">Save &amp; Next</button></div></section>
+  <aside class="pal">
+   <div class="solved"><b id="sv">0</b> of <span id="tot">100</span> solved<div class="pb"><i id="pbar"></i></div></div>
+   <div class="leg"><div><i class="p an" style="width:1.5rem;height:1.5rem;display:inline-block"></i>Answered <b id="cA">0</b></div><div><i class="p na" style="width:1.5rem;height:1.5rem;display:inline-block"></i>Not answered <b id="cN">0</b></div><div><i class="p nv" style="width:1.5rem;height:1.5rem;display:inline-block"></i>Not visited <b id="cV">0</b></div><div><i class="p mk" style="width:1.5rem;height:1.5rem;display:inline-block"></i>Marked <b id="cM">0</b></div><div style="grid-column:1/3"><i class="p ma" style="width:1.5rem;height:1.5rem;display:inline-block"></i>Answered &amp; marked (counted) <b id="cMA">0</b></div></div>
+   <div class="grid" id="grid"></div>
+   <button class="btn" id="sub">Submit test</button>
+  </aside>
+ </div>
+</div>
+
+<div id="pauseOv" class="ov" hidden><div class="card"><h2>Test paused</h2><p>The clock is stopped and the question is hidden.</p><button class="btn go" id="res">Resume</button></div></div>
+<div id="subOv" class="ov" hidden><div class="card"><h2>Submit the test?</h2><table id="subT"></table><p class="mut">After submitting you cannot change any answers.</p><div style="display:flex;gap:0.625rem;justify-content:flex-end"><button class="btn ghost" id="subNo">Go back</button><button class="btn go" id="subYes">Submit now</button></div></div></div>
+
+<div id="cardOv" class="ov" hidden><div class="card" style="max-width:34rem"><h2>Your result card</h2><img id="cardImg" style="width:100%;border-radius:.5rem" alt="Result card"><p class="mut">Press and hold the image (phone) or right-click it (laptop) to save it, or use Download.</p><div class="acts" style="justify-content:flex-end"><a class="btn go" id="cardDl" download="cse-wale-result.png">Download</a><button class="btn ghost" id="cardX">Close</button></div></div></div>
+<div id="result" hidden>
+ <div class="hd"><div class="brand"><span class="logo"></span><b id="rT">Result</b></div><span style="display:flex;gap:.5rem;align-items:center;flex-wrap:wrap"><button id="aiOpen" style="background:transparent;border:1px solid #f5b400;color:#fff;border-radius:.5rem;padding:.35rem .8rem;font-weight:600">✨ AI tutor</button><button id="backTop" style="background:#f5b400;color:#111;font-weight:700">← Back to all tests</button><button class="th" title="Switch theme">Theme</button></span></div>
+ <div class="rw">
+  <div class="rtop">
+   <div class="card hero"><button class="btn ghost" id="backTop2">← Back to all tests</button>
+    <div class="hgrid">
+     <div class="ring"><svg viewBox="0 0 120 120" aria-hidden="true"><circle class="rt" cx="60" cy="60" r="52"/><circle class="rf" id="ringF" cx="60" cy="60" r="52"/></svg>
+      <div class="rin"><div class="big"><span id="rScore">0</span></div><div class="rmax">out of <span id="rMax">300</span></div></div></div>
+     <div class="hinfo"><div class="who" id="rWho"></div><div id="rRank"></div><div class="pills" id="rChips"></div><div class="mut" id="rNote"></div></div>
+    </div>
+    <div class="acts" id="acts"></div></div>
+   <div class="card"><h2>Your numbers</h2><div class="seg" id="seg"></div><div class="kpi" id="kpi"></div><h2 style="margin-top:1.4rem">Share or save</h2><div class="acts" id="acts2"><button class="btn ghost" id="bcard">Result card (image)</button><button class="btn ghost" id="bpdf">Save scorecard as PDF</button><button class="btn ghost" id="bpdf2">Save full review as PDF</button></div></div>
+  </div>
+  <div class="rmid">
+   <div class="card"><h2>Subject-wise performance</h2><div style="overflow:auto"><table id="subj"></table></div></div>
+   <div class="col"><div class="card" id="anaCard"></div><div class="card" id="lossCard"></div><div class="card" id="nextCard"></div></div>
+  </div>
+  <div class="card" id="tgtCard"></div>
+  <div class="card" id="revCard"><h2>Question review</h2><div class="flt" id="flt"></div><div class="flt sflt" id="sflt"></div><div class="srtrow"><label for="srt">Sort by</label><select id="srt"><option value="n">Question number</option><option value="t">Slowest first</option><option value="h">Hardest first</option></select></div></div>
+  <div id="rv" class="rrv"></div>
+  <div class="card"><button class="btn" id="again">Back to all tests</button></div>
+ </div>
+</div>
+<div class="toast" id="toast" hidden></div>
+
+<script>
+let D=[],CUR=null,ranked=false,SRV=null,REM=0,finishing=false,nextTry=0,lastSrv=0;
+const $=id=>document.getElementById(id), L=a=>a;
+const esc=s=>s.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
+const fm=s=>esc(s).replace(/\^\{([^}]*)\}/g,'<sup>$1</sup>').replace(/_\{([^}]*)\}/g,'<sub>$1</sub>');
+const fmt=t=>{t=Math.max(0,Math.floor(t));return [t/3600|0,(t%3600)/60|0,t%60].map(v=>String(v).padStart(2,'0')).join(':')};
+const shuf=a=>{for(let i=a.length-1;i>0;i--){const j=Math.random()*(i+1)|0;[a[i],a[j]]=[a[j],a[i]]}return a};
+let Q,S,cur,cfg,limit,spent,last,paused,tick,filter='all',sub='all',srt='n',anaTab='slow',R,RS,lastSave=0;
+const KEY='cw-mock1-v1',TG=[['C','Concept gap'],['T','Fell for a trap'],['S','Calculation slip'],['G','Risky guess']];
+const ls={get:()=>{try{return JSON.parse(localStorage.getItem(KEY))}catch(e){return null}},set:v=>{try{localStorage.setItem(KEY,JSON.stringify(v))}catch(e){}},del:()=>{try{localStorage.removeItem(KEY)}catch(e){}}};
+const mm=t=>Math.floor(t/60)+'m '+String(Math.round(t%60)).padStart(2,'0')+'s';
+function snapshot(){return {v:1,q:Q.map(q=>[q.n,q.ord]),S,cur,cfg:Object.assign({},cfg),limit,spent}}
+function srvSave(ka){lastSrv=Date.now();if(!CUR||!Q)return;api('test?action=save',{body:{test_id:CUR.id,state:snapshot()},keepalive:!!ka}).then(r=>{if(r.submitted){toast('Time is over. Your test was submitted.');ranked=false;loadResult(CUR.id)}else if(typeof r.remaining_sec==='number'&&limit)limit=spent+r.remaining_sec}).catch(()=>{})}
+function persist(){if(!Q||!S||$('exam').hidden||!ranked)return;if(Date.now()-lastSrv>30000)srvSave()}
+document.addEventListener('visibilitychange',()=>{if(document.hidden&&ranked&&Q&&!$('exam').hidden)srvSave(true)});
+window.addEventListener('beforeunload',e=>{if(ranked&&Q&&!$('exam').hidden){e.preventDefault();e.returnValue=''}});
+function chk(){const a=ME&&ME.attempts,act=a&&Object.keys(a).find(id=>a[id].status==='in_progress');$('resCard').hidden=!act;if(act){const t=ME.tests.find(x=>x.id===act);$('resTxt').textContent=(t?t.title:'Your test')+' is still in progress. The timer keeps running while you are away.';$('resGo').dataset.t=act}}
+
+document.querySelectorAll('.th').forEach(b=>b.onclick=()=>{const r=document.documentElement,t=r.dataset.theme;r.dataset.theme=t==='dark'?'light':t==='light'?'':'dark'});
+
+const show=id=>{['setup','exam','result'].forEach(x=>$(x).hidden=x!==id);const a=$('ai');if(a){a.classList.remove('on');document.body.classList.remove('aiopen')}};
+const toast=m=>{const t=$('toast');t.textContent=m;t.hidden=false;clearTimeout(toast.h);toast.h=setTimeout(()=>t.hidden=true,3800)};
+
+function readCfg(){const u=ME&&ME.user;return {name:(u&&u.name)||'Candidate',min:CUR?CUR.duration_min:120,nolim:false,shq:$('shq').checked,sho:$('sho').checked,showtm:$('showtm').checked,order:$('ord').value,rev:false}}
+function begin(pool,label,saved){
+ cfg.label=label;
+ Q=pool.map(q=>({...q,ord:[0,1,2,3]}));
+ if(cfg.order==='sec'){const g={};Q.forEach(q=>(g[q.s]=g[q.s]||[]).push(q));Q=Object.values(g).flatMap(a=>cfg.shq?shuf(a):a)}else if(cfg.shq)shuf(Q);
+ if(cfg.sho)Q.forEach(q=>shuf(q.ord));
+ S=Q.map(()=>({ans:null,sel:null,vis:false,mark:false,t:0,bm:false,tag:'',rev:false}));
+ limit=cfg.nolim?0:Math.max(5,Math.round(cfg.min*pool.length/D.length))*60; spent=0; paused=false; last=Date.now(); cur=-1; let go0=0;
+ if(saved){Q=saved.q.map(([n,o])=>({...D.find(d=>d.n===n),ord:o}));S=saved.S;limit=saved.limit;spent=saved.spent;go0=saved.cur}
+ if(ranked){spent=saved?saved.spent:0;limit=spent+REM;lastSrv=Date.now()}
+ $('eN').textContent=cfg.name;$('eT').textContent=CUR.title+label;
+ const sec=cfg.order==='sec';$('tabs').hidden=!sec;$('tabs').innerHTML=sec?[...new Set(Q.map(q=>q.s))].map(s=>'<button data-s="'+esc(s)+'">'+esc(s)+'</button>').join(''):''; $('tot').textContent=Q.length;
+ $('tmBox').hidden=false; $('tm').hidden=!cfg.showtm; $('tmL').hidden=!cfg.showtm; $('tmL').textContent=limit?'Time left':'Time taken';
+ $('m5').hidden=$('p5').hidden=!limit||ranked;$('pz').hidden=ranked;
+ $('grid').innerHTML=Q.map((_,i)=>'<button class="p" data-i="'+i+'">'+(i+1)+'</button>').join('');
+ draw.last=-1; show('exam'); go(go0); clearInterval(tick); tick=setInterval(step,250); step();
+};
+function step(){const n=Date.now();if(!paused){const dt=(n-last)/1000;spent+=dt;if(S&&S[cur])S[cur].t=(S[cur].t||0)+dt}last=n;if(n-lastSave>1000){lastSave=n;persist()}
+ const rem=limit-spent; $('tm').textContent=fmt(limit?rem:spent); $('tmBox').classList.toggle('low',!!limit&&rem<300);
+ if(limit&&rem<=0){toast('Time is up. Submitting.');finish();}}
+$('m5').onclick=()=>{limit=Math.max(spent+60,limit-300);step()};
+$('p5').onclick=()=>{limit+=300;step()};
+$('pz').onclick=()=>{paused=true;$('pauseOv').hidden=false};
+$('res').onclick=()=>{paused=false;last=Date.now();$('pauseOv').hidden=true};
+
+const cp=q=>q.ord.indexOf(q.a);
+const stat=s=>!s.vis?'nv':s.mark?(s.ans!=null?'ma':'mk'):(s.ans!=null?'an':'na');
+function go(i){if(cur>=0)S[cur].sel=S[cur].ans;cur=i;S[i].vis=true;S[i].sel=S[i].ans;draw()}
+function draw(){
+ const q=Q[cur],s=S[cur]; $('qNo').textContent='Question '+(cur+1)+' of '+Q.length;
+ $('qb').innerHTML='<div class="qt">'+fm(q.q)+'</div>'+(q.c?'<pre class="code">'+esc(q.c)+'</pre>':'')+
+  '<div>'+q.ord.map((oi,k)=>'<label class="op'+(s.rev?(k===cp(q)?' ok':k===s.ans?' bad':'')+' lock':(s.sel===k?' on':''))+'"><input type="radio" name="o" data-k="'+k+'"'+(s.sel===k?' checked':'')+'><span class="ol">'+'ABCD'[k]+'</span><span>'+fm(q.o[oi])+'</span></label>').join('')+'</div>'+(s.rev?'<div class="sol"><b>'+(s.ans==null?'Not answered':s.ans===cp(q)?'Correct':'Incorrect')+'.</b> The correct option is '+'ABCD'[cp(q)]+'. '+fm(q.sol)+'</div><div class="key"><b>Key takeaway.</b> '+fm(q.key)+'</div>':'');
+ $('bb').textContent=s.bm?'Bookmarked ★':'Bookmark';$('br').hidden=!cfg.rev||s.rev;$('bs').textContent=cfg.rev&&s.rev?'Next question':'Save & Next';
+ $('qb').scrollTop=0; palette(); persist();
+ if(draw.last!==cur){const qb=$('qb');qb.classList.remove('qin');void qb.offsetWidth;qb.classList.add('qin');draw.last=cur}
+}
+function palette(){
+ const c={an:0,na:0,nv:0,mk:0,ma:0};
+ document.querySelectorAll('#grid .p').forEach((b,i)=>{const st=stat(S[i]);c[st]++;b.className='p '+st+(i===cur?' cur':'')+(S[i].bm?' bm':'')});
+ if(cfg.order==='sec'){document.querySelectorAll('#tabs button').forEach(b=>b.classList.toggle('on',b.dataset.s===Q[cur].s));document.querySelectorAll('#grid .p').forEach((b,i)=>b.hidden=Q[i].s!==Q[cur].s)}else document.querySelectorAll('#grid .p').forEach(b=>b.hidden=false);
+ $('cA').textContent=c.an;$('cN').textContent=c.na;$('cV').textContent=c.nv;$('cM').textContent=c.mk;$('cMA').textContent=c.ma;
+ const sv=c.an+c.ma; $('sv').textContent=sv; $('pbar').style.width=(100*sv/Q.length)+'%'; return c;
+}
+$('qb').onchange=e=>{if(e.target.dataset.k!=null&&!S[cur].rev){S[cur].sel=+e.target.dataset.k;draw()}};
+$('grid').onclick=e=>{const b=e.target.closest('.p');if(b)go(+b.dataset.i)};
+const nxt=()=>cur<Q.length-1?go(cur+1):(draw(),toast('This is the last question'));
+function save(mark){const s=S[cur];if(s.rev){nxt();return}s.ans=s.sel;s.mark=mark;if(cfg.rev){s.rev=true;draw()}else nxt()}
+$('tabs').onclick=e=>{const b=e.target.closest('[data-s]');if(b)go(Q.findIndex(q=>q.s===b.dataset.s))};
+$('bb').onclick=()=>{S[cur].bm=!S[cur].bm;draw()};
+$('br').onclick=()=>{const s=S[cur];s.ans=s.sel;s.rev=true;draw()};
+$('bs').onclick=()=>save(false); $('bm').onclick=()=>save(true);
+$('bc').onclick=()=>{if(S[cur].rev)return;S[cur].sel=S[cur].ans=null;draw()};
+$('bp').onclick=()=>cur>0&&go(cur-1);
+document.addEventListener('keydown',e=>{
+ if($('exam').hidden||!$('pauseOv').hidden||!$('subOv').hidden||/INPUT|TEXTAREA/.test(e.target.tagName)&&e.target.type!=='radio'||e.ctrlKey||e.metaKey||e.altKey)return;
+ const k=e.key.toLowerCase(), i='1234'.indexOf(k)>=0?'1234'.indexOf(k):'abcd'.indexOf(k);
+ if(k.length===1&&i>=0){if(!S[cur].rev){S[cur].sel=i;draw()}} else if(k==='enter'||k==='n'){e.preventDefault();save(false)}
+ else if(k==='m')save(true); else if(k==='x'||k==='delete'||k==='backspace')$('bc').click(); else if(k==='k')$('bb').click(); else if(k==='r'&&cfg.rev&&!S[cur].rev)$('br').click();
+ else if(k==='arrowright'&&cur<Q.length-1)go(cur+1); else if(k==='arrowleft'&&cur>0)go(cur-1);
+});
+
+$('sub').onclick=()=>{const s=S[cur];s.ans=s.sel;const c=palette();
+ $('subT').innerHTML=[['Answered',c.an],['Answered & marked for review',c.ma],['Marked, not answered',c.mk],['Not answered',c.na],['Not visited',c.nv]].map(r=>'<tr><td>'+r[0]+'</td><td class="n"><b>'+r[1]+'</b></td></tr>').join('');
+ $('subOv').hidden=false};
+$('subNo').onclick=()=>$('subOv').hidden=true;
+$('subYes').onclick=()=>finish();
+
+async function finish(){
+ if(!Q||$('result').hidden===false||finishing||Date.now()<nextTry)return;
+ finishing=true; const s0=S[cur]; if(s0)s0.ans=s0.sel;
+ $('subOv').hidden=true; $('pauseOv').hidden=true;
+ if(ranked){
+  $('sending').hidden=false;
+  try{SRV=await api('test?action=submit',{body:{test_id:CUR.id,state:snapshot()}});mergeReview(SRV.review)}
+  catch(e){finishing=false;$('sending').hidden=true;nextTry=Date.now()+4000;toast(e.status&&e.status<500&&e.status!==401?e.message:'Could not submit yet. Check your internet. We will retry.');return}
+  $('sending').hidden=true;
+  if(ME&&ME.attempts)ME.attempts[CUR.id]={status:'submitted',score:SRV.score};   // so the home page is right at once
+ } else SRV=null;
+ clearInterval(tick); finishing=false; renderResult();
+}
+function mergeReview(rv){[D,Q||[]].forEach(arr=>arr.forEach(q=>{const x=rv[q.n];if(x){q.a=x.a;q.sol=x.sol;q.key=x.key}}))}
+async function loadResult(id){
+ busyOn('Loading your result…');
+ try{const r=await api('test?action=result&test='+encodeURIComponent(id));
+  CUR=r.test;D=r.questions;ranked=false;const st=r.state;
+  cfg=Object.assign({order:'mix',shq:false,sho:false,showtm:true,min:CUR.duration_min,nolim:false,rev:false},st&&st.cfg,{name:ME.user.name,label:''});
+  if(st){Q=st.q.map(([n,o])=>({...D.find(d=>d.n===n),ord:o}));S=st.S.map(x=>Object.assign({sel:null,rev:false},x))}
+  else{Q=D.map(q=>({...q,ord:[0,1,2,3]}));S=Q.map(()=>({ans:null,sel:null,vis:false,mark:false,t:0,bm:false,tag:'',rev:false}))}
+  cur=0;spent=r.time_spent;mergeReview(r.review);SRV=r;renderResult();busyOff()
+ }catch(e){busyOff();toast(e.message)}
+}
+function renderResult(){
+ R=Q.map((q,i)=>{const a=S[i].ans,c=cp(q);return{q,i,a,c,t:S[i].t||0,st:a==null?'skip':a===c?'ok':'bad'}});
+ const ok=R.filter(r=>r.st==='ok').length,bad=R.filter(r=>r.st==='bad').length,sk=Q.length-ok-bad,score=ok*3-bad;
+ $('rT').textContent='Result: '+CUR.title+cfg.label; $('rWho').textContent=cfg.name;
+ $('rScore').textContent=SRV?SRV.score:score;$('rMax').textContent=Q.length*3;
+ const full=!!SRV;$('rRank').innerHTML=full?'<span class="rk">Rank <b>'+SRV.rank.toLocaleString('en-IN')+'</b></span> <span class="mut">of '+SRV.total.toLocaleString('en-IN')+' students so far</span>':'<span class="mut">Practice attempt, not ranked</span>';
+ $('rNote').textContent=full?'This is your ranked first attempt. The rank updates as more students submit.'+(SRV.late?' (Submitted after the timer, so only your last autosaved answers counted.)':''):'Practice attempts do not change your rank.';
+ const att=ok+bad;RS={ok,bad,sk,score:SRV?SRV.score:score,rank:SRV?SRV.rank:0,N:SRV?SRV.total:0,full,att};
+ $('kpi').innerHTML=[['Correct',ok,'k-ok'],['Wrong',bad,'k-bad'],['Unattempted',sk,'k-sk'],['Accuracy',att?(100*ok/att).toFixed(1)+'%':'0%',''],['Attempted',att+' / '+Q.length,''],['Time taken',fmt(spent),'']].map(k=>'<div class="'+k[2]+'">'+k[0]+'<b>'+k[1]+'</b></div>').join('');
+ const pc=n=>(100*n/Q.length).toFixed(2)+'%';
+ $('seg').innerHTML='<div class="sb" role="img" aria-label="'+ok+' correct, '+bad+' wrong, '+sk+' unattempted"><i class="s-ok" style="width:'+pc(ok)+'"></i><i class="s-bad" style="width:'+pc(bad)+'"></i><i class="s-sk" style="width:'+pc(sk)+'"></i></div>';
+ const mx0=Q.length*3,sc0=SRV?SRV.score:score,fr=Math.max(0,Math.min(1,sc0/mx0)),rf=$('ringF');rf.style.strokeDashoffset='326.7';requestAnimationFrame(()=>requestAnimationFrame(()=>{rf.style.strokeDashoffset=String(326.7*(1-fr))}));
+ $('rChips').innerHTML=(full&&SRV.total>1?'<span class="chip2 gold">Top '+Math.max(1,Math.ceil(100*SRV.rank/SRV.total))+'%</span>':'')+'<span class="chip2">'+(att?(100*ok/att).toFixed(0):0)+'% accuracy</span><span class="chip2">'+fmt(spent)+'</span>';
+ const subs=[...new Set(D.map(d=>d.s))];
+ $('subj').innerHTML='<tr><th>Subject</th><th class="n">Attempted</th><th class="n">Correct</th><th class="n">Wrong</th><th class="n">Marks</th><th class="n">Time</th><th>Accuracy</th></tr>'+subs.map(s=>{const r=R.filter(x=>x.q.s===s),c=r.filter(x=>x.st==='ok').length,w=r.filter(x=>x.st==='bad').length,a=c+w;
+  return '<tr><td>'+esc(s)+' ('+r.length+')</td><td class="n">'+a+'</td><td class="n">'+c+'</td><td class="n">'+w+'</td><td class="n"><b>'+(3*c-w)+'</b></td><td class="n">'+mm(r.reduce((a,x)=>a+x.t,0))+'</td><td><div class="acc"><i style="width:'+(a?100*c/a:0)+'%"></i></div></td></tr>'}).join('');
+ const wr=R.filter(r=>r.st==='bad'),nw=R.filter(r=>r.st!=='ok'),pick=a=>a.map(r=>D.find(d=>d.n===r.q.n));
+ $('acts').innerHTML='<button class="btn" data-r="all">Practice full test again</button>'+(wr.length?'<button class="btn ghost" data-r="bad">Practice wrong ('+wr.length+')</button>':'')+(nw.length?'<button class="btn ghost" data-r="nw">Practice wrong + unattempted ('+nw.length+')</button>':'');
+ $('acts').onclick=e=>{const b=e.target.closest('[data-r]');if(!b)return;const k=b.dataset.r;ranked=false;SRV=null;k==='all'?begin(D,' (practice)'):begin(pick(k==='bad'?wr:nw),k==='bad'?' (practice: wrong questions)':' (practice: wrong + unattempted)')};
+ const ws=subs.map(s=>[s,R.filter(x=>x.q.s===s&&x.st!=='ok').length,R.filter(x=>x.q.s===s).length]).filter(x=>x[1]>0).sort((a,b)=>b[1]/b[2]-a[1]/a[2]).slice(0,2);
+ $('nextCard').innerHTML='<h2>What next?</h2>'+(ws.length?'<p>Your weakest subjects this time: <b>'+ws.map(x=>esc(x[0])).join('</b> and <b>')+'</b>. Find the notes for them at <a href="https://csewale.vercel.app" target="_blank" rel="noopener">csewale.vercel.app</a>.</p>':'<p>Every question was correct. Move on to the next mock test.</p>')+'<p><button class="btn ghost" id="weakNext" type="button">Practice my weak questions from all mocks</button></p><p class="mut">Subscribe to CSE WALE on YouTube for more mock tests and live practice sessions.</p>';
+ filter='all';sub='all';srt='n';anaTab='slow'; ana(); tgt(); loss(); review(); show('result'); window.scrollTo(0,0);
+}
+const BAND=d=>/hard/i.test(d||'')?'Hard':/easy/i.test(d||'')?'Easy':'Medium',BR={Easy:0,Medium:1,Hard:2};
+function review(){
+ const f=[['all','All'],['ok','Correct'],['bad','Incorrect'],['skip','Unattempted'],['bm','Bookmarked']];
+ const inF=r=>filter==='all'||(filter==='bm'?S[r.i].bm:r.st===filter);
+ $('flt').innerHTML=f.map(x=>'<button class="chip'+(filter===x[0]?' on':'')+'" data-f="'+x[0]+'">'+x[1]+' ('+(x[0]==='all'?R.length:x[0]==='bm'?S.filter(s=>s.bm).length:R.filter(r=>r.st===x[0]).length)+')</button>').join('');
+ const subs=[...new Set(R.map(r=>r.q.s))];
+ $('sflt').innerHTML='<button class="chip'+(sub==='all'?' on':'')+'" data-sub="all">All subjects</button>'+subs.map((x,k)=>'<button class="chip'+(sub===x?' on':'')+'" data-sub="'+k+'">'+esc(x)+' ('+R.filter(r=>r.q.s===x&&inF(r)).length+')</button>').join('');
+ $('sflt').dataset.s=JSON.stringify(subs);$('srt').value=srt;
+ let list=R.filter(r=>inF(r)&&(sub==='all'||r.q.s===sub));
+ if(srt==='t')list=[...list].sort((a,b)=>b.t-a.t);else if(srt==='h')list=[...list].sort((a,b)=>BR[BAND(b.q.d)]-BR[BAND(a.q.d)]||a.i-b.i);
+ $('rv').innerHTML=list.map(r=>{const q=r.q;
+  return '<div class="card rv" id="q'+r.i+'"><h3>Q'+(r.i+1)+' <span class="tag">'+esc(q.s)+'</span><span class="tag">'+q.d+'</span><span class="tag">Paper Q'+(q.src_n||q.n)+(q.src_title?' · '+esc(q.src_title):'')+'</span><span class="tag">'+mm(r.t)+'</span>'+(S[r.i].bm?'<span class="tag">★ Bookmarked</span>':'')+'<span class="st '+r.st+'">'+{ok:'Correct +3',bad:'Incorrect −1',skip:'Unattempted'}[r.st]+'</span></h3>'+
+  '<div class="qt">'+fm(q.q)+'</div>'+(q.c?'<pre class="code">'+esc(q.c)+'</pre>':'')+
+  q.ord.map((oi,k)=>'<div class="ro'+(k===r.c?' ok':k===r.a?' bad':'')+'"><span><b>'+'ABCD'[k]+'.</b> '+fm(q.o[oi])+'</span><em>'+(k===r.c?'Correct answer':'')+(k===r.a?(k===r.c?' · Your answer':'Your answer'):'')+'</em></div>').join('')+
+  '<div class="sol"><b>Solution.</b> '+fm(q.sol)+'</div><div class="key"><b>Key takeaway.</b> '+fm(q.key)+'</div><button class="askb" data-ask="'+r.i+'">'+((user()&&user().paid)?'✨ Explain with AI':'🔒 Explain with AI (full series)')+'</button><div class="tags" data-i="'+r.i+'"><span class="mut">Tag:</span> '+TG.map(x=>'<button class="chip'+(S[r.i].tag===x[0]?' on':'')+'" data-tag="'+x[0]+'">'+x[1]+'</button>').join('')+'</div></div>'}).join('')||'<div class="card mut">No questions in this group.</div>';
+}
+$('sflt').onclick=e=>{const b=e.target.closest('[data-sub]');if(!b)return;const v=b.dataset.sub;sub=v==='all'?'all':JSON.parse($('sflt').dataset.s)[+v];review()};
+$('srt').onchange=e=>{srt=e.target.value;review()};
+function jumpQ(i){filter='all';sub='all';srt='n';review();const el=$('q'+i);if(el){el.scrollIntoView({behavior:'smooth',block:'start'});el.classList.add('flash');setTimeout(()=>el.classList.remove('flash'),1800)}}
+$('flt').onclick=e=>{const b=e.target.closest('[data-f]');if(b){filter=b.dataset.f;review()}};
+const goHome=()=>{show('setup');refresh();window.scrollTo(0,0)};['again','backTop','backTop2'].forEach(id=>$(id).onclick=goHome);$('brandHome').onclick=e=>{e.preventDefault();if($('setup').hidden){if(!$('exam').hidden&&!confirm('Leave the test screen? Your test keeps running.'))return;goHome()}else window.scrollTo({top:0,behavior:'smooth'})};
+function ana(){
+ const tg={C:0,T:0,S:0,G:0};S.forEach(s=>{if(s.tag)tg[s.tag]++});
+ const T={
+  slow:['Slowest',[...R].sort((a,b)=>b.t-a.t).slice(0,5),'Your 5 slowest questions, whatever the result.'],
+  cslow:['Correct but slow',R.filter(r=>r.st==='ok').sort((a,b)=>b.t-a.t).slice(0,5),'Right answers that took long. Practise these for speed.'],
+  wrong:['Wrong',R.filter(r=>r.st==='bad').sort((a,b)=>b.t-a.t).slice(0,3),'The 3 wrong answers where you spent the most time.'],
+  skip:['Unattempted',R.filter(r=>r.st==='skip').sort((a,b)=>BR[BAND(a.q.d)]-BR[BAND(b.q.d)]||a.i-b.i).slice(0,3),'Skipped questions, easiest first. These are the most fixable marks.']
+ },cur=T[anaTab],mx=Math.max(1,...cur[1].map(r=>r.t));
+ $('anaCard').innerHTML='<h2>Time and error analysis</h2><p class="mut">Average time per question: <b>'+mm(spent/Q.length)+'</b></p><div class="tabs2">'+Object.keys(T).map(k=>'<button class="chip'+(anaTab===k?' on':'')+'" data-at="'+k+'">'+T[k][0]+' ('+T[k][1].length+')</button>').join('')+'</div><p class="mut">'+cur[2]+' Tap a row to open its solution.</p>'+
+  (cur[1].length?cur[1].map(r=>'<div class="sl" role="button" tabindex="0" data-jq="'+r.i+'"><span>Q'+(r.i+1)+', '+esc(r.q.s)+' <em class="dif">'+BAND(r.q.d)+'</em></span><div class="acc"><i style="width:'+(100*r.t/mx)+'%"></i></div><b>'+mm(r.t)+'</b></div>').join(''):'<p class="mut">Nothing here. Nice.</p>')+
+  '<p style="margin-top:1rem"><b>Error tags</b> (set them on the question cards below): concept gap '+tg.C+', fell for a trap '+tg.T+', calculation slip '+tg.S+', risky guess '+tg.G+'. Bookmarked: '+S.filter(s=>s.bm).length+'.</p>';
+}
+$('anaCard').onclick=e=>{const t=e.target.closest('[data-at]');if(t){anaTab=t.dataset.at;ana();return}const j=e.target.closest('[data-jq]');if(j)jumpQ(+j.dataset.jq)};
+$('tgtCard').onclick=e=>{const j=e.target.closest('[data-jq]');if(j)jumpQ(+j.dataset.jq)};
+$('anaCard').onkeydown=e=>{if(e.key==='Enter'){const j=e.target.closest('[data-jq]');if(j)jumpQ(+j.dataset.jq)}};
+const PAR={Easy:.9,Medium:.65,Hard:.35};
+function tgt(){
+ const rows=['Easy','Medium','Hard'].map(b=>{const r=R.filter(x=>BAND(x.q.d)===b),n=r.length,ok=r.filter(x=>x.st==='ok').length,bad=r.filter(x=>x.st==='bad').length,t=Math.round(n*PAR[b]);return{b,n,ok,bad,t,lack:Math.max(0,t-ok)}});
+ const target=rows.reduce((a,x)=>a+3*x.t,0),mine=RS.score,gap=target-mine,miss=[...rows].sort((a,b)=>b.lack-a.lack)[0];
+ $('tgtCard').innerHTML='<h2>Your target for this paper</h2><div class="tgw"><div class="tgl"><p>Based on how hard this paper is, a well-prepared student scores about <b>'+target+'</b> out of '+Q.length*3+'. You scored <b>'+mine+'</b>.</p>'+
+  '<table class="tgt-t"><tr><th>Difficulty</th><th class="n">Questions</th><th class="n">Target correct</th><th class="n">You got</th><th class="n">Marks to gain</th></tr>'+rows.map(x=>'<tr><td>'+x.b+'</td><td class="n">'+x.n+'</td><td class="n">'+x.t+'</td><td class="n"><b>'+x.ok+'</b></td><td class="n">'+(x.lack?'<span class="neg">+'+3*x.lack+'</span>':'<span class="pos">On target</span>')+'</td></tr>').join('')+'</table>'+'<p>'+(gap<=0?'You are above the target. Keep your accuracy and work on speed.':miss&&miss.lack?'Biggest gain: <b>'+miss.b+'</b> questions. '+miss.lack+' more correct there is worth +'+3*miss.lack+' marks.':'You are close to the target.')+'</p><p class="mut">Targets assume 90% of Easy, 65% of Medium and 35% of Hard questions correct. This is a study guide, not the official cut-off.</p>'+'</div><div class="tgr">'+(()=>{const need=rows.filter(x=>x.lack);if(!need.length)return '';return '<h3 class="rec">Questions to recover</h3>'+need.map(x=>{const m=R.filter(r=>BAND(r.q.d)===x.b&&r.st!=='ok');return '<p class="mut" style="margin:.5rem 0 .25rem">'+x.b+': get '+x.lack+' more of these '+m.length+' right</p><div class="tabs2">'+m.slice(0,14).map(r=>'<button class="chip" data-jq="'+r.i+'">Q'+(r.i+1)+' '+esc(r.q.s.split(' ')[0])+' · '+(r.st==='bad'?'wrong':'skipped')+'</button>').join('')+(m.length>14?'<span class="mut">+'+(m.length-14)+' more</span>':'')+'</div>'}).join('')})()+'</div></div>';
+}
+$('rv').onclick=e=>{const b=e.target.closest('[data-tag]');if(!b)return;const s=S[+b.parentNode.dataset.i];s.tag=s.tag===b.dataset.tag?'':b.dataset.tag;review();ana()};
+$('resGo').onclick=()=>launch($('resGo').dataset.t);
+
+const pr=()=>{try{print()}catch(e){toast('Printing is blocked here. Press Ctrl+P instead.')}};
+$('bpdf').onclick=()=>{document.body.classList.add('ps');pr();setTimeout(()=>document.body.classList.remove('ps'),800)};
+$('bpdf2').onclick=pr;
+$('cardX').onclick=()=>$('cardOv').hidden=true;
+$('bcard').onclick=async()=>{
+ const c=document.createElement('canvas');c.width=c.height=1080;const x=c.getContext('2d');
+ x.fillStyle='#0f1115';x.fillRect(0,0,1080,1080);x.strokeStyle='#f5b400';x.lineWidth=10;x.strokeRect(30,30,1020,1020);
+ const m=/url\("?([^")]+)"?\)/.exec(getComputedStyle(document.querySelector('.logo')).backgroundImage);
+ const im=m?await new Promise(r=>{const i=new Image();i.onload=()=>r(i);i.onerror=()=>r(null);i.src=m[1]}):null;
+ if(im){x.save();x.beginPath();x.arc(540,190,115,0,7);x.clip();x.drawImage(im,425,75,230,230);x.restore()}
+ x.textAlign='center';const T=(s,y,sz,col,w)=>{x.font=(w||'600')+' '+sz+'px "Segoe UI",Roboto,sans-serif';x.fillStyle=col;x.fillText(s,540,y)};
+ T('CSE WALE',385,64,'#fff','italic 900');T(CUR.title,445,36,'#b8c2cc');T(cfg.name,515,46,'#fff','700');
+ T(RS.score+' / '+Q.length*3,700,170,'#f5b400','800');
+ T('Correct '+RS.ok+'   Wrong '+RS.bad+'   Unattempted '+RS.sk,785,38,'#fff');
+ T('Accuracy '+(RS.att?(100*RS.ok/RS.att).toFixed(1):'0')+'%   Time '+fmt(spent),845,38,'#fff');
+ if(RS.full)T('Rank '+RS.rank.toLocaleString('en-IN')+' of '+RS.N.toLocaleString('en-IN')+' students',905,38,'#b8c2cc');
+ T('csewale.vercel.app',1000,40,'#f5b400','700');
+ const u=c.toDataURL('image/png');$('cardImg').src=u;$('cardDl').href=u;$('cardOv').hidden=false};
+/* ===== platform: auth, payment, tests ===== */
+let lastUid=null,CFG={price:99,mrp:199},ME=null,SBC=null,TOK='',pendingAfter=null,busy=false,lgMode='in';
+const NT={n:0,slow:0,off:false,hold:0};
+function netBanner(msg){const b=$('net');if(msg){$('netMsg').textContent=msg;b.classList.add('on')}else b.classList.remove('on')}
+function barStart(){if(++NT.n===1){const b=$('topbar');b.style.transition='none';b.style.width='0';b.style.opacity='1';void b.offsetWidth;b.style.transition='';b.style.width='72%';NT.slow=setTimeout(()=>{if(!NT.off)netBanner('Slow connection. Still trying…')},4000)}}
+function barEnd(){if(--NT.n<=0){NT.n=0;clearTimeout(NT.slow);const b=$('topbar');b.style.width='100%';setTimeout(()=>{if(!NT.n)b.style.opacity='0'},250);if(!NT.off)netBanner('')}}
+function busyOn(msg){clearTimeout(busyOn.t);clearTimeout(busyOn.s);busyOn.t=setTimeout(()=>{$('loadMsg').textContent=msg;$('loading').hidden=false},120);busyOn.s=setTimeout(busyOff,15000)}
+function busyOff(){clearTimeout(busyOn.t);clearTimeout(busyOn.s);$('loading').hidden=true}
+window.addEventListener('offline',()=>{NT.off=true;netBanner('You are offline. We will reconnect when your internet is back.')});
+window.addEventListener('online',()=>{NT.off=false;netBanner('Back online');setTimeout(()=>{if(!NT.off)netBanner('')},2200);if(!$('setup').hidden)refresh()});
+async function nfetch(url,init){const n=init.method==='GET'?3:1;let last;for(let i=0;i<n;i++){try{return await fetch(url,init)}catch(e){last=e;if(i<n-1)await new Promise(r=>setTimeout(r,700*(i+1)))}}const e=new Error('Cannot reach the server. Check your internet and try again.');e.status=0;throw e}
+async function api(path,opt){const quiet=/action=save/.test(path)||(opt&&opt.quiet);if(!quiet)barStart();try{return await apiRaw(path,opt)}finally{if(!quiet)barEnd()}}
+async function apiRaw(path,opt){opt=opt||{};const h={'Content-Type':'application/json'};
+ if(SBC&&path!=='config'){try{const {data}=await SBC.auth.getSession();if(data&&data.session)TOK=data.session.access_token}catch(e){}}   // refreshes an expired login before a long exam submit
+ if(TOK)h.Authorization='Bearer '+TOK;
+ const r=await nfetch('/api/'+path,{method:opt.body!==undefined?'POST':'GET',headers:h,body:opt.body!==undefined?JSON.stringify(opt.body):undefined,keepalive:!!opt.keepalive});
+ let j={};try{j=await r.json()}catch(e){}
+ if(!r.ok){const e=new Error(j.error||'Something went wrong. Please try again.');e.status=r.status;throw e}return j}
+const user=()=>ME&&ME.user;
+const notReady=()=>CFG.missing&&CFG.missing.length?'The site is not fully set up yet. Missing settings: '+CFG.missing.join(', ')+'.':'Login could not load. Check your internet and refresh the page.';
+async function refresh(){
+ try{ME=await api('me')}catch(e){ME=ME||{tests:[],user:null};toast('Could not reach the server. Check your internet.')}
+ uiUser();chk();loadProgress();
+ busyOff();if(user()){closeLogin();if(pendingAfter){const f=pendingAfter;pendingAfter=null;f()}else maybeProfile()}}
+function uiUser(){const u=user();
+ $('userBox').style.display=u?'flex':'none';$('userBox').hidden=!u;$('loginTop').hidden=!!u;$('adminLk').hidden=!(u&&u.admin);
+ $('userNm').textContent=u?u.name+(u.paid?' · Pro':''):'';
+ const paid=u&&u.paid;
+ ['buyHero','buyCard','buyBand'].forEach(id=>{const b=$(id);b.textContent=paid?'You have full access':(id==='buyCard'?'Buy now for ₹'+CFG.price:'Get all tests for ₹'+CFG.price);b.disabled=!!paid});
+ drawTests();fxStats();stickUpdate()}
+const fmtDT=s=>new Date(s).toLocaleString('en-IN',{day:'numeric',month:'short',hour:'numeric',minute:'2-digit',hour12:true});
+function drawTests(){setTimeout(tickCd,0);const u=user(),paid=u&&u.paid,at=(ME&&ME.attempts)||{},ts=(ME&&ME.tests)||[];
+ const gh=ts.length?ts.map(t=>{const a=at[t.id]||{};let badge=t.free?'<span class="badge" style="background:#16a34a;color:#fff">FREE DEMO</span>':'<span class="badge">LIVE</span>',btn,cls='tc live';
+  if(a.status==='submitted'){badge='<span class="badge" style="background:#2563eb">DONE · '+a.score+' / '+t.total_marks+'</span>';btn='<button class="btn" data-act="result" data-id="'+t.id+'">View result and rank</button>'}
+  else if(a.status==='in_progress'){badge='<span class="badge" style="background:#d9534f">IN PROGRESS</span>';btn='<button class="btn go" data-act="resume" data-id="'+t.id+'">Resume test</button>'}
+  else if(a.status==='expired'){badge='<span class="badge soon">TIME OVER</span>';btn='<button class="btn" data-act="resume" data-id="'+t.id+'">See my result</button>'}
+  else if(t.status==='upcoming'){cls='tc dim';badge='<span class="badge soon">OPENS '+esc(fmtDT(t.opens_at)).toUpperCase()+'</span>';btn='<button class="btn ghost" disabled>Not open yet</button>'}
+  else if(t.status==='closed'){cls='tc dim';badge='<span class="badge soon">CLOSED</span>';btn='<button class="btn ghost" disabled>Test closed</button>'}
+  else btn=(paid||t.free)?'<button class="btn go" data-act="start" data-id="'+t.id+'">'+(!paid&&t.free?'Start free demo':'Start this test')+'</button>':'<button class="btn go" data-act="buy">Buy to unlock · ₹'+CFG.price+'</button>';
+  return '<div class="'+cls+'">'+badge+'<h4>'+esc(t.title)+'</h4>'+(t.subtitle?'<div class="meta">'+esc(t.subtitle)+'</div>':'')+'<div class="meta">'+t.questions+' questions · '+t.duration_min+' min · '+t.total_marks+' marks</div>'+(t.status==='live'&&t.closes_at&&!a.status?'<div class="meta">Closes '+esc(fmtDT(t.closes_at))+' · <span class="cd" data-k="close" data-t="'+esc(t.closes_at)+'"></span></div>':'')+(t.status==='upcoming'?'<div class="meta">Opens in <span class="cd" data-k="open" data-t="'+esc(t.opens_at)+'"></span></div>':'')+btn+'</div>'}).join(''):'<div class="card mut">No tests are published yet. Check back soon.</div>';if(drawTests.h!==gh){drawTests.h=gh;$('tgrid').innerHTML=gh;tickCd()}}
+$('tgrid').onclick=e=>{const b=e.target.closest('[data-act]');if(!b)return;const id=b.dataset.id,act=b.dataset.act;
+ if(act==='start')startTest(id);else if(act==='resume')launch(id);else if(act==='result')loadResult(id);else if(act==='buy')buy()};
+
+/* mobile number prompt */
+let profShown=false,profThen=null;
+const skipKey=u=>'cw-askedmobile-'+u.id;
+function askMobile(then){const u=user();profThen=then||null;$('pfErr').textContent='';$('pfMobile').value='';$('profOv').hidden=false;setTimeout(()=>$('pfMobile').focus(),60)}
+function closeProf(){$('profOv').hidden=true;const f=profThen;profThen=null;f&&f()}
+function maybeProfile(){const u=user();if(profShown||!u||u.mobile||!$('exam').hidden||!$('result').hidden)return;
+ try{if(localStorage.getItem(skipKey(u)))return;localStorage.setItem(skipKey(u),'1')}catch(e){}   // ask once only, on this browser
+ profShown=true;askMobile()}
+$('pfSkip').onclick=closeProf;
+$('pfSave').onclick=async()=>{const m=$('pfMobile').value.trim();if(!/^[6-9]\d{9}$/.test(m))return $('pfErr').textContent='Enter a valid 10-digit mobile number.';
+ try{await api('me?action=profile',{body:{mobile:m}});await refresh();toast('Saved. Thank you.');closeProf()}catch(e){$('pfErr').textContent=e.message}};
+/* login */
+function openLogin(after){pendingAfter=after||null;$('lgErr').textContent=SBC?'':notReady();$('lgErr').style.color='';$('loginOv').hidden=false;setTimeout(()=>{const f=lgMode==='up'?$('lgName'):$('lgEmail');f&&f.focus()},50)}
+const closeLogin=()=>$('loginOv').hidden=true;
+document.querySelectorAll('.tabs2 button').forEach(b=>b.onclick=()=>{lgMode=b.dataset.mode;document.querySelectorAll('.tabs2 button').forEach(x=>x.classList.toggle('on',x===b));
+ $('lgName').hidden=$('lgMobile').hidden=lgMode!=='up';$('lgGo').textContent=lgMode==='up'?'Create account':'Log in';$('lgT').textContent=lgMode==='up'?'Create your account':'Log in to CSE WALE';$('lgForgot').parentNode.hidden=lgMode==='up';$('lgNote').hidden=lgMode!=='up';$('lgErr').textContent=''});
+$('loginOv').addEventListener('keydown',e=>{if(e.key==='Enter'&&e.target.tagName==='INPUT'){e.preventDefault();$('lgGo').click()}});
+$('loginTop').onclick=()=>openLogin();$('lgX').onclick=()=>{pendingAfter=null;closeLogin()};
+$('logout').onclick=async()=>{busyOn('Logging you out…');if(SBC)await SBC.auth.signOut();TOK='';ME=null;await refresh();toast('Logged out')};
+const friendly=m=>/invalid login/i.test(m)?'Wrong email or password.':/not confirmed/i.test(m)?'Please confirm your email first (check your inbox), then log in.':/signups? (not allowed|disabled)/i.test(m)?'New sign-ups are switched off right now.':/password.*(weak|short|least)/i.test(m)?'Choose a stronger password (at least 6 characters).':/already registered/i.test(m)?'This email already has an account. Please log in.':/rate limit/i.test(m)?'Too many attempts. Please wait a few minutes.':/network|fetch/i.test(m)?'Network problem. Check your internet.':m;
+$('gLogin').onclick=async()=>{if(!SBC)return $('lgErr').textContent=notReady();
+ busyOn('Taking you to Google…');const {error}=await SBC.auth.signInWithOAuth({provider:'google',options:{redirectTo:location.origin+location.pathname}});if(error){busyOff();$('lgErr').textContent='Google sign-in failed. Please try again.'}};
+$('lgGo').onclick=async()=>{const em=$('lgEmail').value.trim(),pw=$('lgPass').value,nm=$('lgName').value.trim(),mb=$('lgMobile').value.trim(),er=$('lgErr');er.style.color='';
+ if(!/^\S+@\S+\.\S+$/.test(em))return er.textContent='Enter a valid email address.';
+ if(pw.length<6)return er.textContent='Password must be at least 6 characters.';
+ if(lgMode==='up'&&!nm)return er.textContent='Enter your full name.';
+ if(lgMode==='up'&&!/^[6-9]\d{9}$/.test(mb))return er.textContent='Enter a valid 10-digit mobile number.';
+ if(!SBC)return er.textContent=notReady();
+ $('lgGo').disabled=true;$('lgGo').classList.add('ld');er.textContent='';
+ try{
+  if(lgMode==='up'){const {data,error}=await SBC.auth.signUp({email:em,password:pw,options:{data:{name:nm,mobile:mb}}});if(error)throw error;
+   if(data.user&&data.user.identities&&!data.user.identities.length)throw new Error('This email already has an account. Please log in.');
+   if(!data.session){er.style.color='var(--an)';er.textContent='Account created. Please confirm your email, then log in.';return}busyOn('Setting up your account…')}
+  else{const {error}=await SBC.auth.signInWithPassword({email:em,password:pw});if(error)throw error;busyOn('Signing you in…')}
+ }catch(e){busyOff();er.textContent=friendly(e.message||'Could not sign in.')}finally{$('lgGo').disabled=false;$('lgGo').classList.remove('ld')}};
+$('lgForgot').onclick=async e=>{e.preventDefault();const em=$('lgEmail').value.trim(),er=$('lgErr');if(!/^\S+@\S+\.\S+$/.test(em))return er.textContent='Type your email above first.';
+ if(!SBC)return;const {error}=await SBC.auth.resetPasswordForEmail(em,{redirectTo:location.origin+location.pathname});er.style.color=error?'':'var(--an)';er.textContent=error?friendly(error.message):'Password reset link sent to your email.'};
+
+/* payment */
+const loadRzp=()=>new Promise((ok,no)=>{if(window.Razorpay)return ok();const x=document.createElement('script');x.src='https://checkout.razorpay.com/v1/checkout.js';x.onload=ok;x.onerror=()=>no(new Error('Could not load the payment window. Check your internet.'));document.head.appendChild(x)});
+let buyAsked=false;
+async function buy(){const u=user();if(!u)return openLogin(buy);if(u.paid)return;
+ if(!u.mobile&&!buyAsked){buyAsked=true;return askMobile(buy)}   // we need a number to reach students about payments
+ try{busyOn('Preparing secure payment…');const o=await api('pay?action=order',{body:{}});if(o.paid){await refresh();return}
+  await loadRzp();busyOff();
+  const rz=new Razorpay({key:o.key_id,order_id:o.order_id,amount:o.amount,currency:o.currency,name:'CSE WALE',description:'Complete Test Series',prefill:{name:u.name,email:u.email,contact:u.mobile||''},theme:{color:'#f5b400'},
+   handler:async r=>{busyOn('Confirming your payment…');try{await api('pay?action=verify',{body:r});await refresh();toast('Payment successful. All tests are unlocked.')}catch(e){busyOff();toast('Payment received. Unlocking can take a minute. Please refresh the page.');setTimeout(refresh,6000)}},
+   modal:{ondismiss:()=>toast('Payment cancelled.')}});
+  rz.on('payment.failed',()=>toast('Payment failed. Your money was not taken. Please try again.'));rz.open()
+ }catch(e){busyOff();toast(e.message)}}
+['buyHero','buyCard','buyBand'].forEach(id=>$(id).onclick=buy);
+
+/* starting a test */
+function startTest(id){const u=user();if(!u)return openLogin(()=>startTest(id));CUR=ME.tests.find(t=>t.id===id);if(!u.paid&&!(CUR&&CUR.free))return buy();if(CUR)showIns()}
+function showIns(){const u=user();$('insWho').textContent='Candidate: '+u.name+'.';$('insMin').textContent=CUR.duration_min+' min';$('insQ').textContent=CUR.questions;$('insMax').textContent=CUR.total_marks;$('insPos').textContent='+'+CUR.positive;$('insNeg').textContent='−'+CUR.negative;$('insOk').checked=false;$('insGo').disabled=true;$('insOv').hidden=false}
+$('insOk').onchange=()=>$('insGo').disabled=!$('insOk').checked;
+$('insX').onclick=()=>$('insOv').hidden=true;
+$('insGo').onclick=()=>{if($('insOk').checked&&CUR)launch(CUR.id)};
+async function launch(id){if(busy)return;busy=true;busyOn('Preparing your test…');
+ try{const r=await api('test?action=start',{body:{test_id:id}}),u=user();
+  CUR=r.test;D=r.questions;REM=r.remaining_sec;ranked=true;SRV=null;finishing=false;nextTry=0;$('insOv').hidden=true;
+  if(r.state&&!(r.state.q.length===D.length&&r.state.q.every(x=>D.some(d=>d.n===x[0]))))r.state=null;   // questions were replaced by the admin: start fresh
+  if(r.state){cfg=Object.assign({},r.state.cfg,{name:u.name,label:'',nolim:false,rev:false});begin(D,'',{q:r.state.q,S:r.state.S,limit:0,spent:r.state.spent,cur:r.state.cur})}
+  else{cfg=readCfg();begin(D,'')}
+ }catch(e){toast(e.message);if(e.status===409||e.status===403){$('insOv').hidden=true;await refresh()}}
+ finally{busy=false;busyOff()}}
+
+
+
+
+/* ===== marks and time analysis (result page) ===== */
+function loss(){
+ const B=['Easy','Medium','Hard'],o={};B.forEach(b=>o[b]={n:0,t:0,ok:0,bad:0,sk:0});
+ R.forEach(r=>{const x=o[BAND(r.q.d)];x.n++;x.t+=r.t;x[r.st==='ok'?'ok':r.st==='bad'?'bad':'sk']++});
+ const tt=B.reduce((a,b)=>a+o[b].t,0),ea=B.reduce((a,b)=>a+3*o[b].ok,0),pc=(v,t)=>t?Math.round(100*v/t)+'%':'0%';
+ const wrong=R.filter(r=>r.st==='bad'),fast=wrong.filter(r=>r.t<20).length,tips=[];
+ if(wrong.length)tips.push('Negative marking cost you <b>'+wrong.length+'</b> marks. Attempt only when you can remove at least one option: a blind guess is worth 0 on average, removing one option is worth +0.33 and removing two is worth +1.');
+ if(fast>=2)tips.push('<b>'+fast+'</b> of your wrong answers took under 20 seconds. They look like rushed guesses, so read the question twice before you mark.');
+ if(tt>0&&o.Hard.n&&o.Hard.t/tt>.45&&ea&&3*o.Hard.ok/ea<.3)tips.push('You spent <b>'+pc(o.Hard.t,tt)+'</b> of your time on Hard questions, but they gave only <b>'+pc(3*o.Hard.ok,ea)+'</b> of your marks. Collect the Easy and Medium marks first next time.');
+ if(o.Easy.sk>0)tips.push('You skipped <b>'+o.Easy.sk+'</b> Easy question'+(o.Easy.sk>1?'s':'')+'. These are the cheapest marks in the paper.');
+ if(!tips.length)tips.push('Clean paper: no rushed wrong answers and no time wasted on the hardest questions.');
+ $('lossCard').innerHTML='<h2>Where your marks and time went</h2><div style="overflow:auto"><table class="tgt-t"><tr><th>Difficulty</th><th class="n">Time</th><th class="n">Time share</th><th class="n">Marks earned</th><th class="n">Lost to wrong</th><th class="n">Skipped</th></tr>'+B.map(b=>'<tr><td>'+b+' ('+o[b].n+')</td><td class="n">'+mm(o[b].t)+'</td><td class="n">'+pc(o[b].t,tt)+'</td><td class="n"><b>'+3*o[b].ok+'</b></td><td class="n">'+(o[b].bad?'<span class="neg">−'+o[b].bad+'</span>':'0')+'</td><td class="n">'+o[b].sk+'</td></tr>').join('')+'</table></div><ul class="tips">'+tips.map(x=>'<li>'+x+'</li>').join('')+'</ul>';
+}
+
+/* ===== progress across mocks + weak-question practice (home page) ===== */
+let HIST=null,weakSub='all';
+const shortT=t=>{const m=/mock test\s*(\d+)/i.exec(t||'');return m?'M'+m[1]:String(t||'').slice(0,6)};
+async function loadProgress(){const u=user(),sec=$('progSec');
+ if(!u||!ME||!ME.attempts||!Object.values(ME.attempts).some(a=>a.status==='submitted')){sec.hidden=true;HIST=null;return}
+ try{HIST=(await api('test?action=history',{quiet:true})).tests}catch(e){return}
+ drawProgress()}
+function drawProgress(){const sec=$('progSec');if(!HIST||!HIST.length){sec.hidden=true;return}
+ const T=HIST,pct=t=>Math.max(0,Math.round(100*t.score/t.max)),n=T.length,W=640,H=190,l=36,r=18,tp=20,b=34;
+ const x=i=>n===1?(l+(W-l-r)/2):l+i*(W-l-r)/(n-1),y=v=>tp+(100-v)*(H-tp-b)/100;
+ const grid=[0,50,100].map(v=>'<line class="gl" x1="'+l+'" x2="'+(W-r)+'" y1="'+y(v)+'" y2="'+y(v)+'"/><text class="gt" x="'+(l-6)+'" y="'+(y(v)+4)+'" text-anchor="end">'+v+'%</text>').join('');
+ const dots=T.map((t,i)=>'<circle class="gd" cx="'+x(i)+'" cy="'+y(pct(t))+'" r="5"><title>'+esc(t.title)+': '+t.score+' / '+t.max+'</title></circle><text class="gv" x="'+x(i)+'" y="'+(y(pct(t))-10)+'" text-anchor="middle">'+pct(t)+'</text><text class="gt" x="'+x(i)+'" y="'+(H-12)+'" text-anchor="middle">'+esc(shortT(t.title))+'</text>').join('');
+ const best=T.reduce((a,t)=>pct(t)>pct(a)?t:a,T[0]),last=T[n-1],prev=n>1?T[n-2]:null,d=prev?last.score-prev.score:0;
+ const line=n>1?'<polyline class="gp" points="'+T.map((t,i)=>x(i)+','+y(pct(t))).join(' ')+'"/>':'';
+ const sums=[...new Set(T.flatMap(t=>Object.keys(t.subjects)))];
+ const cell=o=>{if(!o||!o.max)return '<td class="c">–</td>';const p=Math.max(0,Math.round(100*o.score/o.max));return '<td class="c" style="background:hsl('+Math.round(p*1.2)+' 60% 50% / .28)">'+p+'%</td>'};
+ const trend=s=>{const a=T.filter(t=>t.subjects[s]&&t.subjects[s].max);if(a.length<2)return '<td class="c mut">–</td>';const f=o=>o.score/o.max,dd=Math.round(100*(f(a[a.length-1].subjects[s])-f(a[a.length-2].subjects[s])));return dd>0?'<td class="c pos">▲ '+dd+'</td>':dd<0?'<td class="c neg">▼ '+(-dd)+'</td>':'<td class="c mut">=</td>'};
+ const wk={};let tw=0;sums.forEach(s=>{wk[s]=T.reduce((a,t)=>{const o=t.subjects[s];return o?a+o.w+(o.n-o.c-o.w):a},0);tw+=wk[s]});
+ if(weakSub!=='all'&&!wk[weakSub])weakSub='all';
+ const chips='<button class="chip'+(weakSub==='all'?' on':'')+'" data-wsub="all">All subjects ('+tw+')</button>'+sums.filter(s=>wk[s]).sort((a,c)=>wk[c]-wk[a]).map(s=>'<button class="chip'+(weakSub===s?' on':'')+'" data-wsub="'+esc(s)+'">'+esc(s)+' ('+wk[s]+')</button>').join('');
+ sec.innerHTML='<h2 class="t">Your progress</h2><p class="sub">'+n+' mock'+(n>1?'s':'')+' done. Best: <b>'+esc(shortT(best.title))+'</b> ('+best.score+' / '+best.max+')'+(prev?'. Latest vs previous: <b class="'+(d>=0?'pos':'neg')+'">'+(d>=0?'+':'−')+Math.abs(d)+' marks</b>':'')+'.</p>'+
+  '<div class="two"><div class="card"><h3>Score in every mock</h3><svg class="pgchart" viewBox="0 0 '+W+' '+H+'" role="img" aria-label="Score percentage per mock">'+grid+line+dots+'</svg>'+(n===1?'<p class="mut">Take one more mock to see your trend line.</p>':'')+'</div>'+
+  '<div class="card"><h3>Practice my weak questions</h3>'+(tw?'<p>'+tw+' questions you got wrong or skipped, across '+n+' mock'+(n>1?'s':'')+'. Pick a subject, or practise them all. A session has up to 30 questions, wrong ones first.</p><div class="flt">'+chips+'</div><div class="acts"><button class="btn go" id="weakGo" type="button">Start weak-question practice</button></div>':'<p>No weak questions so far. Every question you attempted was correct.</p>')+'</div></div>'+
+  '<div class="card"><h3>Subjects across mocks</h3><div class="hm"><table><tr><th>Subject</th>'+T.map(t=>'<th class="c">'+esc(shortT(t.title))+'</th>').join('')+'<th class="c">Change</th></tr>'+sums.map(s=>'<tr><td>'+esc(s)+'</td>'+T.map(t=>cell(t.subjects[s])).join('')+trend(s)+'</tr>').join('')+'</table></div><p class="mut">Each cell is the share of that subject\'s marks you scored. Change compares your last two mocks.</p></div>';
+ sec.hidden=false}
+$('progSec').onclick=e=>{const c=e.target.closest('[data-wsub]');if(c){weakSub=c.dataset.wsub;drawProgress();return}if(e.target.closest('#weakGo'))startWeak(weakSub)};
+async function startWeak(sub){if(busy)return;busy=true;busyOn('Collecting your weak questions…');
+ try{const r=await api('test?action=weak');let qs=r.questions||[];if(sub&&sub!=='all')qs=qs.filter(q=>q.s===sub);
+  if(!qs.length){toast('No weak questions here. Nice work!');return}
+  const pool=[...shuf(qs.filter(q=>q.st==='bad')),...shuf(qs.filter(q=>q.st!=='bad'))].slice(0,30);
+  D=pool.map((q,i)=>({...q,n:i+1}));   // fresh numbers: these questions come from different mocks
+  CUR={id:'weak',title:'Weak-topic practice',subtitle:'',duration_min:Math.max(10,Math.round(D.length*1.2)),positive:3,negative:1};
+  ranked=false;SRV=null;finishing=false;nextTry=0;cfg=readCfg();begin(D,' (practice)');
+ }catch(e){toast(e.message)}finally{busy=false;busyOff()}}
+$('nextCard').onclick=e=>{if(e.target.closest('#weakNext'))startWeak('all')};
+
+/* ===== AI tutor (paid students, after submitting a test) ===== */
+const AI={ctx:null,hist:{},busy:false};
+const aiFmt=t=>esc(t).replace(/```([\s\S]*?)```/g,(m,c)=>'<pre>'+c.replace(/^\w*\n/,'')+'</pre>').replace(/`([^`\n]+)`/g,'<code>$1</code>').replace(/\*\*([^*\n]+)\*\*/g,'<b>$1</b>').replace(/\n/g,'<br>').replace(/<\/pre><br>/g,'</pre>');
+function aiLocked(){const u=user();if(!CFG.ai){toast('The AI tutor is coming soon.');return true}if(!u||!u.paid){toast('The AI tutor is part of the full test series.');buy();return true}return false}
+function aiKey(){return AI.ctx?AI.ctx.test_id+':'+AI.ctx.n:'general'}
+function aiRender(){const h=AI.hist[aiKey()]||[];const box=$('aiMsgs');
+ box.innerHTML=(h.length?'':'<div class="am b">Hi! Ask me about this question, or any CSE topic from the exam. I explain step by step and keep it short, and I teach a topic from scratch only when you ask.</div>')+h.map(m=>'<div class="am '+(m.role==='user'?'u':'b'+(m.err?' err':''))+'">'+aiFmt(m.content)+(m.role==='assistant'&&!m.err?'<span class="note">AI explanation. Check with the official solution if unsure.</span>':'')+'</div>').join('')+(AI.busy?'<div class="am b"><span class="dots"><i></i><i></i><i></i></span></div>':'');
+ box.scrollTop=box.scrollHeight;
+ $('aiChips').innerHTML=AI.ctx&&!AI.busy?['Explain step by step','Explain more simply','Why are the other options wrong?','Teach the concept from scratch','Give me a similar question'].map(x=>'<button type="button">'+x+'</button>').join(''):''}
+function aiOpen(i,card){if(aiLocked())return;
+ if(i==null)AI.ctx=null;else{const r=R[i],q=r.q;AI.ctx={test_id:q.src_t||CUR.id,n:q.src_n||q.n,subject:q.s,chosen:r.a==null?'':q.o[q.ord[r.a]],label:'Q'+(r.i+1)+' · '+q.s}}
+ $('aiQ').textContent=AI.ctx?AI.ctx.label+' (paper Q'+AI.ctx.n+')':'General doubt: any CSE exam topic';
+ aiRender();$('ai').classList.add('on');document.body.classList.add('aiopen');
+ if(card)setTimeout(()=>card.scrollIntoView({behavior:'smooth',block:'start'}),380);setTimeout(()=>{if(matchMedia('(min-width:700px)').matches)$('aiIn').focus()},250)}
+function aiClose(){$('ai').classList.remove('on');document.body.classList.remove('aiopen')}
+async function aiSend(text){text=(text||'').trim();if(!text||AI.busy)return;const k=aiKey(),h=AI.hist[k]=AI.hist[k]||[];
+ const hist=h.filter(m=>!m.err).slice(-8).map(m=>({role:m.role,content:m.content}));
+ h.push({role:'user',content:text});AI.busy=true;$('aiIn').value='';$('aiGo').disabled=true;aiRender();
+ try{const r=await api('ask',{body:Object.assign({message:text,history:hist},AI.ctx?{test_id:AI.ctx.test_id,n:AI.ctx.n,chosen:AI.ctx.chosen}:{})});
+  h.push({role:'assistant',content:r.reply});if(r.left!=null)$('aiLeft').textContent=r.left+' questions left today'}
+ catch(e){h.push({role:'assistant',content:e.message||'Something went wrong.',err:true});if(e.status===402)setTimeout(()=>{aiClose();buy()},900)}
+ AI.busy=false;$('aiGo').disabled=false;aiRender()}
+$('aiForm').onsubmit=e=>{e.preventDefault();aiSend($('aiIn').value)};
+$('aiIn').onkeydown=e=>{if(e.key==='Enter'&&!e.shiftKey){e.preventDefault();aiSend($('aiIn').value)}};
+$('aiChips').onclick=e=>{const b=e.target.closest('button');if(b)aiSend(b.textContent)};
+$('aiX').onclick=aiClose;$('aiOpen').onclick=()=>aiOpen(null);
+$('rv').addEventListener('click',e=>{const b=e.target.closest('[data-ask]');if(b)aiOpen(+b.dataset.ask,b.closest('.rv'))});
+document.addEventListener('keydown',e=>{if(e.key==='Escape')aiClose()});
+
+/* ===== motion: reveal, count-up, countdowns, rotating word, sticky buy bar ===== */
+const reduce=window.matchMedia&&matchMedia('(prefers-reduced-motion: reduce)').matches;
+const io='IntersectionObserver' in window?new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}}),{threshold:.12}):null;
+document.querySelectorAll('.rvl').forEach(el=>io?io.observe(el):el.classList.add('in'));
+function countUp(el,to){if(reduce||!window.requestAnimationFrame){el.textContent=to.toLocaleString('en-IN');return}const t0=performance.now(),d=1100;const f=n=>{const k=Math.min(1,(n-t0)/d),e=1-Math.pow(1-k,3);el.textContent=Math.round(to*e).toLocaleString('en-IN');if(k<1)requestAnimationFrame(f)};requestAnimationFrame(f)}
+const cio=io&&new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){countUp(e.target,+e.target.dataset.count);cio.unobserve(e.target)}}),{threshold:.6});
+document.querySelectorAll('.stats [data-count]').forEach(el=>cio?cio.observe(el):0);
+function fxStats(){const st=ME&&ME.stats;if(!st||st.students<25)return;if($('stNum').hidden){$('stBase').hidden=true;$('stNum').hidden=false;$('stNum2').hidden=false;countUp($('stStu'),st.students);countUp($('stSub'),st.submitted)}}
+const rotWords=['real mock tests','a real rank','full solutions','smart analysis'];let rotI=0;
+if(!reduce)setInterval(()=>{const r=$('rot');if(!r)return;rotI=(rotI+1)%rotWords.length;r.style.animation='none';void r.offsetWidth;r.textContent=rotWords[rotI];r.style.animation=''},2600);
+const two=n=>String(n).padStart(2,'0');
+function tickCd(){document.querySelectorAll('.cd[data-t]').forEach(el=>{let sec=Math.floor((Date.parse(el.dataset.t)-Date.now())/1000);
+  if(sec<=0){el.textContent='now';if(!tickCd.busy){tickCd.busy=true;setTimeout(()=>{refresh().finally(()=>tickCd.busy=false)},1500)}return}
+  const d=Math.floor(sec/86400),h=Math.floor(sec%86400/3600),m=Math.floor(sec%3600/60),x=sec%60;
+  el.textContent=(d?d+'d ':'')+two(h)+':'+two(m)+':'+two(x)})}
+setInterval(tickCd,1000);
+function stickUpdate(){const u=user(),b=$('stick');if(!b)return;const show=!(u&&u.paid)&&!$('setup').hidden&&window.scrollY>650;b.hidden=false;b.classList.toggle('show',show)}
+window.addEventListener('scroll',stickUpdate,{passive:true});$('buyStick').onclick=()=>buy();
+
+/* start-up */
+(async function init(){
+ if(/access_token=|[?&]code=/.test(location.hash+location.search))busyOn('Signing you in…');
+ try{CFG=Object.assign(CFG,await api('config'))}catch(e){}
+ if(window.supabase&&CFG.supabaseUrl&&CFG.supabaseAnonKey){
+  SBC=supabase.createClient(CFG.supabaseUrl,CFG.supabaseAnonKey,{auth:{persistSession:true,autoRefreshToken:true,detectSessionInUrl:true}});
+  const {data}=await SBC.auth.getSession();TOK=data.session?data.session.access_token:'';lastUid=data.session&&data.session.user?data.session.user.id:null;
+  SBC.auth.onAuthStateChange((ev,ses)=>{TOK=ses?ses.access_token:'';
+   const uid=ses&&ses.user?ses.user.id:null;
+   if((ev==='SIGNED_IN'&&uid!==lastUid)||ev==='SIGNED_OUT'){lastUid=uid;refresh()}
+   if(ev==='PASSWORD_RECOVERY'){const p=prompt('Type your new password (at least 6 characters):');if(p&&p.length>=6)SBC.auth.updateUser({password:p}).then(r=>toast(r.error?r.error.message:'Password changed.'))}});
+ }
+ await refresh();
+})();
+chk();
+let Z=1;const zoom=v=>{Z=Math.min(1.8,Math.max(.7,v));document.documentElement.style.setProperty('--z',Z)};
+document.querySelectorAll('.th').forEach(b=>b.insertAdjacentHTML('beforebegin','<button class="zm" data-z="-1" title="Smaller text">A−</button><button class="zm" data-z="1" title="Larger text">A+</button><button class="zm" data-z="f" title="Full screen">Full screen</button>'));
+document.addEventListener('click',e=>{const b=e.target.closest('.zm');if(!b)return;const k=b.dataset.z;
+ if(k==='f'){const d=document,msg=()=>toast('Full screen is blocked here. Press F11, or open the page in its own tab.');try{d.fullscreenElement?d.exitFullscreen():d.documentElement.requestFullscreen().catch(msg)}catch(x){msg()}}
+ else zoom(Z+(+k)*.1)});
+document.querySelectorAll('#setup,#exam,#result').forEach(s=>s.insertAdjacentHTML('beforeend','<div class="ft">CSE WALE · <a href="/terms.html">Terms</a> · <a href="/privacy.html">Privacy</a> · <a href="/refund.html">Refund &amp; Cancellation</a> · <a href="/shipping.html">Delivery</a> · <a href="/contact.html">Contact</a></div>'));
+</script>
+</body>
+</html> -->
+
+
+
+
+
+
+
+
+
+
+
+
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -198,10 +1161,25 @@ details.fq p{margin:.5rem 0 0;color:var(--mut)}
 .rrv .card{margin:0}
 @media (max-width:980px){.lhero .wrap,.setupgrid,.rtop,.rmid{grid-template-columns:1fr}.rtop .card{height:auto}}
 
+.rmid>.lf{align-self:stretch;align-content:start}
+.fact{position:sticky;top:4.8rem;overflow:hidden;border-left:6px solid var(--btn);background:linear-gradient(135deg,var(--panel),var(--sel))}
+.fact .fk{display:flex;gap:1rem;align-items:center}.fact .fe{font-size:3.4rem;line-height:1;filter:drop-shadow(0 4px 8px rgba(0,0,0,.18))}
+.fact .fs{font-size:.8rem;color:var(--mut)}.fact h3{margin:.1rem 0 0;font-size:1.3rem}
+.fact .ft{text-align:left;color:var(--ink);font-size:1.08rem;line-height:1.55;margin:1rem 0 .6rem}.fact .fm{margin:.4rem 0 0;padding:.55rem .8rem;border-radius:.6rem;background:var(--bg);font-weight:600}
+.fact .fc{display:flex;gap:.8rem;align-items:center;justify-content:flex-end;margin-top:1rem}.fact .fc .chip{font-size:1.2rem;padding:.1rem .9rem;line-height:1.4}
+.fact .fbar{position:absolute;left:0;right:0;bottom:0;height:4px;background:transparent}.fact .fbar i{display:block;height:100%;background:var(--btn);width:0;animation:fbar 9s linear infinite}.fact.hold .fbar i{animation-play-state:paused}
+@keyframes fbar{from{width:0}to{width:100%}}
+.fact.swap .fk,.fact.swap .ft,.fact.swap .fm{animation:fswap .45s ease}@keyframes fswap{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:none}}
+@media (max-width:980px){.fact{position:static}}
+
+.pgchart{width:100%;height:auto;display:block}.pgchart .gl{stroke:var(--line);stroke-width:1}.pgchart .gt{fill:var(--mut);font-size:11px}.pgchart .gv{fill:var(--ink);font-size:12px;font-weight:700}.pgchart .gd{fill:var(--btn);stroke:var(--panel);stroke-width:2}.pgchart .gp{fill:none;stroke:var(--btn);stroke-width:3;stroke-linejoin:round;stroke-linecap:round}
+#progSec>.card{margin:1rem 0}@media (max-width:600px){.pgchart .gt{font-size:17px}.pgchart .gv{font-size:19px}}
+.hm{overflow:auto}.hm td.c,.hm th.c{text-align:center;min-width:3.2rem}.tips{margin:.8rem 0 0;padding-left:1.1rem;display:grid;gap:.45rem}#progSec .flt{margin:.7rem 0}#progSec .acts{margin-top:.8rem}
+
 .sflt{margin-top:.5rem}.srtrow{margin-top:.7rem;display:flex;gap:.6rem;align-items:center;font-size:.9rem}.srtrow select{background:var(--bg);color:var(--ink);border:1.5px solid var(--line);border-radius:.5rem;padding:.3rem .6rem}
 .tabs2{display:flex;gap:.5rem;flex-wrap:wrap;margin:.6rem 0}.sl[data-jq]{cursor:pointer;border-radius:.4rem;padding:.2rem .3rem}.sl[data-jq]:hover,.sl[data-jq]:focus-visible{background:var(--sel);outline:none}
 .dif{font-style:normal;font-size:.72rem;border:1px solid var(--line);border-radius:.6rem;padding:0 .4rem;color:var(--mut);margin-left:.3rem}
-.tgt-t{width:100%;border-collapse:collapse;margin:.6rem 0;font-size:.92rem}.tgt-t th,.tgt-t td{padding:.4rem .5rem;border-bottom:1px solid var(--line);text-align:left}.tgt-t .n{text-align:right}.tgw{display:grid;grid-template-columns:1fr 1fr;gap:1.5rem 2rem;align-items:start}.tgr .rec{margin:0 0 .3rem}.tgt-t th{white-space:nowrap}@media (max-width:900px){.tgw{grid-template-columns:1fr}}.rec{margin:1rem 0 0;font-size:1rem}.neg{color:var(--bad);font-weight:700}.pos{color:var(--ok);font-weight:700}
+.tgt-t{width:100%;border-collapse:collapse;margin:.6rem 0;font-size:.92rem}.tgt-t th,.tgt-t td{padding:.4rem .5rem;border-bottom:1px solid var(--line);text-align:left}.tgt-t .n{text-align:right;white-space:nowrap}.tgw{display:grid;grid-template-columns:1fr 1fr;gap:1.5rem 2rem;align-items:start}.tgr .rec{margin:0 0 .3rem}.tgt-t th{white-space:nowrap}@media (max-width:900px){.tgw{grid-template-columns:1fr}}.rec{margin:1rem 0 0;font-size:1rem}.neg{color:var(--bad);font-weight:700}.pos{color:var(--ok);font-weight:700}
 .rv.flash{animation:flash 1.8s ease}@keyframes flash{0%,60%{box-shadow:0 0 0 3px var(--btn)}100%{box-shadow:none}}
 
 /* ===== result page redesign ===== */
@@ -318,7 +1296,7 @@ body{transition:background-color .3s ease,color .3s ease}
 #setup>.ft{padding-bottom:5.5rem;padding-top:1.4rem;color:var(--ink)}#setup>.ft a{color:inherit;text-decoration:underline;text-underline-offset:2px}
 @media (prefers-reduced-motion:reduce){*,*::before,*::after{animation:none!important;transition:none!important;scroll-behavior:auto!important}.rvl{opacity:1!important;transform:none!important}}
 @media print{
- #sflt,.srtrow{display:none!important}
+ #sflt,.srtrow,#factCard{display:none!important}
  :root:root:root{--bg:#fff;--panel:#fff;--ink:#111;--mut:#555;--line:#ccc;--okbg:#e3f5e9;--badbg:#fbe8e6;--warn:#fff4c2;--warnink:#5a4700;--code:#f1f4f8;--nv:#ccc;--ok:#1d8a46;--bad:#c4372f}
  body{background:#fff;color:#111}
  .hd,.nav,.acts,.flt,.ft,#again,.tags,.toast,.ov{display:none!important}
@@ -368,6 +1346,8 @@ body{transition:background-color .3s ease,color .3s ease}
 
  <div class="wrap">
   <div class="card" id="resCard" hidden><h2>Unfinished test found</h2><p id="resTxt"></p><div class="acts"><button class="btn go" id="resGo">Resume test</button></div></div>
+
+  <section class="sec" id="progSec" hidden></section>
 
   <section class="sec rvl" id="who">
    <h2 class="t">Is this series for you?</h2><p class="sub">One exam, one branch, nothing extra.</p>
@@ -495,8 +1475,8 @@ body{transition:background-color .3s ease,color .3s ease}
    <div class="card"><h2>Your numbers</h2><div class="seg" id="seg"></div><div class="kpi" id="kpi"></div><h2 style="margin-top:1.4rem">Share or save</h2><div class="acts" id="acts2"><button class="btn ghost" id="bcard">Result card (image)</button><button class="btn ghost" id="bpdf">Save scorecard as PDF</button><button class="btn ghost" id="bpdf2">Save full review as PDF</button></div></div>
   </div>
   <div class="rmid">
-   <div class="card"><h2>Subject-wise performance</h2><div style="overflow:auto"><table id="subj"></table></div></div>
-   <div class="col"><div class="card" id="anaCard"></div><div class="card" id="nextCard"></div></div>
+   <div class="col lf"><div class="card"><h2>Subject-wise performance</h2><div style="overflow:auto"><table id="subj"></table></div></div><div class="card fact" id="factCard" aria-live="off"></div></div>
+   <div class="col"><div class="card" id="anaCard"></div><div class="card" id="lossCard"></div><div class="card" id="nextCard"></div></div>
   </div>
   <div class="card" id="tgtCard"></div>
   <div class="card" id="revCard"><h2>Question review</h2><div class="flt" id="flt"></div><div class="flt sflt" id="sflt"></div><div class="srtrow"><label for="srt">Sort by</label><select id="srt"><option value="n">Question number</option><option value="t">Slowest first</option><option value="h">Hardest first</option></select></div></div>
@@ -640,8 +1620,8 @@ function renderResult(){
  $('acts').innerHTML='<button class="btn" data-r="all">Practice full test again</button>'+(wr.length?'<button class="btn ghost" data-r="bad">Practice wrong ('+wr.length+')</button>':'')+(nw.length?'<button class="btn ghost" data-r="nw">Practice wrong + unattempted ('+nw.length+')</button>':'');
  $('acts').onclick=e=>{const b=e.target.closest('[data-r]');if(!b)return;const k=b.dataset.r;ranked=false;SRV=null;k==='all'?begin(D,' (practice)'):begin(pick(k==='bad'?wr:nw),k==='bad'?' (practice: wrong questions)':' (practice: wrong + unattempted)')};
  const ws=subs.map(s=>[s,R.filter(x=>x.q.s===s&&x.st!=='ok').length,R.filter(x=>x.q.s===s).length]).filter(x=>x[1]>0).sort((a,b)=>b[1]/b[2]-a[1]/a[2]).slice(0,2);
- $('nextCard').innerHTML='<h2>What next?</h2>'+(ws.length?'<p>Your weakest subjects this time: <b>'+ws.map(x=>esc(x[0])).join('</b> and <b>')+'</b>. Find the notes for them at <a href="https://csewale.vercel.app" target="_blank" rel="noopener">csewale.vercel.app</a>.</p>':'<p>Every question was correct. Move on to the next mock test.</p>')+'<p class="mut">Subscribe to CSE WALE on YouTube for more mock tests and live practice sessions.</p>';
- filter='all';sub='all';srt='n';anaTab='slow'; ana(); tgt(); review(); show('result'); window.scrollTo(0,0);
+ $('nextCard').innerHTML='<h2>What next?</h2>'+(ws.length?'<p>Your weakest subjects this time: <b>'+ws.map(x=>esc(x[0])).join('</b> and <b>')+'</b>. Find the notes for them at <a href="https://csewale.vercel.app" target="_blank" rel="noopener">csewale.vercel.app</a>.</p>':'<p>Every question was correct. Move on to the next mock test.</p>')+'<p><button class="btn ghost" id="weakNext" type="button">Practice my weak questions from all mocks</button></p><p class="mut">Subscribe to CSE WALE on YouTube for more mock tests and live practice sessions.</p>';
+ filter='all';sub='all';srt='n';anaTab='slow'; ana(); tgt(); loss(); facts(); review(); show('result'); window.scrollTo(0,0);
 }
 const BAND=d=>/hard/i.test(d||'')?'Hard':/easy/i.test(d||'')?'Easy':'Medium',BR={Easy:0,Medium:1,Hard:2};
 function review(){
@@ -654,7 +1634,7 @@ function review(){
  let list=R.filter(r=>inF(r)&&(sub==='all'||r.q.s===sub));
  if(srt==='t')list=[...list].sort((a,b)=>b.t-a.t);else if(srt==='h')list=[...list].sort((a,b)=>BR[BAND(b.q.d)]-BR[BAND(a.q.d)]||a.i-b.i);
  $('rv').innerHTML=list.map(r=>{const q=r.q;
-  return '<div class="card rv" id="q'+r.i+'"><h3>Q'+(r.i+1)+' <span class="tag">'+esc(q.s)+'</span><span class="tag">'+q.d+'</span><span class="tag">Paper Q'+q.n+'</span><span class="tag">'+mm(r.t)+'</span>'+(S[r.i].bm?'<span class="tag">★ Bookmarked</span>':'')+'<span class="st '+r.st+'">'+{ok:'Correct +3',bad:'Incorrect −1',skip:'Unattempted'}[r.st]+'</span></h3>'+
+  return '<div class="card rv" id="q'+r.i+'"><h3>Q'+(r.i+1)+' <span class="tag">'+esc(q.s)+'</span><span class="tag">'+q.d+'</span><span class="tag">Paper Q'+(q.src_n||q.n)+(q.src_title?' · '+esc(q.src_title):'')+'</span><span class="tag">'+mm(r.t)+'</span>'+(S[r.i].bm?'<span class="tag">★ Bookmarked</span>':'')+'<span class="st '+r.st+'">'+{ok:'Correct +3',bad:'Incorrect −1',skip:'Unattempted'}[r.st]+'</span></h3>'+
   '<div class="qt">'+fm(q.q)+'</div>'+(q.c?'<pre class="code">'+esc(q.c)+'</pre>':'')+
   q.ord.map((oi,k)=>'<div class="ro'+(k===r.c?' ok':k===r.a?' bad':'')+'"><span><b>'+'ABCD'[k]+'.</b> '+fm(q.o[oi])+'</span><em>'+(k===r.c?'Correct answer':'')+(k===r.a?(k===r.c?' · Your answer':'Your answer'):'')+'</em></div>').join('')+
   '<div class="sol"><b>Solution.</b> '+fm(q.sol)+'</div><div class="key"><b>Key takeaway.</b> '+fm(q.key)+'</div><button class="askb" data-ask="'+r.i+'">'+((user()&&user().paid)?'✨ Explain with AI':'🔒 Explain with AI (full series)')+'</button><div class="tags" data-i="'+r.i+'"><span class="mut">Tag:</span> '+TG.map(x=>'<button class="chip'+(S[r.i].tag===x[0]?' on':'')+'" data-tag="'+x[0]+'">'+x[1]+'</button>').join('')+'</div></div>'}).join('')||'<div class="card mut">No questions in this group.</div>';
@@ -729,7 +1709,7 @@ const user=()=>ME&&ME.user;
 const notReady=()=>CFG.missing&&CFG.missing.length?'The site is not fully set up yet. Missing settings: '+CFG.missing.join(', ')+'.':'Login could not load. Check your internet and refresh the page.';
 async function refresh(){
  try{ME=await api('me')}catch(e){ME=ME||{tests:[],user:null};toast('Could not reach the server. Check your internet.')}
- uiUser();chk();
+ uiUser();chk();loadProgress();
  busyOff();if(user()){closeLogin();if(pendingAfter){const f=pendingAfter;pendingAfter=null;f()}else maybeProfile()}}
 function uiUser(){const u=user();
  $('userBox').style.display=u?'flex':'none';$('userBox').hidden=!u;$('loginTop').hidden=!!u;$('adminLk').hidden=!(u&&u.admin);
@@ -819,17 +1799,152 @@ async function launch(id){if(busy)return;busy=true;busyOn('Preparing your test�
 
 
 
+
+
+/* ===== "Remember this" fact card =====
+   EDIT THE FACTS HERE. Each line is [subject, emoji, title, fact, memory trick (optional)].
+   The subject must match the paper's subject name exactly. */
+const FACTS=[
+['Engineering Mathematics','🎲','Birthday paradox','Only 23 people are enough for a better than 50% chance that two share a birthday.','Count pairs, not people: 23 people make 253 pairs.'],
+['Engineering Mathematics','🧮','Rank–nullity','Rank + nullity = number of columns of the matrix.','Columns are either "used" (rank) or "wasted" (nullity).'],
+['Engineering Mathematics','🧩','Derangements','The number of ways to arrange n items so nobody sits in their own place is about n!/e.','Hat-check problem: roughly 37% of all arrangements.'],
+['Engineering Mathematics','🕳️','Determinant rules','det(AB) = det(A) × det(B), but det(A + B) is NOT det(A) + det(B).','Multiplication behaves, addition does not.'],
+['Engineering Mathematics','🪙','At least one','P(at least one) = 1 − P(none). It is usually the faster route.','"At least" means: flip it and subtract.'],
+['Engineering Mathematics','🕸️','Handshake lemma','In any graph the sum of all degrees is 2 × (number of edges), so the number of odd-degree vertices is always even.','Every edge has two ends.'],
+['Digital Logic','🔁','Universal gates','NAND and NOR are universal: any circuit can be built from just one of them.','N for "can build Anything".'],
+['Digital Logic','➖','Two\'s complement range','With n bits the range is −2^(n−1) to 2^(n−1) − 1. There is one more negative number than positive.','8 bits: −128 to +127.'],
+['Digital Logic','🌀','Counters','A ring counter with n flip-flops has n states. A Johnson (twisted-ring) counter has 2n states.','Johnson doubles the ring.'],
+['Digital Logic','🏃','Gray code','Only one bit changes between neighbouring values, which is why K-map rows and columns use Gray order.','Gray = gentle step.'],
+['Digital Logic','⏱️','Race-around','A level-triggered JK flip-flop with J = K = 1 toggles again and again. Master-slave or edge triggering fixes it.','Level = leaky. Edge = one click.'],
+['Digital Logic','➕','Adders','Full adder: sum = A ⊕ B ⊕ Cin and carry = AB + Cin(A ⊕ B). A half adder has no carry-in.','Half adder: half the inputs.'],
+['Computer Organization & Architecture','🧠','Average access time','Average memory access time = hit time + miss rate × miss penalty.','Pay the base cost always, the penalty only on a miss.'],
+['Computer Organization & Architecture','🚰','Pipeline hazards','The three hazards are structural (same resource), data (dependent values) and control (branches).','S, D, C: Share, Depend, Choose.'],
+['Computer Organization & Architecture','🔢','IEEE 754','Single precision: 1 sign, 8 exponent (bias 127), 23 fraction bits. Double: 1, 11 (bias 1023), 52.','1-8-23 and 1-11-52.'],
+['Computer Organization & Architecture','💾','DMA','With DMA the CPU is free during a block transfer, except when the DMA controller steals a bus cycle.','Cycle stealing: a polite thief.'],
+['Computer Organization & Architecture','📍','Endianness','Little-endian stores the least significant byte at the lowest address.','Little end first.'],
+['Computer Organization & Architecture','📦','Cache mapping','Direct-mapped: one possible line per block. Fully associative: any line, so there are no index bits.','Direct = one door. Associative = any door.'],
+['Programming & Data Structures','🧱','Array vs pointer','An array name decays to a pointer in most expressions, but sizeof(arr) still gives the size of the whole array.','sizeof sees the array, everything else sees a pointer.'],
+['Programming & Data Structures','➕','i++ vs ++i','i++ gives the OLD value and then increments. ++i increments first and gives the NEW value.','Post = after. Pre = before.'],
+['Programming & Data Structures','🌳','NULL links','A binary tree with n nodes has exactly n + 1 NULL child pointers. In a full binary tree, leaves = internal nodes + 1.','Every node adds 2 pointers; n − 1 are used.'],
+['Programming & Data Structures','🪜','Tree height','A binary tree of height h (root at height 0) has at most 2^(h+1) − 1 nodes.','Height 2 → up to 7 nodes.'],
+['Programming & Data Structures','➗','Integer division','In C99 and later, integer division truncates toward zero: −7 / 2 = −3 and −7 % 2 = −1.','The remainder takes the sign of the dividend.'],
+['Programming & Data Structures','📚','Stack or queue?','Stack: recursion, bracket matching, postfix evaluation. Queue: BFS and scheduling.','Stack = last in, first out. Queue = a ticket line.'],
+['Algorithms','⚖️','Master theorem','For T(n) = aT(n/b) + f(n), compare f(n) with n^(log_b a). The bigger one wins; if they match, add a log n factor.','Fight between the root work and the leaf work.'],
+['Algorithms','🏆','Sorting lower bound','Any comparison-based sort needs Ω(n log n) comparisons in the worst case.','n! orders need log₂(n!) yes/no questions.'],
+['Algorithms','🕸️','Shortest paths','Dijkstra fails with negative edge weights. Bellman-Ford handles them and detects negative cycles.','Dijkstra is optimistic, Bellman-Ford is careful.'],
+['Algorithms','🌲','Spanning trees','A spanning tree of V vertices always has V − 1 edges. Kruskal and Prim give the same total weight.','A tree has no spare edges.'],
+['Algorithms','🎒','Knapsack','Fractional knapsack is solved greedily (best value per weight). 0/1 knapsack needs dynamic programming.','You can cut a sugar bag, not a laptop.'],
+['Algorithms','🐌','Quick sort worst case','Quick sort is O(n²) when the pivot is always the smallest or largest, for example sorted input with the first element as pivot.','Bad pivot = lopsided split.'],
+['Theory of Computation','🔤','Closure','Regular languages are closed under union, intersection, complement, concatenation and star. CFLs are NOT closed under intersection or complement.','CFLs break on intersection and complement.'],
+['Theory of Computation','💥','NFA to DFA','Converting an n-state NFA to a DFA can need up to 2^n states.','Each DFA state is a subset of NFA states.'],
+['Theory of Computation','🥞','Pushdown automata','A PDA is an NFA plus a stack. A deterministic PDA is strictly weaker than a non-deterministic one.','Unlike finite automata, DPDA ≠ NPDA.'],
+['Theory of Computation','🛑','Halting problem','Whether an arbitrary program halts is undecidable. It is recursively enumerable but not recursive.','You can wait for "yes", never for "no".'],
+['Theory of Computation','🔁','Pumping lemma','The pumping lemma can only prove a language is NOT regular. It can never prove a language is regular.','It is a one-way street.'],
+['Theory of Computation','📏','a^n b^n','{aⁿbⁿ} is context-free but not regular. {aⁿbⁿcⁿ} is not even context-free.','One stack can count one pair, not two.'],
+['Compiler Design','🔡','Phase order','Lexical → syntax → semantic → intermediate code → optimisation → code generation.','"Lazy Students Study In Our Classroom".'],
+['Compiler Design','🥇','Parser power','LR(0) < SLR(1) < LALR(1) < CLR(1). LL(1) needs no left recursion and no common prefixes.','Each step on the ladder accepts more grammars.'],
+['Compiler Design','🧭','FOLLOW sets','FOLLOW of the start symbol always contains $, the end-of-input marker.','The end is always allowed after the start.'],
+['Compiler Design','🧊','Constant folding','Constant folding evaluates constant expressions at compile time: x = 3 * 4 becomes x = 12.','Compile time, not run time.'],
+['Compiler Design','✂️','Lexical analyser','The lexical analyser removes whitespace and comments and turns characters into tokens.','Scanner = tokens, parser = tree.'],
+['Compiler Design','🪞','Left recursion','A top-down parser loops forever on left recursion such as A → Aα, so it must be removed first.','Bottom-up parsers handle it fine.'],
+['Operating Systems','🔒','Deadlock','Deadlock needs ALL four: mutual exclusion, hold and wait, no pre-emption, circular wait. Break any one to prevent it.','MHNC: "My Hands Never Cross".'],
+['Operating Systems','🔄','Round robin','A huge time quantum makes round robin behave like FCFS. A tiny quantum wastes time on context switches.','Quantum too big = a queue. Too small = a blur.'],
+['Operating Systems','🐢','SJF','Shortest Job First gives the minimum average waiting time, but long jobs can starve.','Short jobs first is fair to most, unfair to one.'],
+['Operating Systems','📖','Belady\'s anomaly','With FIFO page replacement, MORE frames can cause MORE page faults. LRU and Optimal never do this.','Only FIFO is silly enough.'],
+['Operating Systems','🧵','Thread vs process','Threads of a process share code, data and files but have their own stack and registers. Processes share nothing by default.','Threads are flatmates, processes are neighbours.'],
+['Operating Systems','🌀','Thrashing','Thrashing means the system spends more time paging than executing, usually from too many processes for the memory.','Busy, but getting nothing done.'],
+['Databases (DBMS)','🔑','Keys','A candidate key is a minimal super key. The primary key is the candidate key you pick.','Candidates compete, one is elected.'],
+['Databases (DBMS)','📐','BCNF vs 3NF','BCNF: for every dependency X → Y, X must be a super key. 3NF also allows Y to be a prime attribute.','BCNF is 3NF without the exception.'],
+['Databases (DBMS)','🧪','ACID','Atomicity, Consistency, Isolation, Durability.','All-or-nothing, valid, separate, permanent.'],
+['Databases (DBMS)','🗂️','B+ tree','In a B+ tree all data sits in the leaves, and the leaves are linked, so range queries are fast.','Plus = leaves linked in a chain.'],
+['Databases (DBMS)','⚔️','Serializability','A schedule is conflict-serializable if its precedence graph has no cycle.','A cycle means a tug of war.'],
+['Databases (DBMS)','🪝','WHERE vs HAVING','WHERE filters rows before grouping. HAVING filters groups after GROUP BY.','Where = rows, Having = groups.'],
+['Databases (DBMS)','❓','NULL','NULL = NULL is not true in SQL (it is UNKNOWN). Use IS NULL. COUNT(*) counts rows, COUNT(col) skips NULLs.','NULL means "unknown", not "zero".'],
+['Computer Networks','🌐','OSI layers','Physical, Data link, Network, Transport, Session, Presentation, Application (7 layers).','"Please Do Not Throw Sausage Pizza Away".'],
+['Computer Networks','📞','TCP vs UDP','TCP is connection-oriented and reliable, like a phone call. UDP is connectionless and best-effort, like a postcard.','Call or postcard.'],
+['Computer Networks','🤝','Three-way handshake','SYN → SYN-ACK → ACK opens a TCP connection.','Hello, hello back, nice to meet you.'],
+['Computer Networks','🏷️','Address sizes','IPv4: 32 bits. IPv6: 128 bits. MAC address: 48 bits.','4 × 8, 16 × 8, 6 × 8.'],
+['Computer Networks','🧮','Subnet hosts','A subnet with h host bits has 2^h − 2 usable hosts (network and broadcast addresses are taken). A /24 gives 254.','Minus the first and the last.'],
+['Computer Networks','📡','Ethernet vs WiFi','Wired Ethernet uses CSMA/CD (detect collisions). WiFi uses CSMA/CA (avoid them). Minimum Ethernet frame: 64 bytes.','D for Detect, A for Avoid.'],
+['Computer Networks','⏳','Window size','Stop-and-wait efficiency is 1 / (1 + 2a), where a = propagation time / transmission time. A sliding window of 1 + 2a frames keeps the link busy.','Fill the pipe.']
+];
+let FI=0,FL=[],FT=null,FH=false;
+function facts(){
+ const bySub={};R.forEach(r=>{const o=bySub[r.q.s]=bySub[r.q.s]||{n:0,m:0};o.n++;if(r.st!=='ok')o.m++});
+ const weak=Object.entries(bySub).sort((a,b)=>b[1].m/b[1].n-a[1].m/a[1].n).slice(0,3).map(x=>x[0]);
+ const W=shuf(FACTS.filter(f=>weak.includes(f[0]))),O=shuf(FACTS.filter(f=>!weak.includes(f[0]))),mix=[];
+ while(W.length||O.length){if(W.length)mix.push(W.shift());if(W.length)mix.push(W.shift());if(O.length)mix.push(O.shift())}
+ FL=mix;FI=0;FW=weak;factShow(true);clearInterval(FT);
+ if(!reduce)FT=setInterval(()=>{if($('result').hidden){clearInterval(FT);return}if(!FH&&!document.hidden)factGo(1)},9000)}
+let FW=[];
+function factShow(first){const f=FL[FI],c=$('factCard');if(!f||!c)return;
+ c.innerHTML='<div class="fk"><span class="fe" aria-hidden="true">'+f[1]+'</span><div><div class="fs">'+esc(f[0])+(FW.includes(f[0])?' · your weak area':'')+'</div><h3>'+esc(f[2])+'</h3></div></div><p class="ft">'+esc(f[3])+'</p>'+(f[4]?'<p class="fm"><span>💡</span> '+esc(f[4])+'</p>':'')+'<div class="fc"><button type="button" class="chip" data-fd="-1" aria-label="Previous fact">‹</button><span class="mut">'+(FI+1)+' / '+FL.length+'</span><button type="button" class="chip" data-fd="1" aria-label="Next fact">›</button></div>'+(reduce?'':'<div class="fbar"><i></i></div>');
+ if(!first&&!reduce){c.classList.remove('swap');void c.offsetWidth;c.classList.add('swap')}}
+function factGo(d){FI=(FI+d+FL.length)%FL.length;factShow(false)}
+$('factCard').onclick=e=>{const b=e.target.closest('[data-fd]');if(b){factGo(+b.dataset.fd);clearInterval(FT);FT=reduce?null:setInterval(()=>{if($('result').hidden){clearInterval(FT);return}if(!FH&&!document.hidden)factGo(1)},9000)}};
+$('factCard').onmouseenter=()=>{FH=true;$('factCard').classList.add('hold')};$('factCard').onmouseleave=()=>{FH=false;$('factCard').classList.remove('hold')};
+
+/* ===== marks and time analysis (result page) ===== */
+function loss(){
+ const B=['Easy','Medium','Hard'],o={};B.forEach(b=>o[b]={n:0,t:0,ok:0,bad:0,sk:0});
+ R.forEach(r=>{const x=o[BAND(r.q.d)];x.n++;x.t+=r.t;x[r.st==='ok'?'ok':r.st==='bad'?'bad':'sk']++});
+ const tt=B.reduce((a,b)=>a+o[b].t,0),ea=B.reduce((a,b)=>a+3*o[b].ok,0),pc=(v,t)=>t?Math.round(100*v/t)+'%':'0%';
+ const wrong=R.filter(r=>r.st==='bad'),fast=wrong.filter(r=>r.t<20).length,tips=[];
+ if(wrong.length)tips.push('Negative marking cost you <b>'+wrong.length+'</b> marks. Attempt only when you can remove at least one option: a blind guess is worth 0 on average, removing one option is worth +0.33 and removing two is worth +1.');
+ if(fast>=2)tips.push('<b>'+fast+'</b> of your wrong answers took under 20 seconds. They look like rushed guesses, so read the question twice before you mark.');
+ if(tt>0&&o.Hard.n&&o.Hard.t/tt>.45&&ea&&3*o.Hard.ok/ea<.3)tips.push('You spent <b>'+pc(o.Hard.t,tt)+'</b> of your time on Hard questions, but they gave only <b>'+pc(3*o.Hard.ok,ea)+'</b> of your marks. Collect the Easy and Medium marks first next time.');
+ if(o.Easy.sk>0)tips.push('You skipped <b>'+o.Easy.sk+'</b> Easy question'+(o.Easy.sk>1?'s':'')+'. These are the cheapest marks in the paper.');
+ if(!tips.length)tips.push('Clean paper: no rushed wrong answers and no time wasted on the hardest questions.');
+ $('lossCard').innerHTML='<h2>Where your marks and time went</h2><div style="overflow:auto"><table class="tgt-t"><tr><th>Difficulty</th><th class="n">Time</th><th class="n">Time share</th><th class="n">Marks earned</th><th class="n">Lost to wrong</th><th class="n">Skipped</th></tr>'+B.map(b=>'<tr><td>'+b+' ('+o[b].n+')</td><td class="n">'+mm(o[b].t)+'</td><td class="n">'+pc(o[b].t,tt)+'</td><td class="n"><b>'+3*o[b].ok+'</b></td><td class="n">'+(o[b].bad?'<span class="neg">−'+o[b].bad+'</span>':'0')+'</td><td class="n">'+o[b].sk+'</td></tr>').join('')+'</table></div><ul class="tips">'+tips.map(x=>'<li>'+x+'</li>').join('')+'</ul>';
+}
+
+/* ===== progress across mocks + weak-question practice (home page) ===== */
+let HIST=null,weakSub='all';
+const shortT=t=>{const m=/mock test\s*(\d+)/i.exec(t||'');return m?'M'+m[1]:String(t||'').slice(0,6)};
+async function loadProgress(){const u=user(),sec=$('progSec');
+ if(!u||!ME||!ME.attempts||!Object.values(ME.attempts).some(a=>a.status==='submitted')){sec.hidden=true;HIST=null;return}
+ try{HIST=(await api('test?action=history',{quiet:true})).tests}catch(e){return}
+ drawProgress()}
+function drawProgress(){const sec=$('progSec');if(!HIST||!HIST.length){sec.hidden=true;return}
+ const T=HIST,pct=t=>Math.max(0,Math.round(100*t.score/t.max)),n=T.length,W=640,H=190,l=36,r=18,tp=20,b=34;
+ const x=i=>n===1?(l+(W-l-r)/2):l+i*(W-l-r)/(n-1),y=v=>tp+(100-v)*(H-tp-b)/100;
+ const grid=[0,50,100].map(v=>'<line class="gl" x1="'+l+'" x2="'+(W-r)+'" y1="'+y(v)+'" y2="'+y(v)+'"/><text class="gt" x="'+(l-6)+'" y="'+(y(v)+4)+'" text-anchor="end">'+v+'%</text>').join('');
+ const dots=T.map((t,i)=>'<circle class="gd" cx="'+x(i)+'" cy="'+y(pct(t))+'" r="5"><title>'+esc(t.title)+': '+t.score+' / '+t.max+'</title></circle><text class="gv" x="'+x(i)+'" y="'+(y(pct(t))-10)+'" text-anchor="middle">'+pct(t)+'</text><text class="gt" x="'+x(i)+'" y="'+(H-12)+'" text-anchor="middle">'+esc(shortT(t.title))+'</text>').join('');
+ const best=T.reduce((a,t)=>pct(t)>pct(a)?t:a,T[0]),last=T[n-1],prev=n>1?T[n-2]:null,d=prev?last.score-prev.score:0;
+ const line=n>1?'<polyline class="gp" points="'+T.map((t,i)=>x(i)+','+y(pct(t))).join(' ')+'"/>':'';
+ const sums=[...new Set(T.flatMap(t=>Object.keys(t.subjects)))];
+ const cell=o=>{if(!o||!o.max)return '<td class="c">–</td>';const p=Math.max(0,Math.round(100*o.score/o.max));return '<td class="c" style="background:hsl('+Math.round(p*1.2)+' 60% 50% / .28)">'+p+'%</td>'};
+ const trend=s=>{const a=T.filter(t=>t.subjects[s]&&t.subjects[s].max);if(a.length<2)return '<td class="c mut">–</td>';const f=o=>o.score/o.max,dd=Math.round(100*(f(a[a.length-1].subjects[s])-f(a[a.length-2].subjects[s])));return dd>0?'<td class="c pos">▲ '+dd+'</td>':dd<0?'<td class="c neg">▼ '+(-dd)+'</td>':'<td class="c mut">=</td>'};
+ const wk={};let tw=0;sums.forEach(s=>{wk[s]=T.reduce((a,t)=>{const o=t.subjects[s];return o?a+o.w+(o.n-o.c-o.w):a},0);tw+=wk[s]});
+ if(weakSub!=='all'&&!wk[weakSub])weakSub='all';
+ const chips='<button class="chip'+(weakSub==='all'?' on':'')+'" data-wsub="all">All subjects ('+tw+')</button>'+sums.filter(s=>wk[s]).sort((a,c)=>wk[c]-wk[a]).map(s=>'<button class="chip'+(weakSub===s?' on':'')+'" data-wsub="'+esc(s)+'">'+esc(s)+' ('+wk[s]+')</button>').join('');
+ sec.innerHTML='<h2 class="t">Your progress</h2><p class="sub">'+n+' mock'+(n>1?'s':'')+' done. Best: <b>'+esc(shortT(best.title))+'</b> ('+best.score+' / '+best.max+')'+(prev?'. Latest vs previous: <b class="'+(d>=0?'pos':'neg')+'">'+(d>=0?'+':'−')+Math.abs(d)+' marks</b>':'')+'.</p>'+
+  '<div class="two"><div class="card"><h3>Score in every mock</h3><svg class="pgchart" viewBox="0 0 '+W+' '+H+'" role="img" aria-label="Score percentage per mock">'+grid+line+dots+'</svg>'+(n===1?'<p class="mut">Take one more mock to see your trend line.</p>':'')+'</div>'+
+  '<div class="card"><h3>Practice my weak questions</h3>'+(tw?'<p>'+tw+' questions you got wrong or skipped, across '+n+' mock'+(n>1?'s':'')+'. Pick a subject, or practise them all. A session has up to 30 questions, wrong ones first.</p><div class="flt">'+chips+'</div><div class="acts"><button class="btn go" id="weakGo" type="button">Start weak-question practice</button></div>':'<p>No weak questions so far. Every question you attempted was correct.</p>')+'</div></div>'+
+  '<div class="card"><h3>Subjects across mocks</h3><div class="hm"><table><tr><th>Subject</th>'+T.map(t=>'<th class="c">'+esc(shortT(t.title))+'</th>').join('')+'<th class="c">Change</th></tr>'+sums.map(s=>'<tr><td>'+esc(s)+'</td>'+T.map(t=>cell(t.subjects[s])).join('')+trend(s)+'</tr>').join('')+'</table></div><p class="mut">Each cell is the share of that subject\'s marks you scored. Change compares your last two mocks.</p></div>';
+ sec.hidden=false}
+$('progSec').onclick=e=>{const c=e.target.closest('[data-wsub]');if(c){weakSub=c.dataset.wsub;drawProgress();return}if(e.target.closest('#weakGo'))startWeak(weakSub)};
+async function startWeak(sub){if(busy)return;busy=true;busyOn('Collecting your weak questions…');
+ try{const r=await api('test?action=weak');let qs=r.questions||[];if(sub&&sub!=='all')qs=qs.filter(q=>q.s===sub);
+  if(!qs.length){toast('No weak questions here. Nice work!');return}
+  const pool=[...shuf(qs.filter(q=>q.st==='bad')),...shuf(qs.filter(q=>q.st!=='bad'))].slice(0,30);
+  D=pool.map((q,i)=>({...q,n:i+1}));   // fresh numbers: these questions come from different mocks
+  CUR={id:'weak',title:'Weak-topic practice',subtitle:'',duration_min:Math.max(10,Math.round(D.length*1.2)),positive:3,negative:1};
+  ranked=false;SRV=null;finishing=false;nextTry=0;cfg=readCfg();begin(D,' (practice)');
+ }catch(e){toast(e.message)}finally{busy=false;busyOff()}}
+$('nextCard').onclick=e=>{if(e.target.closest('#weakNext'))startWeak('all')};
+
 /* ===== AI tutor (paid students, after submitting a test) ===== */
 const AI={ctx:null,hist:{},busy:false};
 const aiFmt=t=>esc(t).replace(/```([\s\S]*?)```/g,(m,c)=>'<pre>'+c.replace(/^\w*\n/,'')+'</pre>').replace(/`([^`\n]+)`/g,'<code>$1</code>').replace(/\*\*([^*\n]+)\*\*/g,'<b>$1</b>').replace(/\n/g,'<br>').replace(/<\/pre><br>/g,'</pre>');
 function aiLocked(){const u=user();if(!CFG.ai){toast('The AI tutor is coming soon.');return true}if(!u||!u.paid){toast('The AI tutor is part of the full test series.');buy();return true}return false}
-function aiKey(){return AI.ctx?AI.ctx.n:'general'}
+function aiKey(){return AI.ctx?AI.ctx.test_id+':'+AI.ctx.n:'general'}
 function aiRender(){const h=AI.hist[aiKey()]||[];const box=$('aiMsgs');
  box.innerHTML=(h.length?'':'<div class="am b">Hi! Ask me about this question, or any CSE topic from the exam. I explain step by step and keep it short, and I teach a topic from scratch only when you ask.</div>')+h.map(m=>'<div class="am '+(m.role==='user'?'u':'b'+(m.err?' err':''))+'">'+aiFmt(m.content)+(m.role==='assistant'&&!m.err?'<span class="note">AI explanation. Check with the official solution if unsure.</span>':'')+'</div>').join('')+(AI.busy?'<div class="am b"><span class="dots"><i></i><i></i><i></i></span></div>':'');
  box.scrollTop=box.scrollHeight;
  $('aiChips').innerHTML=AI.ctx&&!AI.busy?['Explain step by step','Explain more simply','Why are the other options wrong?','Teach the concept from scratch','Give me a similar question'].map(x=>'<button type="button">'+x+'</button>').join(''):''}
 function aiOpen(i,card){if(aiLocked())return;
- if(i==null)AI.ctx=null;else{const r=R[i],q=r.q;AI.ctx={test_id:CUR.id,n:q.n,subject:q.s,chosen:r.a==null?'':q.o[q.ord[r.a]],label:'Q'+(r.i+1)+' · '+q.s}}
+ if(i==null)AI.ctx=null;else{const r=R[i],q=r.q;AI.ctx={test_id:q.src_t||CUR.id,n:q.src_n||q.n,subject:q.s,chosen:r.a==null?'':q.o[q.ord[r.a]],label:'Q'+(r.i+1)+' · '+q.s}}
  $('aiQ').textContent=AI.ctx?AI.ctx.label+' (paper Q'+AI.ctx.n+')':'General doubt: any CSE exam topic';
  aiRender();$('ai').classList.add('on');document.body.classList.add('aiopen');
  if(card)setTimeout(()=>card.scrollIntoView({behavior:'smooth',block:'start'}),380);setTimeout(()=>{if(matchMedia('(min-width:700px)').matches)$('aiIn').focus()},250)}
