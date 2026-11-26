@@ -193,10 +193,56 @@ details.fq p{margin:.5rem 0 0;color:var(--mut)}
 .rtop .card{margin:1.1rem 0;height:calc(100% - 2.2rem)}
 .rmid{display:grid;grid-template-columns:1.4fr 1fr;gap:1rem;align-items:start}
 .rmid .card{margin:0}
-.rmid .col{display:grid;gap:1rem}
+.rmid .col{display:grid;gap:1rem;align-content:start}
 .rrv{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,34rem),1fr));gap:1rem}
 .rrv .card{margin:0}
 @media (max-width:980px){.lhero .wrap,.setupgrid,.rtop,.rmid{grid-template-columns:1fr}.rtop .card{height:auto}}
+
+.sflt{margin-top:.5rem}.srtrow{margin-top:.7rem;display:flex;gap:.6rem;align-items:center;font-size:.9rem}.srtrow select{background:var(--bg);color:var(--ink);border:1.5px solid var(--line);border-radius:.5rem;padding:.3rem .6rem}
+.tabs2{display:flex;gap:.5rem;flex-wrap:wrap;margin:.6rem 0}.sl[data-jq]{cursor:pointer;border-radius:.4rem;padding:.2rem .3rem}.sl[data-jq]:hover,.sl[data-jq]:focus-visible{background:var(--sel);outline:none}
+.dif{font-style:normal;font-size:.72rem;border:1px solid var(--line);border-radius:.6rem;padding:0 .4rem;color:var(--mut);margin-left:.3rem}
+.tgt-t{width:100%;border-collapse:collapse;margin:.6rem 0;font-size:.92rem}.tgt-t th,.tgt-t td{padding:.4rem .5rem;border-bottom:1px solid var(--line);text-align:left}.tgt-t .n{text-align:right}.tgw{display:grid;grid-template-columns:1fr 1fr;gap:1.5rem 2rem;align-items:start}.tgr .rec{margin:0 0 .3rem}.tgt-t th{white-space:nowrap}@media (max-width:900px){.tgw{grid-template-columns:1fr}}.rec{margin:1rem 0 0;font-size:1rem}.neg{color:var(--bad);font-weight:700}.pos{color:var(--ok);font-weight:700}
+.rv.flash{animation:flash 1.8s ease}@keyframes flash{0%,60%{box-shadow:0 0 0 3px var(--btn)}100%{box-shadow:none}}
+
+/* ===== result page redesign ===== */
+#result .hero{position:relative;overflow:hidden;color:#f3efe3;border:0;background:radial-gradient(120% 140% at 0% 0%,#24304a 0%,#121a2b 55%,#0c111c 100%)}
+#result .hero::after{content:"";position:absolute;right:-6rem;top:-6rem;width:20rem;height:20rem;border-radius:50%;background:radial-gradient(circle,rgba(245,180,0,.22),transparent 65%);pointer-events:none}
+#result .hero .btn.ghost{background:rgba(255,255,255,.08);color:#f3efe3;border-color:rgba(255,255,255,.22);margin-bottom:.4rem}
+#result .hero .mut{color:#aab6c8}
+#result .hgrid{display:flex;gap:clamp(1rem,3vw,2.2rem);align-items:center;flex-wrap:wrap;margin:.6rem 0 1rem;position:relative;z-index:1}
+#result .ring{position:relative;width:clamp(9.5rem,22vw,12.5rem);aspect-ratio:1;flex:none}
+#result .ring svg{width:100%;height:100%;transform:rotate(-90deg)}
+#result .ring circle{fill:none;stroke-width:9;stroke-linecap:round}
+#result .ring .rt{stroke:rgba(255,255,255,.12)}
+#result .ring .rf{stroke:#f5b400;stroke-dasharray:326.7;stroke-dashoffset:326.7;transition:stroke-dashoffset 1.4s cubic-bezier(.2,.8,.2,1);filter:drop-shadow(0 0 6px rgba(245,180,0,.55))}
+#result .rin{position:absolute;inset:0;display:grid;place-content:center;text-align:center}
+#result .rin .big{font-size:clamp(2.6rem,6vw,3.6rem);font-weight:800;letter-spacing:-.03em;color:#fff;line-height:1}
+#result .rmax{font-size:.85rem;color:#aab6c8;margin-top:.15rem}
+#result .hinfo{flex:1;min-width:14rem;display:grid;gap:.55rem}
+#result .who{font-size:1.35rem;font-weight:700;color:#fff}
+#result #rRank{font-size:1rem}
+#result .rk{display:inline-block;background:#f5b400;color:#111;border-radius:2rem;padding:.2rem .85rem;font-weight:600;margin-right:.35rem}
+#result .rk b{font-size:1.25rem}
+#result .pills{display:flex;gap:.5rem;flex-wrap:wrap}
+#result .chip2{border:1px solid rgba(255,255,255,.22);border-radius:2rem;padding:.2rem .7rem;font-size:.85rem;color:#e6ebf3}
+#result .chip2.gold{border-color:#f5b400;color:#f5b400;font-weight:700}
+#result .rtop .card{height:auto}#result .hero{display:flex;flex-direction:column}#result .hero #backTop2{align-self:flex-start}#result .hgrid{flex:0 0 auto}
+#result .rtop>.card:last-child{display:flex;flex-direction:column}#result .rtop .kpi{align-content:start;grid-auto-rows:minmax(5.2rem,auto)}#result .rtop .kpi div{display:flex;flex-direction:column;justify-content:center}#result .kpi b{font-size:1.7rem}
+#result .hero .acts{position:relative;z-index:1}
+#result .hero .acts .btn:not(.ghost){box-shadow:0 4px 18px rgba(245,180,0,.3)}
+#result .hero .acts .btn.ghost{margin-bottom:0}
+#result .seg .sb{display:flex;height:.9rem;border-radius:1rem;overflow:hidden;background:var(--bg);margin-top:.6rem}
+#result .seg i{display:block;height:100%;transition:width 1s ease}
+#result .s-ok{background:var(--ok)}#result .s-bad{background:var(--bad)}#result .s-sk{background:var(--nv)}
+#result .kpi div{border-left:4px solid var(--line);background:var(--bg)}
+#result .kpi .k-ok{border-left-color:var(--ok)}#result .kpi .k-bad{border-left-color:var(--bad)}#result .kpi .k-sk{border-left-color:var(--nv)}
+#result .acc{height:.55rem;border-radius:1rem;background:var(--bg);overflow:hidden}
+#result .acc i{display:block;height:100%;border-radius:1rem;background:linear-gradient(90deg,#f5b400,var(--ok))}
+#result #subj tr:hover td{background:var(--sel)}
+#result .rv{border-left:5px solid var(--line)}
+#result .rv:has(.st.ok){border-left-color:var(--ok)}#result .rv:has(.st.bad){border-left-color:var(--bad)}
+@media (max-width:560px){#result .hgrid{justify-content:center;text-align:center}#result .pills{justify-content:center}}
+@media (prefers-reduced-motion:reduce){#result .ring .rf,#result .seg i{transition:none}}
 
 /* ===== motion and new sections ===== */
 html{scroll-behavior:smooth}
@@ -272,11 +318,13 @@ body{transition:background-color .3s ease,color .3s ease}
 #setup>.ft{padding-bottom:5.5rem;padding-top:1.4rem;color:var(--ink)}#setup>.ft a{color:inherit;text-decoration:underline;text-underline-offset:2px}
 @media (prefers-reduced-motion:reduce){*,*::before,*::after{animation:none!important;transition:none!important;scroll-behavior:auto!important}.rvl{opacity:1!important;transform:none!important}}
 @media print{
+ #sflt,.srtrow{display:none!important}
  :root:root:root{--bg:#fff;--panel:#fff;--ink:#111;--mut:#555;--line:#ccc;--okbg:#e3f5e9;--badbg:#fbe8e6;--warn:#fff4c2;--warnink:#5a4700;--code:#f1f4f8;--nv:#ccc;--ok:#1d8a46;--bad:#c4372f}
  body{background:#fff;color:#111}
  .hd,.nav,.acts,.flt,.ft,#again,.tags,.toast,.ov{display:none!important}
  .card{break-inside:avoid;margin:.6rem 0}
  body.ps #rv,body.ps #revCard{display:none}
+ #result .hero{background:#fff!important;color:#111;border:1px solid #ccc}#result .hero .mut,#result .rmax{color:#555}#result .rin .big,#result .who{color:#111}#result .chip2{color:#111;border-color:#999}#result .hero::after{display:none}
  *{-webkit-print-color-adjust:exact;print-color-adjust:exact}
 }
 @media (max-width:880px){#exam{height:auto}.main{grid-template-columns:1fr}.grid{max-height:15rem}}
@@ -437,16 +485,21 @@ body{transition:background-color .3s ease,color .3s ease}
  <div class="hd"><div class="brand"><span class="logo"></span><b id="rT">Result</b></div><span style="display:flex;gap:.5rem;align-items:center;flex-wrap:wrap"><button id="aiOpen" style="background:transparent;border:1px solid #f5b400;color:#fff;border-radius:.5rem;padding:.35rem .8rem;font-weight:600">✨ AI tutor</button><button id="backTop" style="background:#f5b400;color:#111;font-weight:700">← Back to all tests</button><button class="th" title="Switch theme">Theme</button></span></div>
  <div class="rw">
   <div class="rtop">
-   <div class="card"><button class="btn ghost" id="backTop2" style="margin-bottom:.8rem">← Back to all tests</button><div class="mut" id="rWho"></div><div class="big"><span id="rScore">0</span> <span class="mut" style="font-size:1.5rem;font-weight:400">/ <span id="rMax">300</span></span></div>
-    <div id="rRank" style="font-size:1.125rem;margin-top:0.375rem"></div><div class="mut" id="rNote"></div>
-    <div class="acts" id="acts"></div><div class="acts" id="acts2"><button class="btn ghost" id="bcard">Result card (image)</button><button class="btn ghost" id="bpdf">Save scorecard as PDF</button><button class="btn ghost" id="bpdf2">Save full review as PDF</button></div></div>
-   <div class="card"><h2>Your numbers</h2><div class="kpi" id="kpi"></div></div>
+   <div class="card hero"><button class="btn ghost" id="backTop2">← Back to all tests</button>
+    <div class="hgrid">
+     <div class="ring"><svg viewBox="0 0 120 120" aria-hidden="true"><circle class="rt" cx="60" cy="60" r="52"/><circle class="rf" id="ringF" cx="60" cy="60" r="52"/></svg>
+      <div class="rin"><div class="big"><span id="rScore">0</span></div><div class="rmax">out of <span id="rMax">300</span></div></div></div>
+     <div class="hinfo"><div class="who" id="rWho"></div><div id="rRank"></div><div class="pills" id="rChips"></div><div class="mut" id="rNote"></div></div>
+    </div>
+    <div class="acts" id="acts"></div></div>
+   <div class="card"><h2>Your numbers</h2><div class="seg" id="seg"></div><div class="kpi" id="kpi"></div><h2 style="margin-top:1.4rem">Share or save</h2><div class="acts" id="acts2"><button class="btn ghost" id="bcard">Result card (image)</button><button class="btn ghost" id="bpdf">Save scorecard as PDF</button><button class="btn ghost" id="bpdf2">Save full review as PDF</button></div></div>
   </div>
   <div class="rmid">
    <div class="card"><h2>Subject-wise performance</h2><div style="overflow:auto"><table id="subj"></table></div></div>
    <div class="col"><div class="card" id="anaCard"></div><div class="card" id="nextCard"></div></div>
   </div>
-  <div class="card" id="revCard"><h2>Question review</h2><div class="flt" id="flt"></div></div>
+  <div class="card" id="tgtCard"></div>
+  <div class="card" id="revCard"><h2>Question review</h2><div class="flt" id="flt"></div><div class="flt sflt" id="sflt"></div><div class="srtrow"><label for="srt">Sort by</label><select id="srt"><option value="n">Question number</option><option value="t">Slowest first</option><option value="h">Hardest first</option></select></div></div>
   <div id="rv" class="rrv"></div>
   <div class="card"><button class="btn" id="again">Back to all tests</button></div>
  </div>
@@ -460,7 +513,7 @@ const esc=s=>s.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
 const fm=s=>esc(s).replace(/\^\{([^}]*)\}/g,'<sup>$1</sup>').replace(/_\{([^}]*)\}/g,'<sub>$1</sub>');
 const fmt=t=>{t=Math.max(0,Math.floor(t));return [t/3600|0,(t%3600)/60|0,t%60].map(v=>String(v).padStart(2,'0')).join(':')};
 const shuf=a=>{for(let i=a.length-1;i>0;i--){const j=Math.random()*(i+1)|0;[a[i],a[j]]=[a[j],a[i]]}return a};
-let Q,S,cur,cfg,limit,spent,last,paused,tick,filter='all',R,RS,lastSave=0;
+let Q,S,cur,cfg,limit,spent,last,paused,tick,filter='all',sub='all',srt='n',anaTab='slow',R,RS,lastSave=0;
 const KEY='cw-mock1-v1',TG=[['C','Concept gap'],['T','Fell for a trap'],['S','Calculation slip'],['G','Risky guess']];
 const ls={get:()=>{try{return JSON.parse(localStorage.getItem(KEY))}catch(e){return null}},set:v=>{try{localStorage.setItem(KEY,JSON.stringify(v))}catch(e){}},del:()=>{try{localStorage.removeItem(KEY)}catch(e){}}};
 const mm=t=>Math.floor(t/60)+'m '+String(Math.round(t%60)).padStart(2,'0')+'s';
@@ -572,10 +625,14 @@ function renderResult(){
  const ok=R.filter(r=>r.st==='ok').length,bad=R.filter(r=>r.st==='bad').length,sk=Q.length-ok-bad,score=ok*3-bad;
  $('rT').textContent='Result: '+CUR.title+cfg.label; $('rWho').textContent=cfg.name;
  $('rScore').textContent=SRV?SRV.score:score;$('rMax').textContent=Q.length*3;
- const full=!!SRV;$('rRank').innerHTML=full?'Rank <b>'+SRV.rank.toLocaleString('en-IN')+'</b> of '+SRV.total.toLocaleString('en-IN')+' students so far':'<span class="mut">Practice attempt, not ranked</span>';
+ const full=!!SRV;$('rRank').innerHTML=full?'<span class="rk">Rank <b>'+SRV.rank.toLocaleString('en-IN')+'</b></span> <span class="mut">of '+SRV.total.toLocaleString('en-IN')+' students so far</span>':'<span class="mut">Practice attempt, not ranked</span>';
  $('rNote').textContent=full?'This is your ranked first attempt. The rank updates as more students submit.'+(SRV.late?' (Submitted after the timer, so only your last autosaved answers counted.)':''):'Practice attempts do not change your rank.';
  const att=ok+bad;RS={ok,bad,sk,score:SRV?SRV.score:score,rank:SRV?SRV.rank:0,N:SRV?SRV.total:0,full,att};
- $('kpi').innerHTML=[['Correct',ok],['Wrong',bad],['Unattempted',sk],['Accuracy',att?(100*ok/att).toFixed(1)+'%':'0%'],['Attempted',att+' / '+Q.length],['Time taken',fmt(spent)]].map(k=>'<div>'+k[0]+'<b>'+k[1]+'</b></div>').join('');
+ $('kpi').innerHTML=[['Correct',ok,'k-ok'],['Wrong',bad,'k-bad'],['Unattempted',sk,'k-sk'],['Accuracy',att?(100*ok/att).toFixed(1)+'%':'0%',''],['Attempted',att+' / '+Q.length,''],['Time taken',fmt(spent),'']].map(k=>'<div class="'+k[2]+'">'+k[0]+'<b>'+k[1]+'</b></div>').join('');
+ const pc=n=>(100*n/Q.length).toFixed(2)+'%';
+ $('seg').innerHTML='<div class="sb" role="img" aria-label="'+ok+' correct, '+bad+' wrong, '+sk+' unattempted"><i class="s-ok" style="width:'+pc(ok)+'"></i><i class="s-bad" style="width:'+pc(bad)+'"></i><i class="s-sk" style="width:'+pc(sk)+'"></i></div>';
+ const mx0=Q.length*3,sc0=SRV?SRV.score:score,fr=Math.max(0,Math.min(1,sc0/mx0)),rf=$('ringF');rf.style.strokeDashoffset='326.7';requestAnimationFrame(()=>requestAnimationFrame(()=>{rf.style.strokeDashoffset=String(326.7*(1-fr))}));
+ $('rChips').innerHTML=(full&&SRV.total>1?'<span class="chip2 gold">Top '+Math.max(1,Math.ceil(100*SRV.rank/SRV.total))+'%</span>':'')+'<span class="chip2">'+(att?(100*ok/att).toFixed(0):0)+'% accuracy</span><span class="chip2">'+fmt(spent)+'</span>';
  const subs=[...new Set(D.map(d=>d.s))];
  $('subj').innerHTML='<tr><th>Subject</th><th class="n">Attempted</th><th class="n">Correct</th><th class="n">Wrong</th><th class="n">Marks</th><th class="n">Time</th><th>Accuracy</th></tr>'+subs.map(s=>{const r=R.filter(x=>x.q.s===s),c=r.filter(x=>x.st==='ok').length,w=r.filter(x=>x.st==='bad').length,a=c+w;
   return '<tr><td>'+esc(s)+' ('+r.length+')</td><td class="n">'+a+'</td><td class="n">'+c+'</td><td class="n">'+w+'</td><td class="n"><b>'+(3*c-w)+'</b></td><td class="n">'+mm(r.reduce((a,x)=>a+x.t,0))+'</td><td><div class="acc"><i style="width:'+(a?100*c/a:0)+'%"></i></div></td></tr>'}).join('');
@@ -584,23 +641,50 @@ function renderResult(){
  $('acts').onclick=e=>{const b=e.target.closest('[data-r]');if(!b)return;const k=b.dataset.r;ranked=false;SRV=null;k==='all'?begin(D,' (practice)'):begin(pick(k==='bad'?wr:nw),k==='bad'?' (practice: wrong questions)':' (practice: wrong + unattempted)')};
  const ws=subs.map(s=>[s,R.filter(x=>x.q.s===s&&x.st!=='ok').length,R.filter(x=>x.q.s===s).length]).filter(x=>x[1]>0).sort((a,b)=>b[1]/b[2]-a[1]/a[2]).slice(0,2);
  $('nextCard').innerHTML='<h2>What next?</h2>'+(ws.length?'<p>Your weakest subjects this time: <b>'+ws.map(x=>esc(x[0])).join('</b> and <b>')+'</b>. Find the notes for them at <a href="https://csewale.vercel.app" target="_blank" rel="noopener">csewale.vercel.app</a>.</p>':'<p>Every question was correct. Move on to the next mock test.</p>')+'<p class="mut">Subscribe to CSE WALE on YouTube for more mock tests and live practice sessions.</p>';
- filter='all'; ana(); review(); show('result'); window.scrollTo(0,0);
+ filter='all';sub='all';srt='n';anaTab='slow'; ana(); tgt(); review(); show('result'); window.scrollTo(0,0);
 }
+const BAND=d=>/hard/i.test(d||'')?'Hard':/easy/i.test(d||'')?'Easy':'Medium',BR={Easy:0,Medium:1,Hard:2};
 function review(){
  const f=[['all','All'],['ok','Correct'],['bad','Incorrect'],['skip','Unattempted'],['bm','Bookmarked']];
+ const inF=r=>filter==='all'||(filter==='bm'?S[r.i].bm:r.st===filter);
  $('flt').innerHTML=f.map(x=>'<button class="chip'+(filter===x[0]?' on':'')+'" data-f="'+x[0]+'">'+x[1]+' ('+(x[0]==='all'?R.length:x[0]==='bm'?S.filter(s=>s.bm).length:R.filter(r=>r.st===x[0]).length)+')</button>').join('');
- $('rv').innerHTML=R.filter(r=>filter==='all'||(filter==='bm'?S[r.i].bm:r.st===filter)).map(r=>{const q=r.q;
-  return '<div class="card rv"><h3>Q'+(r.i+1)+' <span class="tag">'+esc(q.s)+'</span><span class="tag">'+q.d+'</span><span class="tag">Paper Q'+q.n+'</span><span class="tag">'+mm(r.t)+'</span>'+(S[r.i].bm?'<span class="tag">★ Bookmarked</span>':'')+'<span class="st '+r.st+'">'+{ok:'Correct +3',bad:'Incorrect −1',skip:'Unattempted'}[r.st]+'</span></h3>'+
+ const subs=[...new Set(R.map(r=>r.q.s))];
+ $('sflt').innerHTML='<button class="chip'+(sub==='all'?' on':'')+'" data-sub="all">All subjects</button>'+subs.map((x,k)=>'<button class="chip'+(sub===x?' on':'')+'" data-sub="'+k+'">'+esc(x)+' ('+R.filter(r=>r.q.s===x&&inF(r)).length+')</button>').join('');
+ $('sflt').dataset.s=JSON.stringify(subs);$('srt').value=srt;
+ let list=R.filter(r=>inF(r)&&(sub==='all'||r.q.s===sub));
+ if(srt==='t')list=[...list].sort((a,b)=>b.t-a.t);else if(srt==='h')list=[...list].sort((a,b)=>BR[BAND(b.q.d)]-BR[BAND(a.q.d)]||a.i-b.i);
+ $('rv').innerHTML=list.map(r=>{const q=r.q;
+  return '<div class="card rv" id="q'+r.i+'"><h3>Q'+(r.i+1)+' <span class="tag">'+esc(q.s)+'</span><span class="tag">'+q.d+'</span><span class="tag">Paper Q'+q.n+'</span><span class="tag">'+mm(r.t)+'</span>'+(S[r.i].bm?'<span class="tag">★ Bookmarked</span>':'')+'<span class="st '+r.st+'">'+{ok:'Correct +3',bad:'Incorrect −1',skip:'Unattempted'}[r.st]+'</span></h3>'+
   '<div class="qt">'+fm(q.q)+'</div>'+(q.c?'<pre class="code">'+esc(q.c)+'</pre>':'')+
   q.ord.map((oi,k)=>'<div class="ro'+(k===r.c?' ok':k===r.a?' bad':'')+'"><span><b>'+'ABCD'[k]+'.</b> '+fm(q.o[oi])+'</span><em>'+(k===r.c?'Correct answer':'')+(k===r.a?(k===r.c?' · Your answer':'Your answer'):'')+'</em></div>').join('')+
   '<div class="sol"><b>Solution.</b> '+fm(q.sol)+'</div><div class="key"><b>Key takeaway.</b> '+fm(q.key)+'</div><button class="askb" data-ask="'+r.i+'">'+((user()&&user().paid)?'✨ Explain with AI':'🔒 Explain with AI (full series)')+'</button><div class="tags" data-i="'+r.i+'"><span class="mut">Tag:</span> '+TG.map(x=>'<button class="chip'+(S[r.i].tag===x[0]?' on':'')+'" data-tag="'+x[0]+'">'+x[1]+'</button>').join('')+'</div></div>'}).join('')||'<div class="card mut">No questions in this group.</div>';
 }
+$('sflt').onclick=e=>{const b=e.target.closest('[data-sub]');if(!b)return;const v=b.dataset.sub;sub=v==='all'?'all':JSON.parse($('sflt').dataset.s)[+v];review()};
+$('srt').onchange=e=>{srt=e.target.value;review()};
+function jumpQ(i){filter='all';sub='all';srt='n';review();const el=$('q'+i);if(el){el.scrollIntoView({behavior:'smooth',block:'start'});el.classList.add('flash');setTimeout(()=>el.classList.remove('flash'),1800)}}
 $('flt').onclick=e=>{const b=e.target.closest('[data-f]');if(b){filter=b.dataset.f;review()}};
 const goHome=()=>{show('setup');refresh();window.scrollTo(0,0)};['again','backTop','backTop2'].forEach(id=>$(id).onclick=goHome);$('brandHome').onclick=e=>{e.preventDefault();if($('setup').hidden){if(!$('exam').hidden&&!confirm('Leave the test screen? Your test keeps running.'))return;goHome()}else window.scrollTo({top:0,behavior:'smooth'})};
 function ana(){
  const tg={C:0,T:0,S:0,G:0};S.forEach(s=>{if(s.tag)tg[s.tag]++});
- const slow=[...R].sort((a,b)=>b.t-a.t).slice(0,5),mx=Math.max(1,slow[0]?slow[0].t:1);
- $('anaCard').innerHTML='<h2>Time and error analysis</h2><p class="mut">Average time per question: <b>'+mm(spent/Q.length)+'</b>. Your 5 slowest questions:</p>'+slow.map(r=>'<div class="sl"><span>Q'+(r.i+1)+', '+esc(r.q.s)+', '+{ok:'correct',bad:'wrong',skip:'unattempted'}[r.st]+'</span><div class="acc"><i style="width:'+(100*r.t/mx)+'%"></i></div><b>'+mm(r.t)+'</b></div>').join('')+'<p style="margin-top:1rem"><b>Error tags</b> (set them on the question cards below): concept gap '+tg.C+', fell for a trap '+tg.T+', calculation slip '+tg.S+', risky guess '+tg.G+'. Bookmarked: '+S.filter(s=>s.bm).length+'.</p>';
+ const T={
+  slow:['Slowest',[...R].sort((a,b)=>b.t-a.t).slice(0,5),'Your 5 slowest questions, whatever the result.'],
+  cslow:['Correct but slow',R.filter(r=>r.st==='ok').sort((a,b)=>b.t-a.t).slice(0,5),'Right answers that took long. Practise these for speed.'],
+  wrong:['Wrong',R.filter(r=>r.st==='bad').sort((a,b)=>b.t-a.t).slice(0,3),'The 3 wrong answers where you spent the most time.'],
+  skip:['Unattempted',R.filter(r=>r.st==='skip').sort((a,b)=>BR[BAND(a.q.d)]-BR[BAND(b.q.d)]||a.i-b.i).slice(0,3),'Skipped questions, easiest first. These are the most fixable marks.']
+ },cur=T[anaTab],mx=Math.max(1,...cur[1].map(r=>r.t));
+ $('anaCard').innerHTML='<h2>Time and error analysis</h2><p class="mut">Average time per question: <b>'+mm(spent/Q.length)+'</b></p><div class="tabs2">'+Object.keys(T).map(k=>'<button class="chip'+(anaTab===k?' on':'')+'" data-at="'+k+'">'+T[k][0]+' ('+T[k][1].length+')</button>').join('')+'</div><p class="mut">'+cur[2]+' Tap a row to open its solution.</p>'+
+  (cur[1].length?cur[1].map(r=>'<div class="sl" role="button" tabindex="0" data-jq="'+r.i+'"><span>Q'+(r.i+1)+', '+esc(r.q.s)+' <em class="dif">'+BAND(r.q.d)+'</em></span><div class="acc"><i style="width:'+(100*r.t/mx)+'%"></i></div><b>'+mm(r.t)+'</b></div>').join(''):'<p class="mut">Nothing here. Nice.</p>')+
+  '<p style="margin-top:1rem"><b>Error tags</b> (set them on the question cards below): concept gap '+tg.C+', fell for a trap '+tg.T+', calculation slip '+tg.S+', risky guess '+tg.G+'. Bookmarked: '+S.filter(s=>s.bm).length+'.</p>';
+}
+$('anaCard').onclick=e=>{const t=e.target.closest('[data-at]');if(t){anaTab=t.dataset.at;ana();return}const j=e.target.closest('[data-jq]');if(j)jumpQ(+j.dataset.jq)};
+$('tgtCard').onclick=e=>{const j=e.target.closest('[data-jq]');if(j)jumpQ(+j.dataset.jq)};
+$('anaCard').onkeydown=e=>{if(e.key==='Enter'){const j=e.target.closest('[data-jq]');if(j)jumpQ(+j.dataset.jq)}};
+const PAR={Easy:.9,Medium:.65,Hard:.35};
+function tgt(){
+ const rows=['Easy','Medium','Hard'].map(b=>{const r=R.filter(x=>BAND(x.q.d)===b),n=r.length,ok=r.filter(x=>x.st==='ok').length,bad=r.filter(x=>x.st==='bad').length,t=Math.round(n*PAR[b]);return{b,n,ok,bad,t,lack:Math.max(0,t-ok)}});
+ const target=rows.reduce((a,x)=>a+3*x.t,0),mine=RS.score,gap=target-mine,miss=[...rows].sort((a,b)=>b.lack-a.lack)[0];
+ $('tgtCard').innerHTML='<h2>Your target for this paper</h2><div class="tgw"><div class="tgl"><p>Based on how hard this paper is, a well-prepared student scores about <b>'+target+'</b> out of '+Q.length*3+'. You scored <b>'+mine+'</b>.</p>'+
+  '<table class="tgt-t"><tr><th>Difficulty</th><th class="n">Questions</th><th class="n">Target correct</th><th class="n">You got</th><th class="n">Marks to gain</th></tr>'+rows.map(x=>'<tr><td>'+x.b+'</td><td class="n">'+x.n+'</td><td class="n">'+x.t+'</td><td class="n"><b>'+x.ok+'</b></td><td class="n">'+(x.lack?'<span class="neg">+'+3*x.lack+'</span>':'<span class="pos">On target</span>')+'</td></tr>').join('')+'</table>'+'<p>'+(gap<=0?'You are above the target. Keep your accuracy and work on speed.':miss&&miss.lack?'Biggest gain: <b>'+miss.b+'</b> questions. '+miss.lack+' more correct there is worth +'+3*miss.lack+' marks.':'You are close to the target.')+'</p><p class="mut">Targets assume 90% of Easy, 65% of Medium and 35% of Hard questions correct. This is a study guide, not the official cut-off.</p>'+'</div><div class="tgr">'+(()=>{const need=rows.filter(x=>x.lack);if(!need.length)return '';return '<h3 class="rec">Questions to recover</h3>'+need.map(x=>{const m=R.filter(r=>BAND(r.q.d)===x.b&&r.st!=='ok');return '<p class="mut" style="margin:.5rem 0 .25rem">'+x.b+': get '+x.lack+' more of these '+m.length+' right</p><div class="tabs2">'+m.slice(0,14).map(r=>'<button class="chip" data-jq="'+r.i+'">Q'+(r.i+1)+' '+esc(r.q.s.split(' ')[0])+' · '+(r.st==='bad'?'wrong':'skipped')+'</button>').join('')+(m.length>14?'<span class="mut">+'+(m.length-14)+' more</span>':'')+'</div>'}).join('')})()+'</div></div>';
 }
 $('rv').onclick=e=>{const b=e.target.closest('[data-tag]');if(!b)return;const s=S[+b.parentNode.dataset.i];s.tag=s.tag===b.dataset.tag?'':b.dataset.tag;review();ana()};
 $('resGo').onclick=()=>launch($('resGo').dataset.t);
